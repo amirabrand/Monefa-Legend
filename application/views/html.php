@@ -1,0 +1,282 @@
+<?php
+/**
+ * @package	programing
+ * https://www.lotryka.com/
+ * https://www.youtube.com/@lutryka/
+ * https://www.instagram.com/@lutryka/
+ * https://www.x.com/@lutryka/
+ * https://www.x.com/@lutryka/
+ *  طراحی و بیاده سازیه شده توسط حمید مرادی برنامه نویس و فرانت نویس 1 سال زمان برد تا این سیستم تراوین لجند رو طراحی کنم
+ *  design projct 2024 no License free work 1 year i had design to travian legend no buge first game browser with and full project no body to design like this
+ *  Designed and updated by Hamid Moradi, a programmer and front-end writer
+ */
+?>
+<!DOCTYPE html>
+<html>
+
+<head><meta charset="utf-8">
+    <title><?= SERVER_NAME ?></title>
+    <meta http-equiv="cache-control" content="max-age=0"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta http-equiv="expires" content="0"/>
+    <meta http-equiv="imagetoolbar" content="no"/>
+    
+    <meta name="content-language" content="<?php echo LANG_UR; ?>"/>
+    <link href="<?= GP_LOCATION ?>lang/<?php echo LANG_UR; ?>/compact.css" rel="stylesheet" type="text/css"/>
+    <link href="<?= GP_LOCATION ?>lang/<?php echo LANG_UR; ?>/lang.css" rel="stylesheet" type="text/css"/>
+	<link href="<?= GP_LOCATION ?>lang/<?php echo LANG_UR; ?>/fixes.css?rev13" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="<?= GP_LOCATION1 ?>default/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="<?= GP_LOCATION1 ?>default/jquery.md5.min.js"></script>
+   
+          
+    <script type="text/javascript" src="<?= GP_LOCATION1 ?>default/d3/d3.min.js"></script>
+    <script type="text/javascript" src="<?= GP_LOCATION1 ?>default/d3/d3pie.min.js"></script>
+    <script type="text/javascript" src="<?= GP_LOCATION1 ?>default/gsap/minified/TweenMax.min.js"></script>
+    <script type="text/javascript" src="<?= GP_LOCATION1 ?>default/gsap/minified/plugins/MorphSVGPlugin.min.js"></script>
+    <script type="text/javascript" src="<?= GP_LOCATION1 ?>Game/General/General.js"></script>
+<script type="text/javascript" src="<?= GP_LOCATION1 ?>disable.js"></script>
+
+
+
+
+
+
+
+
+
+	<script type="text/javascript">
+		var j$ = $.noConflict();
+	</script>
+    <script type="text/javascript">
+        window.TravianDefaults = {
+            Map: { Size: { width: 201, height: 201, left: -100, right: 100, bottom: -100, top: 100 } }
+        };
+        function getMapSize() {return 100;}
+        function getAutoReloadStatus(){return <?php echo $session->autoreload;?> ;}
+    </script>
+
+    <script type="text/javascript" src="crypt.js"></script>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+
+    <script type="text/javascript">
+        Travian.Translation.add({
+            'allgemein.anleitung': '<?php echo $lang['Manual']['Instructions']; ?>',
+            'allgemein.cancel': 'Cancel',
+            'allgemein.ok': 'OK',
+            'allgemein.close': '<?php echo $lang['Daily']['Close']; ?>',
+            'cropfinder.keine_ergebnisse': 'There are no results'
+        });
+        Travian.applicationId = 'T4.4 Game';
+        Travian.Game.version = '4.4';
+        Travian.Game.worldId = 'vip7';
+        Travian.Game.speed = <?php echo SPEED; ?>;
+        Travian.Templates = {};
+        Travian.Templates.ButtonTemplate = "<button >\n\t<div class=\"button-container addHoverClick\">\n\t\t<div class=\"button-background\">\n\t\t\t<div class=\"buttonStart\">\n\t\t\t\t<div class=\"buttonEnd\">\n\t\t\t\t\t<div class=\"buttonMiddle\"><\/div>\n\t\t\t\t<\/div>\n\t\t\t<\/div>\n\t\t<\/div>\n\t\t<div class=\"button-content\"><\/div>\n\t<\/div>\n<\/button>\n";
+    </script>
+    <script type="text/javascript">
+        Travian.Game.eventJamHtml = '&lt;a href=&quot;# target=&quot;blank&quot; title=&quot;Response&zwnj;Travian&quot;&gt;&lt;span class=&quot;c0 t&quot;&gt;0:00:0&lt;/span&gt;?&lt;/a&gt;'.unescapeHtml();
+                Travian.Game.eventJamHtml = '&lt;a href=&quot;javascript:void&quot; onclick=&quot;document.location.reload();&quot;&gt;&lt;img src=&quot;<?=GP_LOCATION2;?>refresh.png&quot;&gt;&lt;/a&gt;'.unescapeHtml();
+            </script>
+
+
+</head>
+<script type="text/javascript">
+    window.ajaxToken = '765784eba4d5b4156277301c5674432faca910fc';
+    window._player_uuid = '';
+    Travian.Game.Preferences.initialize({"highlightsToggle":"true","travian_toggle_hero":"expanded","travian_toggle_infobox":"expanded","travian_toggle_villagelist":"collapsed","travian_toggle_alliance":"expanded","WMBlueprints":"[]","QuestDialogPosition":"{\"position\":null,\"preferenceKey\":\"QuestDialogPosition\"}"});
+    Travian.Game.Quest.init();
+</script>
+
+<script type="application/javascript">
+    Travian.Game.Preferences.initialize({"adSalesVideoSuccessDialogDisabled":"0","allianceReportsFilter":"{\"attackTypes\":[\"16\",\"5\",\"4\",\"3\",\"2\",\"1\",\"19\",\"18\",\"17\",\"15\",\"7\"],\"noOwnAllianceAttacks\":true}","buildingDescriptionCollapsed":"false","entriesPerPage":"10","flagAttributesBoxOpen":"1","lastUsedPaymentMethod":"PAYPAL","marketplaceOffersPerPage":"10","mobileUnitDisplay":"collapsed","shopCountry":"AAB","snowAnimation":"{}","travian_toggle_infobox":"expanded","travian_toggle_villagelist":"collapsed","troopMovementsPerPage":"10"});
+    Travian.Game.PaymentWizardEventListener.defaultOptions = {"shopUIVersion":4,"cssClass":"paymentShopV4","data":{"activeTab":"buyGold"}};
+</script>
+        <iframe name="__cmpLocator" style="display: none;"></iframe><iframe name="__uspapiLocator" style="display: none;"></iframe><iframe name="__tcfapiLocator" style="display: none;"></iframe><iframe name="__gppLocator" style="display: none;"></iframe>        <div id="reactDialogWrapper"></div>
+
+<?php
+if($session->uid){
+    $p11=array("VV"=>$_SERVER['REMOTE_ADDR'] , "II"=>$session->uid);
+    $database->query("UPDATE users set `ip` = :VV where id = :II",$p11);
+}
+
+
+if (basename($_SERVER['PHP_SELF']) !== 'captcha.php' && isset($session->uid)) {
+    // Redirect to captcha.php if not already there
+    $fullUrl = $_SERVER['REQUEST_URI'];
+    $_SESSION['cappage']=$fullUrl;
+}
+//echo ($_SESSION['CAPTCHATIME']<time());
+//die();
+if(isset($_SESSION['captime'])&&$_SESSION['captime']<time()&& isset($session->uid)){
+    //$session->destroy();
+    if (basename($_SERVER['PHP_SELF']) !== 'captcha.php'  && basename($_SERVER['PHP_SELF']) !== 'messages.php'&& !(isset($_GET['ok']) && basename($_SERVER['PHP_SELF']) == 'dorf1.php')) {
+        // Redirect to captcha.php if not already there
+        $_SESSION['cappage']=basename($_SERVER['PHP_SELF']);
+        header('Location: ./captcha.php');
+        die();
+    }
+    
+}
+//echo ($_SESSION['CAPTCHATIME']<time());
+//die();
+
+if(isset($session->uid) && basename($_SERVER['PHP_SELF']) !== 'captcha.php' && basename($_SERVER['PHP_SELF']) !== 'messages.php'&& !(isset($_GET['ok']) && basename($_SERVER['PHP_SELF']) == 'dorf1.php')){
+    ?>
+<script>
+   if (<?php echo $_SESSION['captime'] < time() ? 'true' : 'false'; ?>) {
+    window.location.href = './captcha.php';
+}
+
+    let consoleOpened = false;
+
+    // Interval monitoring of console open state
+    function monitorConsoleOpen() {
+        let lastHeight = window.outerHeight;
+        let lastWidth = window.outerWidth;
+
+        setInterval(() => {
+            if (
+                (window.outerHeight !== lastHeight || window.outerWidth !== lastWidth) ||
+                isConsoleOpenViaDebugger() ||
+                detectConsoleThroughTiming()
+            ) {
+                if (!consoleOpened) {
+                    consoleOpened = true;
+                    sendDetectionData(consoleOpened);
+                }
+            }
+            lastHeight = window.outerHeight;
+            lastWidth = window.outerWidth;
+        }, 2000); // Adjust interval as needed
+    }
+
+    // Debugger detection
+    function isConsoleOpenViaDebugger() {
+        let opened = false;
+        const start = performance.now();
+        debugger; // This triggers only if the console is open
+        const end = performance.now();
+        if (end - start > 100) { // Adjust threshold as needed
+            opened = true;
+        }
+        return opened;
+    }
+
+    // Console timing check
+    function detectConsoleThroughTiming() {
+        const start = performance.now();
+        console.log('Checking console...');
+        const end = performance.now();
+        return end - start > 10; // Adjust this threshold as needed
+    }
+
+    // Collect browser data
+    function collectBrowserData(consoleOpenedStatus = false) {
+        return {
+            userAgent: navigator.userAgent,
+            languages: navigator.languages ? navigator.languages.join(',') : navigator.language,
+            isWebdriver: navigator.webdriver ? 1 : 0,
+            platform: navigator.platform || '',
+            isIE: /MSIE|Trident/.test(navigator.userAgent),
+            consoleOpened: consoleOpenedStatus
+        };
+    }
+
+    // Send detection data
+    function sendDetectionData(consoleStatus = false) {
+        const browserData = collectBrowserData(consoleStatus);
+        fetch('/botdetector.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(browserData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Server error: ${response.status}`);
+            }
+            return response.text();
+        })
+        .then(score => {
+            console.log('Bot detection score:', score);
+            if (parseFloat(score) <= 0.5) {
+              //  alert('Got you!');
+                window.location.href = './captcha.php';
+            } else {
+              //  alert('You have passed the bot check.');
+            }
+        })
+        .catch(error => console.error('Error during fetch:', error));
+    }
+
+    // Initial data sending and console monitoring setup
+    sendDetectionData();
+    monitorConsoleOpen();  // Initialize console open detection monitoring
+</script>
+    <?php
+
+}
+?>
+
+
+
+
+
+    <style>
+                         
+  .importantStyle {
+      top: 5px !important;
+  }
+
+        @font-face {
+	font-family: IRANSans;
+	font-style: normal;
+	font-weight: bold;
+	src: url('../fonts/IRANSansWeb_Bold.eot');
+	src: url('../fonts/IRANSansWeb_Bold.eot@#iefix') format('embedded-opentype'),  /* IE6-8 */
+		 url('../fonts/IRANSansWeb_Bold.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('../fonts/IRANSansWeb_Bold.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('../fonts/IRANSansWeb_Bold.ttf') format('truetype');
+}
+@font-face {
+	font-family: IRANSans;
+	font-style: normal;
+	font-weight: 500;
+	src: url('../fonts/IRANSansWeb_Medium.eot');
+	src: url('../fonts/IRANSansWeb_Medium.eot@#iefix') format('embedded-opentype'),  /* IE6-8 */
+		 url('../fonts/IRANSansWeb_Medium.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('../fonts/IRANSansWeb_Medium.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('../fonts/IRANSansWeb_Medium.ttf') format('truetype');
+}
+@font-face {
+	font-family: IRANSans;
+	font-style: normal;
+	font-weight: 300;
+	src: url('../fonts/IRANSansWeb_Light.eot');
+	src: url('../fonts/IRANSansWeb_Light.eot@#iefix') format('embedded-opentype'),  /* IE6-8 */
+		 url('../fonts/IRANSansWeb_Light.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('../fonts/IRANSansWeb_Light.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('../fonts/IRANSansWeb_Light.ttf') format('truetype');
+}
+@font-face {
+	font-family: IRANSans;
+	font-style: normal;
+	font-weight: 200;
+	src: url('../fonts/IRANSansWeb_UltraLight.eot');
+	src: url('../fonts/IRANSansWeb_UltraLight.eot@#iefix') format('embedded-opentype'),  /* IE6-8 */
+		 url('../fonts/IRANSansWeb_UltraLight.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('../fonts/IRANSansWeb_UltraLight.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('../fonts/IRANSansWeb_UltraLight.ttf') format('truetype');
+}
+@font-face {
+	font-family: IRANSans;
+	font-style: normal;
+	font-weight: normal;
+	src: url('../fonts/IRANSansWeb.eot');
+	src: url('../fonts/IRANSansWeb.eot@#iefix') format('embedded-opentype'),  /* IE6-8 */
+		 url('../fonts/IRANSansWeb.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('../fonts/IRANSansWeb.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('../fonts/IRANSansWeb.ttf') format('truetype');
+}
+    </style>

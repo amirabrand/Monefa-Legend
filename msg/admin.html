@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '#messageContent, #editMessageContent'
+        });
+
+        async function addMessage() {
+            const message = tinymce.get('messageContent').getContent();
+            const messageType = document.querySelector('input[name="messageType"]:checked').value;
+            if (message && (messageType === 'permanent' || messageType === 'temporary')) {
+                await fetch('admin.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        'action': 'add_message',
+                        'message': message,
+                        'message_type': messageType
+                    })
+                });
+                loadMessages();
+                tinymce.get('messageContent').setContent('');
+            }
+        }
+
+        async function loadMessages() {
+            const response = await fetch('admin.php?action=get_messages&user_id=0'); // 0 برای ادمین
+            const messages = await response.json();
+            const messageList = document.getElementById('messageList');
+            messageList.innerHTML = '';
+            messages.forEach(message => {
+                const messageItem = document.createElement('li');
+                messageItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+                messageItem.innerHTML = `
+                    <div>${message.message}</div>
+                    <div>
+                        <button class="btn btn-sm btn-warning" onclick="openEditModal(${message.id}, '${message.message.replace(/'/g, "\\'")}')">Edit</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteMessage(${message.id})">Delete</button>
+                    </div>
+                `;
+                messageList.appendChild(messageItem);
+            });
+        }
+
+        function openEditModal(messageId, messageContent) {
+            tinymce.get('editMessageContent').setContent(messageContent);
+            document.getElementById('editMessageId').value = messageId;
+            new bootstrap.Modal(document.getElementById('editMessageModal')).show();
+        }
+
+        async function editMessage() {
+            const messageId = document.getElementById('editMessageId').value;
+            const newMessage = tinymce.get('editMessageContent').getContent();
+            await fetch('admin.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({
+                    'action': 'edit_message',
+                    'message_id': messageId,
+                    'message': newMessage
+                })
+            });
+            loadMessages();
+            new bootstrap.Modal(document.getElementById('editMessageModal')).hide();
+        }
+
+        async function deleteMessage(messageId) {
+            await fetch('admin.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({
+                    'action': 'delete_message',
+                    'user_id': 0,
+                    'message_id': messageId
+                })
+            });
+            loadMessages();
+        }
+
+        window.onload = () => {
+            loadMessages();
+        }
+    </script>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h3>Admin Panel</h3>
+            </div>
+            <div class="card-body">
+                <form onsubmit="addMessage(); return false;">
+                    <div class="mb-3">
+                        <label for="messageContent" class="form-label">Message Content</label>
+                        <textarea id="messageContent"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Message Type</label><br>
+                        <input type="radio" id="permanent" name="messageType" value="permanent" checked>
+                        <label for="permanent">Permanent</label>
+                        <input type="radio" id="temporary" name="messageType" value="temporary">
+                        <label for="temporary">Temporary</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Message</button>
+                </form>
+                <ul id="messageList" class="list-group mt-4"></ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Message Modal -->
+    <div class="modal fade" id="editMessageModal" tabindex="-1" aria-labelledby="editMessageModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editMessageModalLabel">Edit Message</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="editMessageId">
+                    <div class="mb-3">
+                        <label for="editMessageContent" class="form-label">Message Content</label>
+                        <textarea id="editMessageContent"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="editMessage()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

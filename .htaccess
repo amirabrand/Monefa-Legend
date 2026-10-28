@@ -1,0 +1,28 @@
+Options -Indexes
+DirectoryIndex index.php login.php
+
+AddDefaultCharset UTF-8
+
+# never serve dumps, logs, docs or the installer's staging folder
+<IfModule mod_authz_core.c>
+    <FilesMatch "\.(sql|log|bak|sh|ini|md|orig-bak|kit-bak)$">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+<IfModule !mod_authz_core.c>
+    <FilesMatch "\.(sql|log|bak|sh|ini|md|orig-bak|kit-bak)$">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+</IfModule>
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php82” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php82 .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
