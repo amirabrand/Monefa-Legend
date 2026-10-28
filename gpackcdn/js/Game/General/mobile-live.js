@@ -18,9 +18,11 @@
   window.__t26live = true;
 
   function isMobile() {
-    /* orientation-independent: a device whose smaller screen side
-       is <= 620 CSS px is a phone -> native mobile UI (both
-       orientations). Tablets/desktops have min side > 620. */
+    /* phone = small screen AND touch capability.
+       Touch guard keeps small non-touch displays (old netbooks,
+       odd screen reports, desktop emulators) on the desktop UI. */
+    var touch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    if (!touch) return false;
     var s = window.screen || {};
     var sw = s.width || 0, sh = s.height || 0;
     var eff = (sw && sh) ? Math.min(sw, sh) : 0;
