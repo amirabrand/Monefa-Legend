@@ -11,11 +11,39 @@
  *  Designed and updated by Hamid Moradi, a programmer and front-end writer
  */
 ?>
+<?php
+/* T29 - server-side mobile/tablet detection (single source of truth).
+   mobile-live.js v9 re-checks at runtime and stays in sync, but the
+   correct layout canvas is now guaranteed from first paint - even if
+   JS is slow, blocked, or touch is not reported (in-app webviews). */
+$t29ua = isset($_SERVER['HTTP_USER_AGENT']) ? strtolower($_SERVER['HTTP_USER_AGENT']) : '';
+$t29phone = (strpos($t29ua, 'android') !== false && strpos($t29ua, 'mobile') !== false)
+    || strpos($t29ua, 'iphone') !== false
+    || strpos($t29ua, 'ipod') !== false
+    || strpos($t29ua, 'windows phone') !== false
+    || strpos($t29ua, 'iemobile') !== false;
+$t29tablet = !$t29phone && (
+    strpos($t29ua, 'android') !== false
+    || strpos($t29ua, 'ipad') !== false
+    || strpos($t29ua, 'tablet') !== false
+    || strpos($t29ua, 'kindle') !== false
+    || strpos($t29ua, 'silk') !== false);
+?>
 <!DOCTYPE html>
-<html>
+<html<?php echo $t29phone ? ' class="t26m"' : ''; ?>>
 
 <head><meta charset="utf-8">
+    <?php if ($t29phone) { ?>
+    <meta name="viewport" content="width=620, user-scalable=yes">
+    <script>/* T29: mobile class before first paint */
+    (function(){function a(){try{document.body&&document.body.classList.add('mobileOptimized')}catch(e){}}
+    if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',a)}else{a()}})();
+    </script>
+    <?php } elseif ($t29tablet) { ?>
+    <meta name="viewport" content="width=1280">
+    <?php } else { ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php } ?>
     <script>/* t26NativeMobileConfig */
     window.Travian = window.Travian || {};
     Travian.Game = Travian.Game || {};
@@ -37,7 +65,7 @@
     <link href="<?= GP_LOCATION ?>lang/<?php echo LANG_UR; ?>/compact.css" rel="stylesheet" type="text/css"/>
     <link href="<?= GP_LOCATION ?>lang/<?php echo LANG_UR; ?>/lang.css" rel="stylesheet" type="text/css"/>
 	<link href="<?= GP_LOCATION ?>lang/<?php echo LANG_UR; ?>/fixes.css?rev13" rel="stylesheet" type="text/css"/>
-    <link href="/gpackcdn/gpack/mobile-responsive.css?v=5" rel="stylesheet" type="text/css"/>
+    <link href="/gpackcdn/gpack/mobile-responsive.css?v=6" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="<?= GP_LOCATION1 ?>default/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="<?= GP_LOCATION1 ?>default/jquery.md5.min.js"></script>
    
@@ -323,4 +351,4 @@ if(isset($session->uid) && basename($_SERVER['PHP_SELF']) !== 'captcha.php' && b
 }
 </style>
 <script src="/gpackcdn/js/Game/General/shopui-live.js?v=2"></script>
-<script src="/gpackcdn/js/Game/General/mobile-live.js?v=8"></script>
+<script src="/gpackcdn/js/Game/General/mobile-live.js?v=9"></script>

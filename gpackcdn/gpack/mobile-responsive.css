@@ -1,12 +1,13 @@
 /* ============================================================
-   T26 — Responsive safety net (monefa.net)
+   T26/T29 - Responsive safety net (monefa.net)
    Layout strategy (matches the game's own native design):
    - phones (<=620): native body.mobileOptimized UI, viewport
      width=620 -> phone browser scales the canvas
    - tablets 621-1180: full desktop layout on a fixed 1280
      canvas, viewport width=1280 -> browser scales it down
    - desktop >1180: unchanged
-   This file only adds small safety nets the native CSS lacks.
+   T29: server-side detection now adds html.t26m (PHP) so the
+   structural fixes below work from first paint, before JS.
    ============================================================ */
 
 /* ---------- phones (<=620): native mobile UI is active ---------- */
@@ -35,7 +36,7 @@
 }
 
 /* ============================================================
-   T28 — phone-layout structural fixes (monefa.net)
+   T28/T29 - phone-layout structural fixes (monefa.net)
    The native mobile rules (compact.css imports) leave three
    structural defects on phones:
      1) #topBar (the bottom quick-bar) is parked 8px below the
@@ -46,8 +47,11 @@
      3) div#map_details (village info slide-over) is a desktop
         "peek" element (margin-left:-180px); on phones it draws
         cut-off white boxes over the village map.
+   T29: each rule now also fires from html.t26m (set by PHP
+   server-side) so layout is correct from first paint.
    ============================================================ */
 @media (max-width:620px){
+  html.t26m #topBar,
   body.mobileOptimized #topBar{
     left:0!important;
     right:0!important;
@@ -56,11 +60,13 @@
     margin:0!important;
     padding:0!important;
   }
+  html.t26m #topBar #header,
   body.mobileOptimized #topBar #header{
     left:0!important;
     height:120px!important;
   }
   /* dock the hamburger into the free left slot of the icon row */
+  html.t26m #topBar label.mobileMenuButton,
   body.mobileOptimized #topBar label.mobileMenuButton{
     position:absolute!important;
     left:8px!important;
@@ -70,6 +76,7 @@
     z-index:501;
   }
   /* hide the desktop peek panel over the map on phones */
+  html.t26m div.village1 div#map_details,
   body.mobileOptimized div.village1 div#map_details{
     display:none!important;
   }

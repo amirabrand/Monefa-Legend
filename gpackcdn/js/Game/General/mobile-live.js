@@ -1,7 +1,7 @@
 /* ============================================================
-   T26 — Viewport & native-mobile activator (monefa.net)
+   T26/T29 - Viewport & native-mobile activator (monefa.net)
    The game ships a full mobile layout (body.mobileOptimized +
-   ~90 @media 620px blocks) that was dormant because:
+   @media 620px blocks) that was dormant because:
      a) no viewport meta existed, and
      b) Travian.Game.Layout.MobileOptimizations was undefined.
    This helper:
@@ -11,6 +11,11 @@
           desktop                         -> width=1280 (ignored by PC)
      2) toggles body.mobileOptimized and keeps the Travian
         config object in sync
+   T29: UA-FIRST detection - phones & in-app webviews that do not
+   report touch (Bale/Telegram in-app browsers, a11y modes) now
+   get the mobile UI. v8 had this fallback as dead code after an
+   early return; logic now agrees with the PHP detection that
+   html.php performs server-side (html.t26m).
    Idempotent; also runs on orientationchange/resize.
    ============================================================ */
 (function () {
@@ -18,32 +23,30 @@
   window.__t26live = true;
 
   function isMobile() {
-    /* T28: manual overrides for support/debugging
-       (set localStorage t26force=1 to force the mobile UI,
-        t26force=0 to force the desktop UI on this device). */
+    /* manual overrides for support/debugging
+       (localStorage t26force=1 forces the mobile UI,
+        t26force=0 forces the desktop UI on this device). */
     try {
       var __f = window.localStorage.getItem('t26force');
       if (__f === '1') return true;
       if (__f === '0') return false;
     } catch (e) {}
-    /* phone = small screen AND touch capability.
-       Touch guard keeps small non-touch displays (old netbooks,
-       odd screen reports, desktop emulators) on the desktop UI. */
-    var touch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-    if (!touch) return false;
     var s = window.screen || {};
     var sw = s.width || 0, sh = s.height || 0;
     var eff = (sw && sh) ? Math.min(sw, sh) : 0;
     if (!eff || eff >= 9999) {
       eff = document.documentElement.clientWidth || window.innerWidth || 9999;
     }
-    if (!touch) {
-      /* T28 fallback: known mobile UAs on touch-less-reporting browsers */
-      if (/Android|iPhone|iPod|Mobile|Windows Phone/i.test(navigator.userAgent || '')) {
-        return eff > 0 && eff <= 620;
-      }
-      return false;
-    }
+    /* T29: phones by UA - authoritative even when touch is not
+       reported (in-app webviews, accessibility modes). */
+    var ua = navigator.userAgent || '';
+    var uaPhone = /Android|iPhone|iPod|Windows Phone|IEMobile/i.test(ua)
+                  && !/iPad|Tablet|PlayBook|Silk/i.test(ua);
+    if (uaPhone) return eff > 0 && eff <= 620;
+    /* tablets & desktops keep the desktop canvas */
+    if (/iPad|Tablet|PlayBook|Silk/i.test(ua)) return false;
+    var touch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    if (!touch) return false;
     return eff <= 620;
   }
 
