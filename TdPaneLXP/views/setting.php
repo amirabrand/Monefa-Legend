@@ -28,7 +28,7 @@
         }
 
         if(isset($_GET['m'])){
-            echo '<div class="alert alert-success">Settings Modification was successful</div>';
+            echo '<div class="alert alert-success">تغییرات تنظیمات با موفقیت ثبت شد</div>';
         }elseif(isset($_GET['d'])){
             echo '<div class="alert alert-danger">There are wrong entries.</div>';
         }
@@ -42,7 +42,7 @@
                 <input class="form-control" name="SERVER_NAME" type="text" value="<?php echo SERVER_NAME; ?>" required>
             </div>
             <div class="col-md-6">
-                <label>link server</label>
+                <label>لینک سرور</label>
                 <input class="form-control" name="HOMEPAGE" type="text" value="<?php echo HOMEPAGE; ?>" required>
             </div>
         </div>
@@ -52,20 +52,20 @@
         </div>
         <div class="row">
         <div class="form-group col-md-6">
-            <label>speed server</label>
+            <label>سرعت سرور</label>
             <input class="form-control" name="SPEED" value="<?php echo SPEED; ?>" required>
         </div>
         <div class="form-group col-md-6">
             <label>need ally wwplan for building world wonder?</label>
             <select name="wwneedalli" class="form-control">
-                    <option <?php if(wwneedalli == 0){ echo "selected"; } ?> value="0">one wwplan is enoughf</option>
+                    <option <?php if(wwneedalli == 0){ echo "selected"; } ?> value="0">یک نقشهٔ ساخت کافی است</option>
                     <option <?php if(wwneedalli == 1){ echo "selected"; } ?> value="1">two wwplan needed (player + an ally Active wwplan)</option>
                      </select>
         </div>
         </div>
         <div class="row">
             <div class="form-group col-md-6">
-                <label>speed Forces</label>
+                <label>سرعت نیروها</label>
                 <input class="form-control" name="INCREASE_SPEED" value="<?php echo INCREASE_SPEED; ?>" required>
             </div>
             <div class="form-group col-md-6">
@@ -75,7 +75,7 @@
         </div>
         <div class="row">
             <div class="form-group col-md-6">
-                <label>cranny</label>
+                <label>انبار مخفی</label>
                 <input class="form-control" name="CRANNY_CAP" value="<?php echo CRANNY_CAP; ?>" required>
             </div>
             <div class="form-group col-md-6">
@@ -86,26 +86,26 @@
 
         <div class="row">
             <div class="form-group col-md-6">
-                <label>gold start</label>
+                <label>طلای شروع</label>
                 <input class="form-control" name="DEFAULT_GOLD" value="<?php echo DEFAULT_GOLD; ?>" required>
             </div>
             <div class="form-group col-md-6">
-                <label>Oasis proportions</label>
+                <label>نسبت آبادی‌ها</label>
                 <input class="form-control" name="OASISX" value="<?php echo OASISX; ?>" required>
             </div>
         </div>
         <div class="row">
             <div class="form-group col-md-6">
-                <label>Prompt training in a second</label>
+                <label>آموزش فوری در یک ثانیه</label>
                 <select name="MOMENT_TRAIN" class="form-control">
                     <option <?php if(MOMENT_TRAIN == 1){ echo "selected"; } ?> value="1">yes</option>
                     <option <?php if(MOMENT_TRAIN == 0){ echo "selected"; } ?> value="0">no</option>
                 </select>
             </div>
             <div class="form-group col-md-6">
-                <label>Protection duration</label>
+                <label>مدت محافظت تازه‌کار</label>
                 <select name="PROTECTIOND" class="form-control">
-                    <option <?php if(PROTECTIOND == 0){ echo "selected"; } ?> value="1">No Protec</option>
+                    <option <?php if(PROTECTIOND == 0){ echo "selected"; } ?> value="1">بدون محافظت</option>
                     <option <?php if(PROTECTIOND == 43200){ echo "selected"; } ?> value="43200">12 hour</option>
                     <option <?php if(PROTECTIOND == 86400){ echo "selected"; } ?> value="86400">24 hour</option>
                     <option <?php if(PROTECTIOND == 172800){ echo "selected"; } ?> value="172800">2 days</option>
@@ -120,17 +120,17 @@
         <hr>
             <div class="form-group row">
                 <div class="col-md-6">
-                    <label>Adventures Daily number</label>
+                    <label>تعداد روزانه ماجراجویی‌ها</label>
                     <input name="ADV_TIME" value="<?php echo $sData['ADV_TIME']; ?>" class="form-control">
                 </div>
                 <div class="col-md-6">
-                    <label>duration auction seconds</label>
+                    <label>مدت حراجی (ثانیه)</label>
                     <input name="AUCTIONTIME" value="<?php echo AUCTIONTIME; ?>" class="form-control">
                 </div>
             </div>
         <hr>
         <div class="form-group">
-            <button class="btn btn-primary">save</button>
+            <button class="btn btn-primary">ذخیره</button>
         </div>
         </form>
     </div>

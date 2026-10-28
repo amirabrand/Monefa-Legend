@@ -3,7 +3,7 @@ if(isset($_GET['add']) || isset($_GET['edit'])){
     isset($_GET['add']) ? $title = 'New news' : $title = 'Modification news';
     isset($_GET['add']) ? $button = 'add' : $button = 'Modification';
     if($_GET['edit']){
-        $nData = $database->queryFetch('SELECT * FROM pnews WHERE id = '.$_GET['edit'].'');
+        $nData = $database->queryFetch('SELECT * FROM pnews WHERE id = '.(int)$_GET['edit'].'');
     }
 ?>
 <div class="card">
@@ -13,7 +13,7 @@ if(isset($_GET['add']) || isset($_GET['edit'])){
         if(isset($_POST['ncontent'])){
             if($_POST['ncontent']){
                 if($_POST['edit']){
-                    $database->query('UPDATE pnews SET ncontent = "'.addslashes($_POST['ncontent']).'" WHERE id ='.$_POST['edit'].'');
+                    $database->query('UPDATE pnews SET ncontent = "'.addslashes($_POST['ncontent']).'" WHERE id ='.(int)$_POST["edit"].'');
                     header('Location: ?p=news&edit='.$nData['id'].'');
                 }else{
                     if($_POST['notif']){
@@ -87,19 +87,19 @@ if(isset($_GET['add']) || isset($_GET['edit'])){
 }else{
     if(isset($_GET['del'])){
         if(is_numeric($_GET['del'])){
-            $database->query('DELETE FROM pnews WHERE id = '.$_GET['del'].'');
+            $database->query('DELETE FROM pnews WHERE id = '.(int)$_GET['del'].'');
             header('Location: ?p=news');
         }
     }
     if(isset($_GET['hide'])){
         if(is_numeric($_GET['hide'])){
-            $database->query('UPDATE `pnews` SET `hidden` = 1 WHERE id = '.$_GET['hide'].'');
+            $database->query('UPDATE `pnews` SET `hidden` = 1 WHERE id = '.(int)$_GET['hide'].'');
             header('Location: ?p=news');
         }
     }
     if(isset($_GET['show'])){
         if(is_numeric($_GET['show'])){
-            $database->query('UPDATE `pnews` SET `hidden` = 0 WHERE id = '.$_GET['show'].'');
+            $database->query('UPDATE `pnews` SET `hidden` = 0 WHERE id = '.(int)$_GET['show'].'');
             header('Location: ?p=news');
         }
     }

@@ -37,9 +37,9 @@ if($_GET['aid'])
 
 				<tr>
 
-					<td>Details</td>
+					<td>جزئیات</td>
 
-					<td>Description</td>
+					<td>توضیحات</td>
 
 				</tr>
 
@@ -117,7 +117,7 @@ $database->queryFetch
 
 								<tr>
 
-									<th>Alliance Founder</th>
+									<th>بنیان‌گذار اتحاد</th>
 
 									<td><a href="?p=player&uid=<?php echo $alidata['leader']; ?>"><?php echo $database->getUserField($alidata['leader'],"username",0); ?></a></td>
 
@@ -125,7 +125,7 @@ $database->queryFetch
 
 								<tr>
 
-									<td colspan="2"><b>Alliance Positions</b></td>
+									<td colspan="2"><b>مقام‌های اتحاد</b></td>
 
 								</tr>
 
@@ -207,7 +207,7 @@ $database->queryFetch
 
 								<tr>
 
-									<th>Capacity</th>
+									<th>ظرفیت</th>
 
 									<td>
 
@@ -434,13 +434,13 @@ $database->queryFetch
 
 				<tr>
 
-					<th colspan="3">Alliance News</th>
+					<th colspan="3">اخبار اتحاد</th>
 
 				</tr>
 
 				<tr>
 
-					<td>Event</td>
+					<td>رویداد</td>
 
 					<td>Time</td>
 
@@ -490,7 +490,7 @@ $database->queryFetch
 
 				<tr>
 
-					<th colspan="3">Alliance Diplomacy Sent</th>
+					<th colspan="3">دیپلماسی اتحاد ارسالی</th>
 
 				</tr>
 
@@ -500,7 +500,7 @@ $database->queryFetch
 
 					<td>Type</td>
 
-					<td>Accepted</td>
+					<td>پذیرفته‌شده</td>
 
 				</tr>
 
@@ -560,7 +560,7 @@ $database->queryFetch
 
 				<tr>
 
-					<th colspan="3">Alliance Diplomacy Recieved</th>
+					<th colspan="3">دیپلماسی اتحاد دریافتی</th>
 
 				</tr>
 
@@ -570,7 +570,7 @@ $database->queryFetch
 
 					<td>Type</td>
 
-					<td>Accepted</td>
+					<td>پذیرفته‌شده</td>
 
 				</tr>
 
@@ -632,13 +632,13 @@ $database->queryFetch
 
 				<tr>
 
-					<th colspan="3">Alliance Relationships</th>
+					<th colspan="3">روابط اتحاد</th>
 
 				</tr>
 
 				<tr>
 
-					<td>Alliance</td>
+					<td>اتحاد</td>
 
 					<td>Type</td>
 
@@ -710,7 +710,7 @@ $database->queryFetch
 
 	{
 
-		echo "Not found...<a href=\"javascript: history.go(-1)\">Back</a>";
+		echo "Not found...<a href=\"javascript: history.go(-1)\">بازگشت</a>";
 
 	}
 

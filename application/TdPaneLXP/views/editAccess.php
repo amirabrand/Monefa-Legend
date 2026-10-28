@@ -1,14 +1,14 @@
 <?php
 
 if(isset($_POST['uid'])){
-	$database->query("UPDATE users SET access = ".$_POST['access']." WHERE id = ".$_POST['uid']."");
+	$database->query("UPDATE users SET access = ".(int)$_POST['access']." WHERE id = ".(int)$_POST['uid']."");
 	header('Location: index.php?p=editAccess&uid='.$_POST['uid'].'&g');
 }
 if($_SESSION['access'] < ADMIN) die("Access Denied: You are not Admin!");
 
 	$id = $_SESSION['id'];
 
-	$curaccess = $database->queryFetch("SELECT access FROM users WHERE id = ".$_GET['uid']."");
+	$curaccess = $database->queryFetch("SELECT access FROM users WHERE id = ".(int)$_GET['uid']."");
 	$player = $database->queryFetch("SELECT * FROM users WHERE id = ".$id."");
 	?>
 	<form action="" method="POST">

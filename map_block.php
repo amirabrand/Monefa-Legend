@@ -75,6 +75,7 @@ if($database->count_files(CONFSDATA."mcache/")>MAX_FILES){
 
 $hash=md5($x0.$x1.$y0.$y1.$nob);
 foreach($maparray as $m){
+    $popclass = '';
     if(!isset($m['pop']) || $m['pop']<0 ){
         $popclass = 'pop';
     } elseif($m['pop']<100){
@@ -238,17 +239,14 @@ imagefill($img, 0, 0, $lgreen);
     foreach($queue as $block) {
 
 
-       if(!$block[4]) {
-            if(!$block[2] && empty($block[3])){ 
-                imagecopyresized($img, imagecreatefromgif($block[0]), $x, $y, 0, 0, $bw, $bh, 60, 60);
-        }else{
-                imagecopyresized($img, imagecreatefrompng($block[0]), $x, $y, 0, 0, $bw, $bh, 60, 60);
-    }
+       if(!$block[4] && file_exists($block[0])) {
+            $__b0 = (strcasecmp(substr($block[0],-4),'.png')===0) ? @imagecreatefrompng($block[0]) : @imagecreatefromgif($block[0]);
+            if($__b0) imagecopyresized($img, $__b0, $x, $y, 0, 0, $bw, $bh, 60, 60);
         }
         if($block[4]) {
             imagecopyresized($img, imagecreatefrompng('img/m/grey.png'), $x, $y, 0, 0, $bw, $bh, 60, 60);
         }
-        if($block[5]!='tilespbgimg'){
+        if($block[5]!='tilespbgimg' && file_exists('img/m/'. $block[5] .'.gif')){
             imagecopyresized($img, imagecreatefromgif('img/m/'. $block[5] .'.gif'), $x, $y, 0, 0, $bw, $bh, 60, 60);
         }elseif(!empty($block[6])){
             switch($block[6]){
@@ -292,15 +290,15 @@ imagefill($img, 0, 0, $lgreen);
             }
         }
 
-        if($block[1]!='pop'){
+        if($block[1]!='pop' && file_exists('img/m/'. $block[1] .'.gif')){
             imagecopyresized($img, imagecreatefromgif('img/m/'. $block[1] .'.gif'), $x, $y, 0, 0, $bw, $bh, 60, 60);
         }
-        if(!empty($block[3])){ // oasis
-            if(!$block[4]) {
+        if(!empty($block[3]) && !empty($block[3][0]) && file_exists($block[3][0])){ // oasis
+            if(!$block[4] && !empty($block[6]) && file_exists($block[6])) {
                 imagecopyresized($img, imagecreatefrompng($block[6]), $x, $y, 0, 0, $bw, $bh, 60, 60); // oasis iRedux code
             }
             imagecopyresized($img, imagecreatefrompng($block[3][0]), $x, $y, $block[3][1][0], $block[3][1][1], $bw, $bh, 60, 60); //если это оазис
-            imagecopyresized($img, imagecreatefromgif($block[0]), $x, $y, 0, 0, $bw, $bh, 60, 60); //иконка оазоin
+            if(file_exists($block[0])){ $__o0 = (strcasecmp(substr($block[0],-4),'.png')===0) ? @imagecreatefrompng($block[0]) : @imagecreatefromgif($block[0]); if($__o0) imagecopyresized($img, $__o0, $x, $y, 0, 0, $bw, $bh, 60, 60); } //иконка оазоin
 
         }
 

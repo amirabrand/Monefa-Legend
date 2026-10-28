@@ -4532,7 +4532,7 @@ window.addEvent(\'domready\', function()
 									
 									
 									
-                                    <div class="featureRemainingTime featureSubtitle subtitle"><span class="renewalActive"> به پایان می&zwnj;رسد در 73739:43:04.</span></div>
+                                    ' . ($session->plus ? '<div class="featureRemainingTime featureSubtitle subtitle"><span class="renewalActive"> ' . $lang['Plus']['Plus16'] . ' ' . $generator->getTimeFormat($session->plust - time()) . '.</span></div>' : '') . '
 
                                                             <div class="featureButton">
                                         <button type="button" class="textButtonV2 gold prosButton plus buttonFramed withText rectangle" coins="40" id="buttonNONXgnG7xruHL"><div class="button-container addHoverClick">
@@ -4601,7 +4601,7 @@ window.addEvent(\'domready\', function()
 								
 								
                                     <h3 class="featureTitle">+25% تولید چوب</h3>
-                                    <div class="featureRemainingTime featureSubtitle subtitle"><span class="renewalActive"> به پایان می&zwnj;رسد در 73739:43:04.</span></div>
+                                    ' . ($session->bonus1 ? '<div class="featureRemainingTime featureSubtitle subtitle"><span class="renewalActive"> ' . $lang['Plus']['Plus16'] . ' ' . $generator->getTimeFormat($session->bonus1 - time()) . '.</span></div>' : '') . '
 
                                                             <div class="featureButton">
                                         <button type="button" class="textButtonV2 gold prosButton productionboostLumber buttonFramed withText rectangle" coins="5" id="buttonQZR4F6fpB8qGm"><div class="button-container addHoverClick">
@@ -4664,7 +4664,7 @@ window.addEvent(\'domready\', function()
 								
 								
                                     <h3 class="featureTitle">+25% تولید خشت</h3>
-                                    <div class="featureRemainingTime featureSubtitle subtitle"><span class="renewalActive"> به پایان می&zwnj;رسد در 73739:43:04.</span></div>
+                                    ' . ($session->bonus2 ? '<div class="featureRemainingTime featureSubtitle subtitle"><span class="renewalActive"> ' . $lang['Plus']['Plus16'] . ' ' . $generator->getTimeFormat($session->bonus2 - time()) . '.</span></div>' : '') . '
 
                                                             <div class="featureButton">
                                         <button type="button" class="textButtonV2 gold prosButton productionboostClay buttonFramed withText rectangle" coins="5" id="buttons3QB0zqhU67l4"><div class="button-container addHoverClick">
@@ -4729,7 +4729,7 @@ window.addEvent(\'domready\', function()
 								
 								
                                     <h3 class="featureTitle">+25% تولید آهن</h3>
-                                    <div class="featureRemainingTime featureSubtitle subtitle"><span class="renewalActive"> به پایان می&zwnj;رسد در 73739:43:04.</span></div>
+                                    ' . ($session->bonus3 ? '<div class="featureRemainingTime featureSubtitle subtitle"><span class="renewalActive"> ' . $lang['Plus']['Plus16'] . ' ' . $generator->getTimeFormat($session->bonus3 - time()) . '.</span></div>' : '') . '
                                                             <div class="featureButton">
                                         <button type="button" class="textButtonV2 gold prosButton productionboostIron buttonFramed withText rectangle" coins="5" id="buttonWq0JYwPbp42mU"><div class="button-container addHoverClick">
                     <div class="button-background">
@@ -4794,7 +4794,7 @@ window.addEvent(\'domready\', function()
 								
 								
                                     <h3 class="featureTitle">+25% تولید گندم</h3>
-                                    <div class="featureRemainingTime featureSubtitle subtitle"><span class="renewalActive"> به پایان می&zwnj;رسد در 73739:43:04.</span></div>
+                                    ' . ($session->bonus4 ? '<div class="featureRemainingTime featureSubtitle subtitle"><span class="renewalActive"> ' . $lang['Plus']['Plus16'] . ' ' . $generator->getTimeFormat($session->bonus4 - time()) . '.</span></div>' : '') . '
                                                             <div class="featureButton">
                                         <button type="button" class="textButtonV2 gold prosButton productionboostCrop buttonFramed withText rectangle" coins="5" id="button01hem2nXq0JLs"><div class="button-container addHoverClick">
                     <div class="button-background">
@@ -5257,7 +5257,7 @@ window.addEvent(\'domready\', function()
         }
     });
         </script></div>
-        ' . ($p->pAData('fasterTraining') > time() ? '<div class="featureDuration featureRenewal featureButtonSubtitle subtitle importantStyle"><span class="renewalActive">Expired in <span class="timer" counting="down" value="' . ($p->pAData('fasterTraining') - time()) . '">' . $generator->getTimeFormat($p->pAData('fasterTraining') - time()) . '</span>.</span></div>' :
+        ' . ($p->pAData('fasterTraining') > time() ? '<div class="featureDuration featureRenewal featureButtonSubtitle subtitle importantStyle"><span class="renewalActive">به پایان می&zwnj;رسد در <span class="timer" counting="down" value="' . ($p->pAData('fasterTraining') - time()) . '">' . $generator->getTimeFormat($p->pAData('fasterTraining') - time()) . '</span>.</span></div>' :
                     '<div class="featureDuration featureRenewal featureButtonSubtitle subtitle importantStyle">' . $lang['Plus']['Plus10'] . ': <span class="bold">12</span>  ' . $lang['Plus']['Hour'] . '  </div>') . '</div></div>' : '') . '
         
         ' . ($config['allSmithy'] ? '<div style="left: 10px;  " class="feature featureBooking "><input type="hidden" class="premiumFeatureName hide" name="featureName" value="smithyUpgradeAllToMax"><div class="featureContent"><h3 class="featureTitle">' . $lang['Plus']['GS05'] . '</h3><div class="featureRemainingTime featureSubtitle subtitle"><span class="">' . $lang['Plus']['GS05I'] . '</span></div><div class="featureButton"><button type="button" class="gold prosButton smithyUpgradeAllToMax" coins="' . $config['allSmithy'] . '" id="buttonI5" onclick=""><div class="button-container addHoverClick">

@@ -63,7 +63,7 @@ if($_POST){
   <path d="M0 17.01L7.01 10 .14 3.13 3.13.14 10 7.01 17.01 0 20 2.99 12.99 10l6.87 6.87-2.99 2.99L10 12.99 2.99 20 0 17.01z"></path>
 </g></svg>
     </a>
-<a id="knowledgeBaseButton" class="contentTitleButton buttonFramed withIcon rectangle green" href="#" target="_blank">&nbsp;</a>
+<a id="knowledgeBaseButton" class="contentTitleButton buttonFramed withIcon rectangle green" href="help.php" target="_blank">&nbsp;</a>
                         <a id="contextualHelpButton" class="contentTitleButton buttonFramed green withIcon rectangle">&nbsp;</a></div>
                         <div class="contentContainer">
                             <div id="content" class="heroV2 heroV2Inventory">
@@ -465,7 +465,7 @@ $getface = $herodetail['face'];if ($gender==0) $getface%=5;
         </div>
     </div>
     <div class="buttonWrapper">
-        <button class="textButtonV2 buttonFramed buyOptions  rectangle withText gold" type="button"><div>لم يتم تحديد خيار شراء</div></button>
+        <button class="textButtonV2 buttonFramed buyOptions  rectangle withText gold" type="button"><div>هیچ گزینه خریدی انتخاب نشده است</div></button>
         <button class="textButtonV2 buttonFramed resetChanges  rectangle withIcon green" type="button" value="" name="" id="btn_login" style="float:right;" class="green " onclick="$('HeroEditorForm').Random.value='random'; $('HeroEditorForm').submit(); return false;">
             <svg>
                 <svg viewBox="0 0 16.02 16" class="outline"><path d="M2.35 2.35A8 8 0 1 1 .27 10h2.08A6 6 0 1 0 8 2a5.93 5.93 0 0 0-4.22 1.78L7 7H0V0Z" data-name="Path 78"></path></svg>

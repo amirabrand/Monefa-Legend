@@ -421,7 +421,7 @@ if(count($market->sending) > 0) {
         $ownername = $database->getUserField($villageowner,"username",0);
         echo "<table class=\"traders\" cellpadding=\"1\" cellspacing=\"1\">";
         echo "<thead><tr> <td><a href=\"spieler.php?uid=$villageowner\">$ownername</a></td>";
-        echo "<td><a href=\"karte.php?d=".$send['to']."&c=".$generator->getMapCheck($send['to'])."\">النقل إلي ".$database->getVillageField($send['to'],"name")."</a> x".($send['send'] ? $send['send'] : '1')."</td>";
+        echo "<td><a href=\"karte.php?d=".$send['to']."&c=".$generator->getMapCheck($send['to'])."\">انتقال به ".$database->getVillageField($send['to'],"name")."</a> x".($send['send'] ? $send['send'] : '1')."</td>";
         echo "</tr></thead> <tbody><tr> <th>".rinok23."</th> <td>";
         echo "<div class=\"in\"><span id=timer$timer>".$generator->getTimeFormat($send['endtime']-time())."</span></div>";
         $datetime = $generator->procMtime($send['endtime']);
@@ -429,9 +429,9 @@ if(count($market->sending) > 0) {
         if($datetime[0] != "today") {
             echo "".$datetime[0]." ";
         }
-        echo "في ".$datetime[1]."</div>";
+        echo "در ".$datetime[1]."</div>";
         echo "</td> </tr> <tr class=\"res\"> <th>".rinok24."</th><td>";
-        echo "<i class=\"r1\" title=\"الخشب\" /></i> ".number_format($send['wood'])." | <i class=\"r2\" title=\"الطين\" /></i> ".number_format($send['clay'])." | <i class=\"r3\" title=\"الحديد\" /></i> ".number_format($send['iron'])." | <i class=\"r4\" title=\"القمح\" /></i> ".number_format($send['crop'])."</td></tr></tbody>";
+        echo "<i class=\"r1\" title=\"چوب\" /></i> ".number_format($send['wood'])." | <i class=\"r2\" title=\"خشت\" /></i> ".number_format($send['clay'])." | <i class=\"r3\" title=\"آهن\" /></i> ".number_format($send['iron'])." | <i class=\"r4\" title=\"گندم\" /></i> ".number_format($send['crop'])."</td></tr></tbody>";
         echo "</table>";
         $timer += 1;
     }
@@ -451,9 +451,9 @@ if(count($market->return) > 0) {
         if($datetime[0] != "today") {
             echo "".$datetime[0]." ";
         }
-        echo "في ".$datetime[1]."</div>";
+        echo "در ".$datetime[1]."</div>";
         echo "</td> </tr> <tr class=\"res\"> <th>".rinok24."</th>";
-        echo "<td><span class=\"none\"><i class=\"r1\" title=\"الخشب\" /></i> ".number_format($return['wood'])." | <i class=\"r2\" title=\"الطين\" /></i> ".number_format($return['clay'])." | <i class=\"r3\" title=\"الحديد\" /></i> ".number_format($return['iron'])." | <i class=\"r4\" title=\"القمح\" /></i> ".number_format($return['crop'])."</span></td></tr></tbody>";
+        echo "<td><span class=\"none\"><i class=\"r1\" title=\"چوب\" /></i> ".number_format($return['wood'])." | <i class=\"r2\" title=\"خشت\" /></i> ".number_format($return['clay'])." | <i class=\"r3\" title=\"آهن\" /></i> ".number_format($return['iron'])." | <i class=\"r4\" title=\"گندم\" /></i> ".number_format($return['crop'])."</span></td></tr></tbody>";
 
         echo "</tbody></table>";
         $timer += 1;

@@ -155,9 +155,9 @@ $file = "mmark/".$hash.".gif";
 
 
 
-        if($block!='border'){
+        if($block!='border' && file_exists('img/m/'. $block.'.gif')){
             imagecopyresized($img, imagecreatefromgif('img/m/'. $block.'.gif'), $x, $y, 0, 0, $bw, $bh, 60, 60); //обinодка
-        }else{
+        }elseif($block=='border' && file_exists('img/m/borderneutr.gif')){
             imagecopyresized($img, imagecreatefromgif('img/m/borderneutr.gif'), $x, $y, 0, 0, $bw, $bh, 60, 60); //обinодка
         }
         $x += $bw;
@@ -168,7 +168,7 @@ $file = "mmark/".$hash.".gif";
     }
     //  die;
 
-    imagegif($img,null,IMGQUALITY);
+    imagegif($img,null);
     imagedestroy($img);
     header('Content-type: image/gif');
   echo file_get_contents($file);

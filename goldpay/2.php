@@ -29,68 +29,68 @@
 	<div class="contentWrapper">
         <div class="infoArea"><div class="premiumFeature Goldclub goldclub">
     <div class="descriptionWrapper">
-        <h4>نادي الذهب</h4>
+        <h4>کلوپ طلایی</h4>
         <div class="premiumFeatureDescription">
-                            <p>يمنح مزايا للجولة بأكملها!</p>
-                <ul><li>التجّار: أرسل الموارد تلقائيًا وعدة مرات</li>
-<li>اعثر على أماكن يزداد بها معدل إنتاج القمح بسرعة وسهولة</li>
-<li>قم بأرشفة رسائلك وتقاريرك</li>
-<li>أنشئ قوائم المزارع لإدارة غاراتك</li>
-<li>اسمح بهروب القوات داخل قريتك العاصمة</li></ul>
+                            <p>برای کل راند مزایا می‌دهد!</p>
+                <ul><li>بازرگان: ارسال خودکار و چندباره منابع</li>
+<li>یافتن سریع و آسان مکان‌های دارای تولید گندم بیشتر</li>
+<li>آرشیو کردن پیام‌ها و گزارش‌ها</li>
+<li>ساخت لیست مزارع برای مدیریت غارت‌ها</li>
+<li>امکان فرار نیروها در دهکده پایتخت شما</li></ul>
                     </div>
     </div>
     <div class="featureImage"></div>
 </div>
 <div class="premiumFeature Plus plus show">
     <div class="descriptionWrapper">
-        <h4>ترافيان بلاس</h4>
+        <h4>تراوین پلاس</h4>
         <div class="premiumFeatureDescription">
-                            <p>يوفر نظرة عامة أفضل ومزايا أخرى في حالة النشاط!</p>
-                <ul><li>اضبط اللعبة على أسلوب اللعب الخاص بك مع روابط مباشرة للوصول على نحو أسرع</li>
-<li>استخدم نظرة عامة أفضل للخريطة الكبيرة</li>
-<li>تلق تحذيرات هجوم ومعلومات مفصلة في نظرة عامة على القرية</li>
-<li>حسّن وقتك مع قوائم انتظار متعددة</li>
-<li>اطلب من تجّارك تكرار إرسال الشحنة تلقائيًا</li></ul>
+                            <p>نمای کلی بهتر و مزایای بیشتر هنگام فعال بودن!</p>
+                <ul><li>بازی را با پیوندهای مستقیم مطابق سبک بازی خود تنظیم کنید تا سریع‌تر به هدف برسید</li>
+<li>از نمای بهتر نقشه بزرگ استفاده کنید</li>
+<li>دریافت هشدار حمله و اطلاعات تفصیلی در نمای دهکده</li>
+<li>بهینه‌سازی زمان با صف‌های ساخت چندگانه</li>
+<li>ارسال خودکار و تکراری محموله توسط بازرگانان</li></ul>
                     </div>
     </div>
     <div class="featureImage"></div>
 </div>
 <div class="premiumFeature ProductionboostLumber productionboostLumber">
     <div class="descriptionWrapper">
-        <h4>&#x202E;+&#x202D;25&#x202C;%&#x202C; إنتاج الخشب</h4>
+        <h4>+25% تولید چوب</h4>
         <div class="premiumFeatureDescription">
-                            <p>يمنح زيادة بنسبة &#x202E;+&#x202D;25&#x202C;%&#x202C; في إنتاج المورد المحدد في جميع قراك في حالة النشاط.                </p>
-                <p>لا تنطبق الزيادة البالغة &#x202E;+&#x202D;25&#x202C;%&#x202C; فقط على الإنتاج الأساسي للمورد، بل تنطبق على جميع المكافآت الإضافية الأخرى أيضًا!                </p>
+                            <p>در صورت فعال بودن، تولید منبع انتخابی شما را 25% در همه دهکده‌هایتان افزایش می‌دهد.                </p>
+                <p>افزایش 25% فقط به تولید پایه منبع محدود نمی‌شود؛ همه جایزه‌های اضافی را نیز در بر می‌گیرد!                </p>
                     </div>
     </div>
     <div class="featureImage"></div>
 </div>
 <div class="premiumFeature ProductionboostClay productionboostClay">
     <div class="descriptionWrapper">
-        <h4>&#x202E;+&#x202D;25&#x202C;%&#x202C; إنتاج الطين</h4>
+        <h4>+25% تولید خشت</h4>
         <div class="premiumFeatureDescription">
-                            <p>يمنح زيادة بنسبة &#x202E;+&#x202D;25&#x202C;%&#x202C; في إنتاج المورد المحدد في جميع قراك في حالة النشاط.                </p>
-                <p>لا تنطبق الزيادة البالغة &#x202E;+&#x202D;25&#x202C;%&#x202C; فقط على الإنتاج الأساسي للمورد، بل تنطبق على جميع المكافآت الإضافية الأخرى أيضًا!                </p>
+                            <p>در صورت فعال بودن، تولید منبع انتخابی شما را 25% در همه دهکده‌هایتان افزایش می‌دهد.                </p>
+                <p>افزایش 25% فقط به تولید پایه منبع محدود نمی‌شود؛ همه جایزه‌های اضافی را نیز در بر می‌گیرد!                </p>
                     </div>
     </div>
     <div class="featureImage"></div>
 </div>
 <div class="premiumFeature ProductionboostIron productionboostIron">
     <div class="descriptionWrapper">
-        <h4>&#x202E;+&#x202D;25&#x202C;%&#x202C; إنتاج الحديد</h4>
+        <h4>+25% تولید آهن</h4>
         <div class="premiumFeatureDescription">
-                            <p>يمنح زيادة بنسبة &#x202E;+&#x202D;25&#x202C;%&#x202C; في إنتاج المورد المحدد في جميع قراك في حالة النشاط.                </p>
-                <p>لا تنطبق الزيادة البالغة &#x202E;+&#x202D;25&#x202C;%&#x202C; فقط على الإنتاج الأساسي للمورد، بل تنطبق على جميع المكافآت الإضافية الأخرى أيضًا!                </p>
+                            <p>در صورت فعال بودن، تولید منبع انتخابی شما را 25% در همه دهکده‌هایتان افزایش می‌دهد.                </p>
+                <p>افزایش 25% فقط به تولید پایه منبع محدود نمی‌شود؛ همه جایزه‌های اضافی را نیز در بر می‌گیرد!                </p>
                     </div>
     </div>
     <div class="featureImage"></div>
 </div>
 <div class="premiumFeature ProductionboostCrop productionboostCrop">
     <div class="descriptionWrapper">
-        <h4>&#x202E;+&#x202D;25&#x202C;%&#x202C; إنتاج القمح</h4>
+        <h4>+25% تولید گندم</h4>
         <div class="premiumFeatureDescription">
-                            <p>يمنح زيادة بنسبة &#x202E;+&#x202D;25&#x202C;%&#x202C; في إنتاج المورد المحدد في جميع قراك في حالة النشاط.                </p>
-                <p>لا تنطبق الزيادة البالغة &#x202E;+&#x202D;25&#x202C;%&#x202C; فقط على الإنتاج الأساسي للمورد، بل تنطبق على جميع المكافآت الإضافية الأخرى أيضًا!                </p>
+                            <p>در صورت فعال بودن، تولید منبع انتخابی شما را 25% در همه دهکده‌هایتان افزایش می‌دهد.                </p>
+                <p>افزایش 25% فقط به تولید پایه منبع محدود نمی‌شود؛ همه جایزه‌های اضافی را نیز در بر می‌گیرد!                </p>
                     </div>
     </div>
     <div class="featureImage"></div>
@@ -108,14 +108,14 @@
 				<path d="M7 2L7 7L2 7L2 12L7 12L7 17L12 17L12 12L17 12L17 7L12 7L12 2Z"></path>
 			</svg>
 		</div>
-		<div class="featureTitle">نادي الذهب</div>
+		<div class="featureTitle">کلوپ طلایی</div>
 					<div class="featureDuration">
-				<span class="">زمن الزيادة: <span class="bold">الجولة بأكملها</span></span>
+				<span class="">مدت افزایش: <span class="bold">کل راند</span></span>
 			</div>
 				<div class="featureButton">
-			<button type="button" value="تفعيل" id="button6695abd089e06" class="textButtonV2 gold prosButton goldclub buttonFramed withText rectangle" coins="200" version="textButtonV2">
+			<button type="button" value="فعال‌سازی" id="button6695abd089e06" class="textButtonV2 gold prosButton goldclub buttonFramed withText rectangle" coins="200" version="textButtonV2">
 	<div>
-		تفعيل<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 51 51" class="goldCoin">
+		فعال‌سازی<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 51 51" class="goldCoin">
   <defs>
     <linearGradient id="a" x1="25.5" x2="25.5" y1="2" y2="49" gradientTransform="rotate(13.28 25.519 25.5)" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#d8c383"></stop>
@@ -161,14 +161,14 @@
 				<path d="M7 2L7 7L2 7L2 12L7 12L7 17L12 17L12 12L17 12L17 7L12 7L12 2Z"></path>
 			</svg>
 		</div>
-		<div class="featureTitle">ترافيان بلاس</div>
+		<div class="featureTitle">تراوین پلاس</div>
 					<div class="featureDuration">
-				<span class="bonusEndsSoon">زمن الزيادة بالأيام: <span class="bold">7</span></span>
+				<span class="bonusEndsSoon">مدت افزایش (روز): <span class="bold">7</span></span>
 			</div>
 				<div class="featureButton">
-			<button type="button" value="تفعيل" id="button6695abd08a133" class="textButtonV2 gold prosButton plus buttonFramed withText rectangle" coins="10" version="textButtonV2">
+			<button type="button" value="فعال‌سازی" id="button6695abd08a133" class="textButtonV2 gold prosButton plus buttonFramed withText rectangle" coins="10" version="textButtonV2">
 	<div>
-		تفعيل<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 51 51" class="goldCoin">
+		فعال‌سازی<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 51 51" class="goldCoin">
   <defs>
     <linearGradient id="a" x1="25.5" x2="25.5" y1="2" y2="49" gradientTransform="rotate(13.28 25.519 25.5)" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#d8c383"></stop>
@@ -214,14 +214,14 @@
 				<path d="M7 2L7 7L2 7L2 12L7 12L7 17L12 17L12 12L17 12L17 7L12 7L12 2Z"></path>
 			</svg>
 		</div>
-		<div class="featureTitle">&#x202E;+&#x202D;25&#x202C;%&#x202C; إنتاج الخشب</div>
+		<div class="featureTitle">+25% تولید چوب</div>
 					<div class="featureDuration">
-				<span class="bonusEndsSoon">زمن الزيادة بالأيام: <span class="bold">7</span></span>
+				<span class="bonusEndsSoon">مدت افزایش (روز): <span class="bold">7</span></span>
 			</div>
 				<div class="featureButton">
-			<button type="button" value="تفعيل" id="button6695abd08a411" class="textButtonV2 gold prosButton productionboostLumber buttonFramed withText rectangle" coins="5" version="textButtonV2">
+			<button type="button" value="فعال‌سازی" id="button6695abd08a411" class="textButtonV2 gold prosButton productionboostLumber buttonFramed withText rectangle" coins="5" version="textButtonV2">
 	<div>
-		تفعيل<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 51 51" class="goldCoin">
+		فعال‌سازی<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 51 51" class="goldCoin">
   <defs>
     <linearGradient id="a" x1="25.5" x2="25.5" y1="2" y2="49" gradientTransform="rotate(13.28 25.519 25.5)" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#d8c383"></stop>
@@ -267,14 +267,14 @@
 				<path d="M7 2L7 7L2 7L2 12L7 12L7 17L12 17L12 12L17 12L17 7L12 7L12 2Z"></path>
 			</svg>
 		</div>
-		<div class="featureTitle">&#x202E;+&#x202D;25&#x202C;%&#x202C; إنتاج الطين</div>
+		<div class="featureTitle">+25% تولید خشت</div>
 					<div class="featureDuration">
-				<span class="bonusEndsSoon">زمن الزيادة بالأيام: <span class="bold">7</span></span>
+				<span class="bonusEndsSoon">مدت افزایش (روز): <span class="bold">7</span></span>
 			</div>
 				<div class="featureButton">
-			<button type="button" value="تفعيل" id="button6695abd08a6c4" class="textButtonV2 gold prosButton productionboostClay buttonFramed withText rectangle" coins="5" version="textButtonV2">
+			<button type="button" value="فعال‌سازی" id="button6695abd08a6c4" class="textButtonV2 gold prosButton productionboostClay buttonFramed withText rectangle" coins="5" version="textButtonV2">
 	<div>
-		تفعيل<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 51 51" class="goldCoin">
+		فعال‌سازی<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 51 51" class="goldCoin">
   <defs>
     <linearGradient id="a" x1="25.5" x2="25.5" y1="2" y2="49" gradientTransform="rotate(13.28 25.519 25.5)" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#d8c383"></stop>
@@ -320,14 +320,14 @@
 				<path d="M7 2L7 7L2 7L2 12L7 12L7 17L12 17L12 12L17 12L17 7L12 7L12 2Z"></path>
 			</svg>
 		</div>
-		<div class="featureTitle">&#x202E;+&#x202D;25&#x202C;%&#x202C; إنتاج الحديد</div>
+		<div class="featureTitle">+25% تولید آهن</div>
 					<div class="featureDuration">
-				<span class="bonusEndsSoon">زمن الزيادة بالأيام: <span class="bold">7</span></span>
+				<span class="bonusEndsSoon">مدت افزایش (روز): <span class="bold">7</span></span>
 			</div>
 				<div class="featureButton">
-			<button type="button" value="تفعيل" id="button6695abd08a964" class="textButtonV2 gold prosButton productionboostIron buttonFramed withText rectangle" coins="5" version="textButtonV2">
+			<button type="button" value="فعال‌سازی" id="button6695abd08a964" class="textButtonV2 gold prosButton productionboostIron buttonFramed withText rectangle" coins="5" version="textButtonV2">
 	<div>
-		تفعيل<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 51 51" class="goldCoin">
+		فعال‌سازی<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 51 51" class="goldCoin">
   <defs>
     <linearGradient id="a" x1="25.5" x2="25.5" y1="2" y2="49" gradientTransform="rotate(13.28 25.519 25.5)" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#d8c383"></stop>
@@ -373,14 +373,14 @@
 				<path d="M7 2L7 7L2 7L2 12L7 12L7 17L12 17L12 12L17 12L17 7L12 7L12 2Z"></path>
 			</svg>
 		</div>
-		<div class="featureTitle">&#x202E;+&#x202D;25&#x202C;%&#x202C; إنتاج القمح</div>
+		<div class="featureTitle">+25% تولید گندم</div>
 					<div class="featureDuration">
-				<span class="bonusEndsSoon">زمن الزيادة بالأيام: <span class="bold">7</span></span>
+				<span class="bonusEndsSoon">مدت افزایش (روز): <span class="bold">7</span></span>
 			</div>
 				<div class="featureButton">
-			<button type="button" value="تفعيل" id="button6695abd08ac18" class="textButtonV2 gold prosButton productionboostCrop buttonFramed withText rectangle" coins="5" version="textButtonV2">
+			<button type="button" value="فعال‌سازی" id="button6695abd08ac18" class="textButtonV2 gold prosButton productionboostCrop buttonFramed withText rectangle" coins="5" version="textButtonV2">
 	<div>
-		تفعيل<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 51 51" class="goldCoin">
+		فعال‌سازی<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 51 51" class="goldCoin">
   <defs>
     <linearGradient id="a" x1="25.5" x2="25.5" y1="2" y2="49" gradientTransform="rotate(13.28 25.519 25.5)" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#d8c383"></stop>

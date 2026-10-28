@@ -76,7 +76,7 @@ class Session {
         //$_SESSION['wid'] = $this->villages[0];
         $this->sit = $_SESSION['sit'];
         $_SESSION['timestamp']=time()-30;
-        $_SESSION['captime']=time()+1800;
+        $_SESSION['captime']=time()+43200;
         $_SESSION['cappage']='dorf1.php';
         header("Location: dorf1.php");
     }

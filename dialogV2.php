@@ -44,11 +44,11 @@
             <form action="?" method="get" accept-charset="UTF-8">
               <div class="dialogDragBar"></div>
               <div class="content" id="dialogContent">
-                <h3>تنزيل صورة البطل</h3>
-                <p>قم بتنزيل صورة لبطلك الحالي لاستخدامها كصورة رمزية لوسائل التواصل الاجتماعي.</p>
+                <h3>دانلود تصویر قهرمان</h3>
+                <p>تصویر قهرمان فعلی خود را دانلود کنید و از آن به‌عنوان تصویر پروفایل در شبکه‌های اجتماعی استفاده کنید.</p>
                 <div class="imageComposer">
                   <div class="backgroundSelection">
-                    <div class="label">اختر خلفية</div>
+                    <div class="label">انتخاب پس‌زمینه</div>
                     <label class="option heroBackground" data-checked="checked">
                       <input type="radio" name="background" id="background_heroBackground" value="heroBackground" checked="">
                     </label>
@@ -66,7 +66,7 @@
                     </label>
                   </div>
                   <div class="preview">
-                    <div class="label">استعراض</div>
+                    <div class="label">پیش‌نمایش</div>
                     <div class="heroImageWrapper">
                       <canvas id="downloadHeroImagePreview" width="400" height="400" style="touch-action: none; cursor: inherit;"></canvas>
                     </div>
@@ -74,10 +74,10 @@
                 </div>
                 <div class="buttonsWrapper">
                   <button class="textButtonV2 buttonFramed rectangle withText grey" type="button" onclick="closeDialog()">
-                    <div>إلغاء</div>
+                    <div>لغو</div>
                   </button>
                   <a class="textButtonV2 buttonFramed download rectangle withText green" href="blob:https://ts3.x1.international.travian.com/941069e9-2920-4b09-ba69-974d529ffb76" download="hero.png">
-                    <div>تنزيل</div>
+                    <div>دانلود</div>
                   </a>
                 </div>
               </div>

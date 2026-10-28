@@ -1,18 +1,18 @@
 <div class="card">
-<div class="card-header">Charge Operations</div>
+<div class="card-header">عملیات شارژ</div>
 <div class="card-body">
 <table cellpadding="1" cellspacing="1" class="table">
 	<thead>
 		<tr>
-			<th colspan="10">Register Shipping</th>
+			<th colspan="10">ثبت ارسال</th>
 		</tr>
 		<tr>
 			<td class="on">#</td>
-			<td class="on">player</td>
-			<td class="on">road payment</td>
-			<td class="on">Coin number</td>
-			<td class="on">History of a coin</td>
-			<td class="on">quantity gold</td>
+			<td class="on">بازیکن</td>
+			<td class="on">روش پرداخت</td>
+			<td class="on">تعداد سکه</td>
+			<td class="on">تاریخچهٔ طلا</td>
+			<td class="on">مقدار طلا</td>
 			<td class="on">Cost</td>
 			<td class="on"></td>
 		</tr>

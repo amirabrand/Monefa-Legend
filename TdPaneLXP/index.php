@@ -37,7 +37,7 @@ if($session->access != 9){
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 		<link REL="shortcut icon" HREF="../favicon.ico"/>
-		<title>Admin Panel</title>
+		<title>پنل مدیریت مونفا</title>
 		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min-<?php echo DIRECTION; ?>.css">
 		<link rel="stylesheet" type="text/css" href="assets/css/style-<?php echo DIRECTION; ?>.css">
 		<link rel="stylesheet" type="text/css" href="assets/css/jqui.css">

@@ -4,7 +4,7 @@
     <?php 
         if(isset($_POST['addGold'])){
             if(is_numeric($_POST['goldA']) && is_numeric($_POST['uid'])){
-                $database->query("UPDATE users SET gold = gold + ".$_POST['goldA']." WHERE id = ".$_POST['uid']."");
+                $database->query("UPDATE users SET gold = gold + ".(int)$_POST['goldA']." WHERE id = ".(int)$_POST['uid']."");
                 $database->sendMessage($_POST['uid'], 6, 'Charged', 'Your watch has been charged at top'. $_POST['goldA']. ' gold. ', 0, 0, 0, 0,0);
                 echo '<div class="alert alert-success">The player monitor has shipped successfully.</div>';
             }else{

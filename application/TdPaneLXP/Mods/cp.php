@@ -7,7 +7,7 @@ include_once("../../DB.php");
 include_once("../../Database/db_MYSQL.php");
 
 
-$id = $_POST['id'];
+$id = (int)$_POST["id"];
 
-$database->queryFetch("UPDATE users SET cp = cp + '".$_POST['cp']."' WHERE id = '".$id."' ");
+$database->queryFetch("UPDATE users SET cp = cp + '".(int)$_POST['cp']."' WHERE id = '".(int)$id."' ");
 header("Location: ../../../TdPaneLXP/?p=player&uid=".$id."");

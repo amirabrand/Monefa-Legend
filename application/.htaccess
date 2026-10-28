@@ -1,8 +1,8 @@
-Options ALL -Indexes
-<Files *>
-AuthGroupFile /dev/null
-AuthType Basic
-AuthUserFile /home/admin//.htpasswd/public_html/s1/GameEngine/.htpasswd
-AuthName "hello@"
-require valid-user
-AuthType Basic
+Options -Indexes
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+</IfModule>

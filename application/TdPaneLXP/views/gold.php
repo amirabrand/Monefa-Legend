@@ -4,7 +4,7 @@
 	<?php 
 		if(isset($_POST['addGold'])){
 			if(is_numeric($_POST['gold'])){
-				$database->query('UPDATE users SET gold = gold + '.$_POST['gold'].'');
+				$database->query('UPDATE users SET gold = gold + '.(int)$_POST['gold'].'');
 				echo '<div class="alert alert-success">add '.$_POST['gold'].' done.</div>';
 
 			}

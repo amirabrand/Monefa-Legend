@@ -8,7 +8,7 @@
 	<div class="card-header">دسترسی سریع</div>
 	<div class="card-body">
 	 <a href="?p=setting">تنظیمات عمومی</a><br><a href="?p=plus">تنظیمات پلاس</a><br><a href="?p=register">غیرفعال کردن ثبت‌نام</a><br>
-	<a href="?p=reset3">Install Again</a>
+	<a href="?p=reset3">نصب مجدد</a>
 	</div>
 </div>
 

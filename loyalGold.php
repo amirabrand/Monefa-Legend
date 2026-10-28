@@ -1,5 +1,6 @@
 <?php
 include_once "application/Account.php";
+include_once APP_BASE_PATH . '/library/Bale/BaleApi.php';
 /*if ($session->goldclub == 0) {
     header("Location:dorf" . $session->link . ".php");
 }*/
@@ -98,10 +99,11 @@ include_once "application/Account.php";
             switch ($sss) {
 
               case 1:
-                if (strlen($_POST["phone"]) == 10) {
+                if (!isset($_POST["phone"])) { $phone = ""; } else { $phone = preg_replace('/[^0-9]/', '', $_POST["phone"]); }
+                if (strlen($phone) == 10) {
                   $sql = "update users set phone='+98" . $_POST["phone"] . "'  where username='" . $useresm . "' ";
                   $result = $database->query($sql);
-                  $num = "+98" . $_POST["phone"] . "";
+                  $num = "+98" . $phone . "";
                   $val = $arrrww["code"];
                   $database->sendsms($num, 0, $val);
                   $sql = "update subs set lastsendsms='" . (time() + 300) . "' ,step='0' where username='" . $useresm . "' ";
@@ -124,7 +126,7 @@ include_once "application/Account.php";
                 if ($arrrww["lastsendsms"] < time() && $arrrww["verifynum"] == "0") {
                   $num = $arrrww1["phone"];
                   $val = $arrrww["code"];
-                  var_dump($database->sendsms($num, 2, $val));
+                  $database->sendsms($num, 2, $val);
                   $sql = "update subs set lastsendsms='" . (time() + 300) . "'  where username='" . $arrrww["username"] . "' ";
                   $result = $database->query($sql);
                   ?>
@@ -154,7 +156,7 @@ include_once "application/Account.php";
                       ?>
 
                       <script>
-                        alert("شماره شما راستی ازمایی شد هم اکنون در بات تلگرام عضو شوید");
+                        alert("شماره شما راستی‌آزمایی شد؛ اکنون ربات بله بازی را استارت کنید و کد را برای آن بفرستید");
                       </script>
                       <?php
                       $sql = "update subs set verifynum='1' ,step='1' where username='" . $useresm . "' ";
@@ -259,9 +261,6 @@ include_once "application/Account.php";
                   } else {
                     $javab['ok'] = 0;
                   }
-
-
-                   var_dump($javab);die();
                   if ($javab['ok'] && ($javab['result']['status'] == 'member' || $javab['result']['status'] == 'creator' || $javab['result']['status'] == 'administrator')) {
                     $goldb = LOYALGOLD;
                      $database->giveFREEGold($arrrww["username"], $goldb);
@@ -286,10 +285,11 @@ include_once "application/Account.php";
                     ?>
 
                     <script>
-                      alert("طلای رایگان برای کاربرانی که در چنل تلگرام عضو هستند قابل دریافت است");
+                      alert("طلای رایگان برای کاربرانی که ربات بله بازی را استارت کرده‌اند قابل دریافت است");
                     </script>
                     <?php
                   }
+                }
                 }
                 break;
               case 6:
@@ -328,7 +328,7 @@ include_once "application/Account.php";
           <div class="header">
             <div class="badgeBigDecoration">
             <a id="heroImageButton" onclick="window.location.href='hero_inventory.php';" class="heroImageButton " type="button">
-                <img class="heroImage" style="top: 12px; left: 30px;  position: absolute; width: 60px;" src="hero_image.php?uid=8&amp;size=sideinfo&amp;4203304204" alt="">
+                <img class="heroImage" style="top: 12px; left: 30px;  position: absolute; width: 60px;" src="hero_image.php?uid=<?php echo $session->uid; ?>&amp;size=sideinfo&amp;4203304204" alt="">
             
                     <div class="heroImageHover">
             <img class="heroImage">
@@ -342,7 +342,7 @@ include_once "application/Account.php";
 
           <div class="descriptionHeader">هر سرور طلای رایگان بگیرید</div>
           <div class="description">
-            <span>در هر سرور با وریفای شماره خود و عضویت در کانال تلگرام بازی میتوانید <?= LOYALGOLD; ?> طلا دریافت
+            <span>در هر سرور با وریفای شماره خود و اتصال به ربات بلهٔ بازی میتوانید <?= LOYALGOLD; ?> طلا دریافت
               کنید</span>
           </div>
 
@@ -438,9 +438,9 @@ include_once "application/Account.php";
          
               
 
-              <p>این سیستم شامل عضویت شما در خبر نامه پیامکی TraVianA و همچنین عضویت در کانال تلگرام TraVianA می باشد.</p>
+              <p>این سیستم شامل اتصال شما به ربات بله و سامانه اطلاع‌رسانی Monefa می‌باشد.</p>
 
-              <font color=red>مزایای عضویت در سامانه های خبر رسانی TraVianA</font><br>
+              <font color=red>مزایای عضویت در سامانه های خبر رسانی Monefa</font><br>
               <li>
                 دیگه هیچ وقت از شروع سرور جا نمی مونی و همیشه از قبل بهت اطلاع رسانی میشه و میتونی جزو برنده های خوش
                 شانس بازی
@@ -476,11 +476,7 @@ include_once "application/Account.php";
                   //sms mikhad 
               
                   ?>
-                  <font color=red>لطفا در ابتدا عدد یک را به سامانه پیامکی 50001070100710 ارسال کنید و پس از ارسال شماره خود
-                    را در جعبه پایین
-                    وارد کنید و بر روی دکمه عضو شدم کلیک کنید. با این کار شما در سامانه پیامکی ما عضو شده اید و از شروع سرور
-                    های
-                    جدید ما به صورت پیامکی مطلع خواهید شد.</font><br> </li>
+                  <font color=red>شماره موبایل خود را در جعبه پایین وارد کنید و بر روی دکمه «ذخیره» کلیک کنید تا کد تایید برای شما پیامک شود و از اخبار و شروع سرورهای جدید باخبر شوید.</font><br> </li>
                   <form action="loyalGold.php?freegold" method="post">
 
 
@@ -647,8 +643,16 @@ include_once "application/Account.php";
                 case 3:
                   //tel verify mikhad bokone 
                   ?>
-                  <font color=red>لطفا بات تلگرام TraVianA <a href="https://t.me/TraVianA_bot">@TraVianA_bot</a> را
-                    استارت کنید و سپس کد زیر را در بات تلگرام وارد کنید</font><br> </li>
+                  <?php $__baleLink = BaleApi::botLink(); ?>
+                  <?php if ($__baleLink): ?>
+                  <font color=red>برای دریافت طلای وفاداری، روی دکمهٔ زیر بزنید تا ربات بله باز شود و کد شما به‌صورت خودکار ثبت شود:</font><br> </li>
+                  <br>
+                  <a class="green" style="display:inline-block;padding:10px 26px;border-radius:6px;background:#28a909;color:#fff;text-decoration:none;font-weight:bold" href="<?php echo htmlspecialchars($__baleLink . '?start=' . $arrrww['code'], ENT_QUOTES, 'UTF-8'); ?>" target="_blank">🟢 اتصال به ربات بله</a>
+                  <br><br>
+                  <font color=red>یا اگر ربات باز نشد، کد زیر را به‌صورت دستی برای ربات بله بفرستید:</font><br> </li>
+                  <?php else: ?>
+                  <font color=red>ربات بله هنوز توسط مدیر تنظیم نشده است؛ لطفاً بعداً تلاش کنید.</font><br> </li>
+                  <?php endif; ?>
                   <br>
                   <form action="loyalGold.php?freegold" method="post">
 
@@ -722,7 +726,7 @@ include_once "application/Account.php";
                 case 4:
                   //hame kara shode tala mikhad
                   ?>
-                  <font color=green>خب دوست من تو توی همه ی سامانه های اطلاع رسانی TraVianA عضو شدی دیگه از شروع سرور ها جا
+                  <font color=green>خب دوست من تو توی همه ی سامانه های اطلاع رسانی Monefa عضو شدی دیگه از شروع سرور ها جا
                     نمونی راستی این عضوییت توی هر سرور بهت  <?php echo LOYALGOLD; ?> طلا میده</font><br> </li>
                   <br>
                   <form action="loyalGold.php?freegold" method="post">
@@ -798,20 +802,7 @@ include_once "application/Account.php";
 
                   break;
               }
-              $id = $_SESSION['id'];
-
-
-              $q = "SELECT `password`,`boughtgold`,`gold` FROM " . TB_PREFIX . "users WHERE id=" . $uid . " LIMIT 1";
-              $result = mysqli_query($database->connection, $q);
-              if (mysqli_num_rows($result)) {
-                $row = mysqli_fetch_assoc($result);
-                $boughtgold = $row['boughtgold'];
-                $password = $row['password'];
-                $gold = $row['gold'];
-              }
-
-              $new_gold = min($boughtgold, $gold);
-
+              
 
               ?>
 

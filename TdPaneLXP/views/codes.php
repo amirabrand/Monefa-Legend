@@ -1,6 +1,6 @@
 <?php include("views/Plus/pmenu.php"); ?>
 <div class="card">
-<div class="card-header">تولد أكواد</div>
+<div class="card-header">تولید کدها</div>
 <div class="card-body"><?php
     function generateRandStr($length)
     {
@@ -19,8 +19,8 @@
     }
 
     if(isset($_GET['del'])){
-        $database->query("DELETE FROM codes WHERE id = ".$_GET['del']."");
-        echo 'تم delete كود بنجاح <br><br>';
+        $database->query("DELETE FROM codes WHERE id = ".(int)$_GET['del']."");
+        echo 'کد با موفقیت حذف شد <br><br>';
         //header('Location: index.php?p=codes');
     }
     if(isset($_POST) && !empty($_POST)){
@@ -28,7 +28,7 @@
         if(is_numeric($_POST['goldAmount']) && is_numeric($_POST['codeNum'])){
             
             if($_POST['goldAmount'] > 0){
-                echo '<div class="alert alert-success">List the أكواد:<br>';
+                echo '<div class="alert alert-success">لیست کدها:<br>';
                 for($i=1;$i<=$_POST['codeNum'];$i++){
                     $code = generateRandStr(10);
                     $database->query("INSERT into codes (codeNum,goldAmount) VALUES('".$code."', ".$_POST['goldAmount'].")");
@@ -56,7 +56,7 @@
         <input name="goldAmount" class="form-control" type="number" autocomplete="off">
     </div>
     <div class="form-group">
-        <label>number أكواد</label>
+        <label>تعداد کدها</label>
         <input name="codeNum" class="form-control" type="number" value="1" autocomplete="off">
     </div>
 
@@ -70,12 +70,12 @@
 <table cellpadding="1" cellspacing="1" class="table mt-5 mb-5" class="inbox">
     <thead>
     <tr>
-			<th colspan="10">List the أكواد</th>
+			<th colspan="10">لیست کدها</th>
 		</tr>
 
         <tr>
             <th>#</th>
-            <th>كود</th>
+            <th>کد</th>
             <th>gold</th>
             <th>حة</th>
             <th>player</th>
@@ -98,7 +98,7 @@
     <?php 
         }
         }else{
-            echo '<tr><td colspan="6">لا وجد أكواد بعد.</td></tr>';
+            echo '<tr><td colspan="6">هنوز کدی وجود ندارد.</td></tr>';
         } ?>
     </tbody>
 </table>

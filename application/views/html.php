@@ -131,12 +131,17 @@ if(isset($session->uid) && basename($_SERVER['PHP_SELF']) !== 'captcha.php' && b
 
     // Interval monitoring of console open state
     function monitorConsoleOpen() {
-        let lastHeight = window.outerHeight;
-        let lastWidth = window.outerWidth;
+        let lastGapH = window.outerHeight - window.innerHeight;
+        let lastGapW = window.outerWidth - window.innerWidth;
 
         setInterval(() => {
+            const gapH = window.outerHeight - window.innerHeight;
+            const gapW = window.outerWidth - window.innerWidth;
+            const consoleGap = (gapH - lastGapH > 150) || (gapW - lastGapW > 150);
+            lastGapH = gapH;
+            lastGapW = gapW;
             if (
-                (window.outerHeight !== lastHeight || window.outerWidth !== lastWidth) ||
+                consoleGap ||
                 isConsoleOpenViaDebugger() ||
                 detectConsoleThroughTiming()
             ) {
@@ -145,8 +150,6 @@ if(isset($session->uid) && basename($_SERVER['PHP_SELF']) !== 'captcha.php' && b
                     sendDetectionData(consoleOpened);
                 }
             }
-            lastHeight = window.outerHeight;
-            lastWidth = window.outerWidth;
         }, 2000); // Adjust interval as needed
     }
 
@@ -167,7 +170,7 @@ if(isset($session->uid) && basename($_SERVER['PHP_SELF']) !== 'captcha.php' && b
         const start = performance.now();
         console.log('Checking console...');
         const end = performance.now();
-        return end - start > 10; // Adjust this threshold as needed
+        return end - start > 200; // Adjust this threshold as needed
     }
 
     // Collect browser data
@@ -200,7 +203,7 @@ if(isset($session->uid) && basename($_SERVER['PHP_SELF']) !== 'captcha.php' && b
         })
         .then(score => {
             console.log('Bot detection score:', score);
-            if (parseFloat(score) <= 0.5) {
+            if (parseFloat(score) < 0.5) {
               //  alert('Got you!');
                 window.location.href = './captcha.php';
             } else {
@@ -280,3 +283,30 @@ if(isset($session->uid) && basename($_SERVER['PHP_SELF']) !== 'captcha.php' && b
 		 url('../fonts/IRANSansWeb.ttf') format('truetype');
 }
     </style>
+
+<style id="t25uifix">
+/* T25: content-title close (X) button was 0x0 / invisible on pages without inline SVG */
+.contentTitle{position:relative;}
+.contentTitle #closeContentButton{
+  width:26px;height:26px;min-width:26px;min-height:26px;
+  display:block !important;
+  cursor:pointer;z-index:75;
+  position:absolute !important;top:10px !important;left:28px !important;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M4 4l12 12M16 4L4 16' stroke='%23ffffff' stroke-width='2.8' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+  background-repeat:no-repeat !important;
+  background-position:center !important;
+  background-size:13px 13px !important;
+  background-color:#6aa63b !important;
+  border:1px solid #4e7d2a;
+  border-radius:4px;
+  box-shadow:0 1px 2px rgba(0,0,0,.25);
+}
+.contentTitle #answersButton{
+  position:absolute !important;top:10px !important;left:62px !important;
+  width:26px;height:26px;z-index:74;
+  background-color:#6aa63b !important;
+  border:1px solid #4e7d2a;
+  border-radius:4px;
+}
+</style>
+<script src="/gpackcdn/js/Game/General/shopui-live.js?v=2"></script>

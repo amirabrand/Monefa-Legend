@@ -3,7 +3,7 @@
     if(isset($_POST['mgold'])){
         if(is_numeric($_POST['mgoldN'])){
             
-            $q = $database->query('UPDATE users SET gold = gold - '.$_POST['mgoldN'].' WHERE id = '.$_POST['p'].'');
+            $q = $database->query('UPDATE users SET gold = gold - '.(int)$_POST['mgoldN'].' WHERE id = '.(int)$_POST['p'].'');
             echo "discount".$_POST['mgoldN']." gold From player Successfully.";     
         }
     }

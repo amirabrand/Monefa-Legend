@@ -96,7 +96,7 @@ echo mb_substr(stripslashes(nl2br($bbcoded)), 0, 50);
                     </div>
 
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">لغو</button>
                             <form action="" method="post">
                                 <input type="hidden" name="msg" value="<?php echo $ms['id']; ?>">
                                 <button href="#" type="submit" class="btn btn-danger danger">Confirmation</button>

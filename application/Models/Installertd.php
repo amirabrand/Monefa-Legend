@@ -7,7 +7,7 @@ Class installerTD {
         global $database;
 
         $qData = $database->queryFetch("SELECT * FROM `config`");
-        if (time() > $qData['reinstalltime'] ) {
+        if (defined('AUTO_REINSTALL') && AUTO_REINSTALL && time() > $qData['reinstalltime']) {
             $this->updateInstall($qData);
         }
     }
@@ -36,13 +36,13 @@ Class installerTD {
         // Drop tables
         foreach ($tablesToDrop as $table) {
             $sql = "DROP TABLE IF EXISTS `$table`";
-            if ($database->query($sql) === TRUE) {
+            if ($database->query($sql) !== null) {
                 echo "Table $table dropped successfully.<br>";
             }
         }
     
         // Read the SQL file (ss.sql)
-        $sqlFilePath = $adjustedPath . '/ss.sql';
+        $sqlFilePath = dirname(CONFSDATA) . '/ss.sql';
         $sqlContent = file_get_contents($sqlFilePath);
     
         // OPTIONAL: Replace characters in the SQL content if needed
@@ -105,7 +105,7 @@ $timestamp = $nextSixPM->getTimestamp();
   
 ";
 $database->query($updateConfigSQL);
-include_once('jdf.php');
+include_once(APP_MAIN_PATH . '/jdf.php');
 $protectionDuration = $sData['PROTECTIOND']; // in seconds
 $formattedProtectionTime = gmdate("H:i:s", $protectionDuration); // e.g., "12:00:00" for 12 hours
 
@@ -141,7 +141,7 @@ $ddd=$this->sendMessageToChannel($message);
 
 function sendMessageToChannel($message)
 {
-    $channelId='-1002028123102';
+    $channelId = '';
     // Your Telegram bot token
     $botToken = '';
 

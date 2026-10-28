@@ -32,7 +32,7 @@ if(!isset($_GET['t']) || !is_numeric($_GET['t']) || $_GET['t'] > 5){$_GET['t'] =
                     <a id="answersButton" class="contentTitleButton" href="#" target="_blank" title="Travian Answers">&nbsp;</a></div>
                 <div class="contentContainer">
                 <div id="content" class="production">
-                    <h1 class="titleInHeader">Overview On production</h1><div class="contentNavi subNavi ">
+                    <h1 class="titleInHeader">نمای کلی تولید</h1><div class="contentNavi subNavi ">
                     <div title="" class="container <?php echo $_GET['t'] == 1 ? 'active' : 'normal'; ?>">
                         <div class="background-start">&nbsp;</div>
                         <div class="background-end">&nbsp;</div>
@@ -241,21 +241,21 @@ if(!isset($_GET['t']) || !is_numeric($_GET['t']) || $_GET['t'] > 5){$_GET['t'] =
                                 <div class="fluidSpeechBubble-bc"></div>
                                 <div class="speechArrowBack"></div>
                                 <div class="fluidSpeechBubble-contents cf">
-                                    <h5>Bonus                        :</h5>
+                                    <h5>جایزه                        :</h5>
                                     <table cellspacing="0" cellpadding="0" class="row_table_data">
                                         <tbody>
                                         <tr class="inactive">
-                                            <td>معمل نجارة level 0:</td>
+                                            <td>کارگاه نجاری سطح 0:</td>
                                             <td class="numberCell">0%&lrm;</td>
                                         </tr>                        <tr class="inactive">
-                                            <td>واحات                                (×0)
+                                            <td>واحه‌ها                                (×0)
                                             </td>
                                             <td class="numberCell">
                                                 &lrm;0%&lrm;
                                             </td>
                                         </tr>
                                                                 <tr>
-                                            <td class="bold">جمع مكافآت</td>
+                                            <td class="bold">جمع جوایز</td>
                                             <td class="bold numberCell">0                                %&lrm;
                                             </td>
                                         </tr>
@@ -269,34 +269,34 @@ if(!isset($_GET['t']) || !is_numeric($_GET['t']) || $_GET['t'] > 5){$_GET['t'] =
 
                 <div class="total productionContainer">
                     <div class="productionPerHourTotal">
-                        <h4>Total production in a hour            :</h4>
+                        <h4>تولید کل در ساعت            :</h4>
                         <table cellspacing="0" cellpadding="0" class="row_table_data">
                             <tbody>
                             <tr>
-                                <td>إنتاج</td>
+                                <td>تولید</td>
                                 <td class="numberCell">105,000</td>
                             </tr>
                             <tr>
-                                <td>علاوة</td>
+                                <td>پلاس</td>
                                 <td class="numberCell">0</td>
                             </tr>
                             <tr>
-                                <td>إنتاج Hero</td>
+                                <td>تولید قهرمان</td>
                                 <td class="numberCell">120,000</td>
                             </tr>
                             <tr class="subtotal">
-                                <td class="bold">رصد مؤقت                    =
+                                <td class="bold">جمع موقت                    =
                                 </td>
                                                 <td class="numberCell bold">225,000</td>
                             </tr>
 
                             <tr class="inactive">
                                 <td>
-                                    +25%&lrm; إنتاج    (غر نشط)</td>
+                                    +25%&lrm; تولید (پلاس فعال نیست)</td>
                                 <td class="numberCell">56,250</td>
                             </tr>
                             <tr class="total bold">
-                                <td class="bold">total</td>
+                                <td class="bold">جمع کل</td>
                                 <td class="numberCell bold">225,000</td>
                             </tr>
                             </tbody>
@@ -318,7 +318,7 @@ if(!isset($_GET['t']) || !is_numeric($_GET['t']) || $_GET['t'] > 5){$_GET['t'] =
                                 <div class="speechArrowBack"></div>
                                 <div class="fluidSpeechBubble-contents cf">
                                     <form id="fluidSpeechBubble" method="post" action="">
-                                        <p>إنتاج hour بما in a ذلك Bonus                            : <span class="bold">281,250</span>
+                                        <p>تولید در ساعت با احتساب جایزه                            : <span class="bold">281,250</span>
                                         </p>
 
                                         <div>
@@ -330,18 +330,18 @@ if(!isset($_GET['t']) || !is_numeric($_GET['t']) || $_GET['t'] > 5){$_GET['t'] =
                                 </div>
                             </div>
                         </div>
-                        <div class="button-content">فعل<img src="img/x.gif" class="goldIcon" alt=""><span class="goldValue">50</span></div></div></button>
+                        <div class="button-content">فعال‌سازی<img src="img/x.gif" class="goldIcon" alt=""><span class="goldValue">50</span></div></div></button>
                     <script type="text/javascript" id="buttonnNn6_script">
                     jQuery(function()
                         {
                         jQuery('#buttonnNn6').click(function (event)
                         {
-                            jQuery(window).trigger('buttonClicked', [this, {"type":"button","value":"\u0641\u0639\u0644","confirm":"","onclick":"","wayOfPayment":{"featureKey":"productionboostWood","context":"production"},"title":"\u062a\u0641\u0639\u064a\u0644 \u0627\u0644\u0622\u0646 &lt;br&gt; \u0645\u062f\u0629 \u0627\u0644\u0632\u064a\u0627\u062f\u0629 \u0623\u064a\u0627\u0645 &lt;span class=&quot;bold&quot;&gt;4&lt;\/span&gt; \u0627\u064a\u0627\u0645","coins":50,"id":"buttonnNn6"}]);
+                            jQuery(window).trigger('buttonClicked', [this, {"type":"button","value":"فعال‌سازی","confirm":"","onclick":"","wayOfPayment":{"featureKey":"productionboostWood","context":"production"},"title":"فعال‌سازی اکنون &lt;br&gt; مدت افزایش: &lt;span class=&quot;bold&quot;&gt;4&lt;\/span&gt; روز","coins":50,"id":"buttonnNn6"}]);
                         });
                         });
                     </script>                        </div>
                                         <div class="productionBoostSpeechBubbleFurtherInfo">
-                                            <p>تزد علاوة إنتاج From إنتاج مورد <span class="underlined">لكل</span> قراكم.</p>
+                                            <p>این جایزه تولید <span class="underlined">هر یک</span> از دهکده‌های شما را افزایش می‌دهد.</p>
                                         </div>
                                     </form>
                                 </div>
@@ -368,7 +368,7 @@ if(!isset($_GET['t']) || !is_numeric($_GET['t']) || $_GET['t'] > 5){$_GET['t'] =
                             <div class="speechArrowBack"></div>
                             <div class="fluidSpeechBubble-contents cf">
                                 <form id="fluidSpeechBubble" method="post" action="">
-                                <p>إنتاج hour بما in a ذلك Bonus: <span class="bold">316,198</span></p>
+                                <p>تولید در ساعت با احتساب جایزه: <span class="bold">316,198</span></p>
 
                 <div>
                 <button type="button" class="gold  productionBoostButton crop" coins="50" id="buttonU6" onclick=""><div class="button-container addHoverClick">
@@ -379,18 +379,18 @@ if(!isset($_GET['t']) || !is_numeric($_GET['t']) || $_GET['t'] > 5){$_GET['t'] =
                         </div>
                     </div>
                 </div>
-                <div class="button-content">فعل<img src="img/x.gif" class="goldIcon" alt=""><span class="goldValue">50</span></div></div></button>
+                <div class="button-content">فعال‌سازی<img src="img/x.gif" class="goldIcon" alt=""><span class="goldValue">50</span></div></div></button>
             <script type="text/javascript" id="buttonU6_script">
             jQuery(function()
                 {
                 jQuery('#buttonU6').click(function (event)
                 {
-                    jQuery(window).trigger('buttonClicked', [this, {"type":"button","value":"\u0641\u0639\u0644","confirm":"","onclick":"","wayOfPayment":{"featureKey":"productionboostCrop","context":"production"},"title":"\u062a\u0641\u0639\u064a\u0644 \u0627\u0644\u0622\u0646 &lt;br&gt; \u0645\u062f\u0629 \u0627\u0644\u0632\u064a\u0627\u062f\u0629 \u0623\u064a\u0627\u0645 &lt;span class=&quot;bold&quot;&gt;4&lt;\/span&gt; \u0627\u064a\u0627\u0645","coins":50,"id":"buttonU6"}]);
+                    jQuery(window).trigger('buttonClicked', [this, {"type":"button","value":"فعال‌سازی","confirm":"","onclick":"","wayOfPayment":{"featureKey":"productionboostCrop","context":"production"},"title":"فعال‌سازی اکنون &lt;br&gt; مدت افزایش: &lt;span class=&quot;bold&quot;&gt;4&lt;\/span&gt; روز","coins":50,"id":"buttonU6"}]);
                 });
                 });
             </script>                            </div>
                                     <div class="productionBoostSpeechBubbleFurtherInfo">
-                                        <p>Production Bonus Increases From Supplier Production <span class="underlined">All</span> your villages.</p>
+                                        <p>این جایزه تولید <span class="underlined">هر یک</span> از دهکده‌های شما را افزایش می‌دهد.</p>
                                     </div>
                                 </form>
                             </div>
@@ -402,33 +402,33 @@ if(!isset($_GET['t']) || !is_numeric($_GET['t']) || $_GET['t'] > 5){$_GET['t'] =
                 <table cellspacing="0" cellpadding="0" class="row_table_data">
                     <tbody>
                     <tr>
-                        <td>Production of buildings and oases</td>
+                        <td>تولید ساختمان‌ها و واحه‌ها</td>
                         <td class="numberCell">133,000</td>
                     </tr>
                     <tr>
-                        <td>Population and Building orders</td>
+                        <td>جمعیت و سفارش‌های ساخت</td>
                         <td class="numberCell">-54                    &lrm;
                         </td>
                     </tr>
                     <tr class="subtotal">
-                        <td class="bold">Wheat crops</td>
+                        <td class="bold">تولید خالص گندم</td>
                         <td class="bold numberCell">132,946</td>
                     </tr>
                     <tr>
-                        <td>Incomplete Building Commands</td>
+                        <td>سفارش‌های ساخت ناتمام</td>
                         <td class="numberCell">0</td>
                     </tr>
                     <tr>
-                        <td>Production Hero</td>
+                        <td>تولید قهرمان</td>
                         <td class="numberCell">120,006</td>
                     </tr>
                     <tr class="inactive">
                         <td>
-                            +25%&lrm;Production (passif)</td>
+                            +25%&lrm; تولید (پلاس فعال نیست)</td>
                         <td class="numberCell">63,252</td>
                     </tr>
                     <tr class="subtotal">
-                        <td class="bold">Temporary balance =
+                        <td class="bold">مانده موقت =
                         </td>
                         <td class="numberCell bold">252,952</td>
                     </tr>
@@ -449,45 +449,45 @@ if(!isset($_GET['t']) || !is_numeric($_GET['t']) || $_GET['t'] > 5){$_GET['t'] =
                     <div class="boxes-contents cf">
                         <div class="switchDown  " id="ownBalanceTroops">
                             <div class="switchDownCloseStateContainer ">
-                                <div class="switchClosed headline">consumption Forces Own</div>
+                                <div class="switchClosed headline">مصرف نیروهای خود</div>
                                 <div class="switchDownContent">
                                     <span class="bold">-6&lrm;</span>
                                 </div>
                                 <div class="clear"></div>
                             </div>
                             <div class="switchDownOpenStateContainer hide">
-                                <div class="switchOpened headline">consumption Forces Own</div>
+                                <div class="switchOpened headline">مصرف نیروهای خود</div>
                                 <div class="clear"></div>
                                 <div class="switchDownContent">
                                     <table>
                                         <tbody>
                                         <tr>
                                             <td class="troopLabel">
-                                                - in the village</td>
+                                                - در دهکده</td>
                                             <td class="numberCell">-6&lrm;</td>
                                         </tr>
                                         <tr>
                                             <td class="troopLabel">
-                                                - in a oasis or reinforcements</td>
+                                                - در واحه یا پشتیبان</td>
                                             <td class="numberCell">0&lrm;</td>
                                         </tr>
                                         <tr>
                                             <td class="troopLabel">
-                                                - عل road</td>
+                                                - در راه</td>
                                             <td class="numberCell">0&lrm;</td>
                                         </tr>
                                         <tr>
                                             <td class="troopLabel">
-                                                - مأسور</td>
+                                                - اسیر</td>
                                             <td class="numberCell">0                                        &lrm;
                                             </td>
                                         </tr>
                                         <tr class=" inactive">
-                                            <td class="troopLabel">مكافأة قطع أثرة</td>
+                                            <td class="troopLabel">جایزه واحه‌ها</td>
                                             <td class="numberCell">0</td>
                                         </tr>
                                                                                                         <tr class="subtotal">
-                                            <td class="bold">total</td>
+                                            <td class="bold">جمع کل</td>
                                             <td class="numberCell bold">-6</td>
                                         </tr>
                                         </tbody>
@@ -518,34 +518,34 @@ if(!isset($_GET['t']) || !is_numeric($_GET['t']) || $_GET['t'] > 5){$_GET['t'] =
                     <div class="boxes-contents cf">
                         <div class="switchDown  " id="foraignBalanceTroops">
                             <div class="switchDownCloseStateContainer ">
-                                <div class="switchClosed headline">استهلاك Forces معززة</div>
+                                <div class="switchClosed headline">مصرف نیروهای پشتیبان</div>
                                 <div class="switchDownContent">
                                     <span class="bold">0&lrm;</span>
                                 </div>
                                 <div class="clear"></div>
                             </div>
                             <div class="switchDownOpenStateContainer hide">
-                                <div class="switchOpened headline">استهلاك Forces معززة</div>
+                                <div class="switchOpened headline">مصرف نیروهای پشتیبان</div>
                                 <div class="clear"></div>
                                 <div class="switchDownContent">
                                     <table>
                                         <tbody>
                                         <tr>
                                             <td class="troopLabel">
-                                                - in a village</td>
+                                                - در دهکده</td>
                                             <td class="numberCell">0</td>
                                         </tr>
                                         <tr>
                                             <td class="troopLabel">
-                                                - in a واحة أو reinforcementات From قرى Own</td>
+                                                - در واحه یا پشتیبان از دهکده‌های خود</td>
                                             <td class="numberCell">0</td>
                                         </tr>
                                         <tr class=" inactive">
-                                            <td class="troopLabel">مكافأة قطع أثرة</td>
+                                            <td class="troopLabel">جایزه واحه‌ها</td>
                                             <td class="numberCell">0</td>
                                         </tr>
                                                                                                         <tr class="subtotal">
-                                            <td class="bold">total</td>
+                                            <td class="bold">جمع کل</td>
                                             <td class="numberCell bold">0</td>
                                         </tr>
                                         </tbody>
@@ -566,7 +566,7 @@ if(!isset($_GET['t']) || !is_numeric($_GET['t']) || $_GET['t'] > 5){$_GET['t'] =
                 <table cellspacing="0" cellpadding="0" class="row_table_data">
                     <tbody>
                     <tr class="total">
-                        <td class="bold">إحتاط crop                    =
+                        <td class="bold">مانده گندم                    =
                         </td>
                         <td class="bold numberCell">252,946</td>
                     </tr>

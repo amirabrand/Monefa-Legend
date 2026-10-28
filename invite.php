@@ -6,7 +6,8 @@ include_once "application/Account.php";
 $gggold = REF_GOLD;
 $gggoldpop = $gggold * 10;
 if (isset($_GET['earngold']) && isset($_GET['checker']) && $_GET['checker'] == $session->checker) {
-    $colldata = $database->query("SELECT * from referals where invitedby = {$session->uid} and uid = {$_GET['earngold']} ");
+    $earngold = isset($_GET['earngold']) ? (int)$_GET['earngold'] : 0;
+    $colldata = $database->query("SELECT * from referals where invitedby = {$session->uid} and uid = {$earngold} ");
     $colldata = $colldata[0];
     $varray = $database->getProfileVillages($_GET['earngold']);
     $totalpop = 0;
@@ -22,7 +23,7 @@ if (isset($_GET['earngold']) && isset($_GET['checker']) && $_GET['checker'] == $
         $earnable = $vccount - $colldata['vilage'];
         $earnable = $earnable * $gggold;
         $database->modifyGold($session->uid, $earnable, 1);
-        $database->query("UPDATE referals SET vilage = {$vccount} where invitedby = {$session->uid} and uid = {$_GET['earngold']} ");
+        $database->query("UPDATE referals SET vilage = {$vccount} where invitedby = {$session->uid} and uid = {$earngold} ");
     
         echo $earnable;
     } else {

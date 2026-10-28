@@ -15,7 +15,7 @@
 <div id="footer" style="margin-top: 60px;">
 				<div id="pageLinks">
 					<a href="#" target="_blank">صفحه اصلی</a>
-					<a href="#" target="_blank">ديسكورد</a>
+					<a href="#" target="_blank">دیسکورد</a>
 					<a href="#" target="_blank">وبلاگ</a>
 					<a href="/help?page=support&amp;redirect=home" target="_blank">مدیریت بازی</a>
 					<a href="#" target="_blank">قوانین بازی</a>

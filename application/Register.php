@@ -54,9 +54,12 @@ class Registr {
 
 		function unreg($username) {
 		global $database;
-		$params=array('user'=>$username);
-		$q = "DELETE from activate where username = '".$username."'";
-		$database->query($q,$params);
+		/* kit-bug fix (task 18): DB::query() binds named params, but this call
+		   passed a :user param with no matching placeholder -> PDO HY093 ->
+		   the DELETE never ran -> every new user stayed in the activate table
+		   and was trapped in the activation redirect loop. Inline-escape instead. */
+		$q = "DELETE from activate where username = " . $database->esc($username); /* esc() already quotes */
+		$database->query($q);
 	}
 }
 $regme= new Registr;

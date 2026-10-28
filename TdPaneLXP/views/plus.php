@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="card-header">Plus Settings</div>
+    <div class="card-header">تنظیمات پلاس</div>
     <div class="card-body">
         <?php
         $conffdata = $database->query("select * from buyfeature ");
@@ -155,7 +155,7 @@
             header('Location: index.php?p=plus&d');
         }
         if (isset($_GET['m'])) {
-            echo '<div class="alert alert-success">Modification has been completed </div>';
+            echo '<div class="alert alert-success">تغییرات با موفقیت ثبت شد </div>';
         } elseif (isset($_GET['d'])) {
             echo '<div class="alert alert-danger">All entries must be numbers.</div>';
         }
@@ -175,16 +175,16 @@
         <form action="" method="post">
             <input type="hidden" name="update" value="setting">
             <div class="form-group">
-                <label>club gold</label>
+                <label>طلای کلوپ</label>
                 <input class="form-control" name="goldClub" value="<?php echo $config['goldClub']; ?>">
             </div>
             <div class="form-group row">
                 <div class="col-md-6">
-                    <label>Plus account price</label>
+                    <label>قیمت اکانت پلاس</label>
                     <input class="form-control" name="Plus" value="<?php echo $config['Plus']; ?>">
                 </div>
                 <div class="col-md-6">
-                    <label>duration plus</label>
+                    <label>مدت پلاس</label>
                     <select name="PLUS_TIME" class="form-control">
                         <option <?php if (PLUS_TIME == 43200) {
                             echo "selected";
@@ -215,12 +215,12 @@
             </div>
             <div class="form-group row">
                 <div class="col-md-6">
-                    <label>Plus Resources price</label>
+                    <label>قیمت منابع پلاس</label>
                     <input class="form-control" name="addonProduction"
                         value="<?php echo $config['addonProduction']; ?>">
                 </div>
                 <div class="col-md-6">
-                    <label>duration Resources</label>
+                    <label>مدت منابع</label>
                     <select name="PLUS_PRODUCTION" class="form-control">
                         <option <?php if (PLUS_PRODUCTION == 43200) {
                             echo "selected";
@@ -259,17 +259,17 @@ $config=$sagdata['generals'];
 
 
 
-            <h6>Plus Settings in a<small class="alert-danger">* Set a rate of 0 for private downtime</small></h6>
+            <h6>تنظیمات پلاس در<small class="alert-danger">* Set a rate of 0 for private downtime</small></h6>
             <br>
             <div class="form-group">
                 <label>Turn on / disable features of Plus</label>
                 <select name="plusfeatures[]" class="form-control">
                     <option <?php if ($men['generals'] == 0) {
                         echo "selected";
-                    } ?> value="0">disable</option>
+                    } ?> value="0">غیرفعال</option>
                     <option <?php if ($men['generals'] == 1) {
                         echo "selected";
-                    } ?> value="1">enable</option>
+                    } ?> value="1">فعال</option>
                 </select>
             </div>
             <div class="form-group row">
@@ -284,7 +284,7 @@ $config=$sagdata['generals'];
             </div>
             <div class="form-group row">
                 <div class="col-md-6">
-                    <label>Full smithy</label>
+                    <label>زره‌خانهٔ کامل</label>
                     <input name="allSmithy" class="form-control" value="<?php echo $config['allSmithy']; ?>">
                 </div>
                 <div class="col-md-6">
@@ -304,10 +304,10 @@ $config=$sagdata['buyfeatures'];?>
                     <select name="plusfeatures[]" class="form-control">
                         <option <?php if ($men['buyresources'] == 0) {
                             echo "selected";
-                        } ?> value="0">disable</option>
+                        } ?> value="0">غیرفعال</option>
                         <option <?php if ($men['buyresources'] == 1) {
                             echo "selected";
-                        } ?> value="1">enable</option>
+                        } ?> value="1">فعال</option>
                     </select>
                     <br><hr><?php
                     for($ees=0;$ees<3;$ees++){
@@ -325,10 +325,10 @@ $config=$sagdata['buyfeatures'];?>
                     <select name="plusfeatures[]" class="form-control">
                         <option <?php if ($men['buytroops'] == 0) {
                             echo "selected";
-                        } ?> value="0">disable</option>
+                        } ?> value="0">غیرفعال</option>
                         <option <?php if ($men['buytroops'] == 1) {
                             echo "selected";
-                        } ?> value="1">enable</option>
+                        } ?> value="1">فعال</option>
                     </select>
                     <br><hr><?php
                     for($ees=0;$ees<3;$ees++){
@@ -338,10 +338,10 @@ $config=$sagdata['buyfeatures'];?>
                     <label>troops in package <?=$ees+1?>  quantity</label>
                     <input name="troopsnums[]" class="form-control" value="<?php echo $config["buytro".$ees]['num']; ?>">
                     <label>with cata</label>|<select name="cata[]">
-                    <option value="0">false</option>
+                    <option value="0">خیر</option>
                         <option value="1" <?php if ($config["buytro".$ees]['cata']=='1') {
                             echo "selected";
-                        }?>>true</option>
+                        }?>>بله</option>
                        
                     </select>
                     <br><hr><?php
@@ -354,10 +354,10 @@ $config=$sagdata['buyfeatures'];?>
                     <select name="plusfeatures[]" class="form-control">
                         <option <?php if ($men['buywilds'] == 0) {
                             echo "selected";
-                        } ?> value="0">disable</option>
+                        } ?> value="0">غیرفعال</option>
                         <option <?php if ($men['buywilds'] == 1) {
                             echo "selected";
-                        } ?> value="1">enable</option>
+                        } ?> value="1">فعال</option>
                     </select>
                     <br><hr><?php
                     for($ees=0;$ees<3;$ees++){
@@ -368,10 +368,10 @@ $config=$sagdata['buyfeatures'];?>
                     <label>wilds in package <?=$ees+1?>  quantity</label>
                     <input name="wildsnums[]" class="form-control" value="<?php echo $config["buywil".$ees]['num']; ?>">
                     <label>with alphanet</label>|<select name="phil[]">
-                    <option value="0">false</option>
+                    <option value="0">خیر</option>
                         <option value="1" <?php if ($config["buywil".$ees]["phil"]=='1') {
                             echo "selected";
-                        }?>>true</option>
+                        }?>>بله</option>
                        
                     </select>
                     <br><hr><?php
@@ -393,10 +393,10 @@ $config=$sagdata['buyothers'];?>
                     <select name="plusfeatures[]" class="form-control">
                         <option <?php if ($men['buyprotection'] == 0) {
                             echo "selected";
-                        } ?> value="0">disable</option>
+                        } ?> value="0">غیرفعال</option>
                         <option <?php if ($men['buyprotection'] == 1) {
                             echo "selected";
-                        } ?> value="1">enable</option>
+                        } ?> value="1">فعال</option>
                     </select>
                     <br><hr><?php
                     for($ees=0;$ees<3;$ees++){
@@ -421,7 +421,7 @@ $config=$sagdata['buypacks'];?>
                     ?>
                 <label>price of package <?=$ees+1?>  </label>
                 <input name="buypacks[]" class="form-control" value="<?php echo $config["buypacks".$ees]['gold']; ?>">
-                <label>gold of package  <?=$ees+1?> </label>
+                <label>طلای بسته  <?=$ees+1?> </label>
                 <input name="buypacksprice[]" class="form-control" value="<?php echo $config["buypacks".$ees]['price']; ?>">
                 <br> <hr>
                 <?php
@@ -437,7 +437,7 @@ $config=$sagdata['buypacks'];?>
 
             <hr>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary">Modification</button>
+                <button type="submit" class="btn btn-primary">ویرایش</button>
             </div>
         </form>
     </div>

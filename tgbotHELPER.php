@@ -7,7 +7,8 @@ $get_data = file_get_contents("php://input");
 $get_all_data = json_decode($get_data,true);
 
 
-$apikey="6702705183:AAEPcPXBLoMwGc8sXVa-ZYsBSJq_W2xzi6o";
+// T25: old-owner telegram bot disabled; Bale bot (balebot.php) replaces it
+$apikey="";
 
 include "botConfig.php";
 include "jdf.php";

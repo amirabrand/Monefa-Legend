@@ -84,6 +84,18 @@ class DB
             # Prepare query
             $this->sQuery = $this->pdo->prepare($query);
 
+            # task-18 fix: the engine passes params arrays to queries whose values
+            # are already inlined; a named binding with no matching placeholder
+            # makes PDO throw HY093 (Invalid parameter number) and the query
+            # silently fails. Drop spurious bindings before bindMore().
+            if (is_array($parameters)) {
+                foreach (array_keys($parameters) as $__pk) {
+                    if (is_string($__pk) && !preg_match("/:" . preg_quote($__pk, "/") . "\b/", $query)) {
+                        unset($parameters[$__pk]);
+                    }
+                }
+            }
+
             # Add parameters to the parameter array
             $this->bindMore($parameters);
 
@@ -217,15 +229,15 @@ class DB
 
     public function starttransaction()
     {
-        if (!$this->pdo) { $this->Connect(); } $this->pdo->beginTransaction();
+        if (!$this->pdo) { $this->Connect(); } if (!$this->pdo) { $this->Connect(); } $this->pdo->beginTransaction();
     }
     public function commitq()
     {
-        if (!$this->pdo) { $this->Connect(); } $this->pdo->commit();
+        if (!$this->pdo) { $this->Connect(); } if (!$this->pdo) { $this->Connect(); } $this->pdo->commit();
     }
     public function rollBackq()
     {
-    if (!$this->pdo) { $this->Connect(); } $this->pdo->rollBack();
+    if (!$this->pdo) { $this->Connect(); } if (!$this->pdo) { $this->Connect(); } $this->pdo->rollBack();
 }
 
     public function queryNumRow($query, $params = null)
@@ -295,6 +307,7 @@ class DB
         if (!$this->pdo) { $this->Connect(); }
         return $this->pdo->quote((string) $value);
     }
+
 
     public function get_last_id()
     {

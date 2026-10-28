@@ -19,7 +19,7 @@ $lang['News'] = array(
 
      'Hour' => 'ساعت',
 
-    'Arts' => '<li>تبقي على ظهور التحف <span class="timer" counting="down" value="%s">%s</span> ساعة</li>',
-    'WWPlans' => '<li>تبقي على ظهور مخططات البناء <span class="timer" counting="down" value="%s">%s</span> ساعة</li>',
-    'Medalt' => '<li>تبقي على ظهور التحف <span class="timer" counting="down" value="%s">%s</span> ساعة</li>',
+    'Arts' => '<li>تا ظهور آثار <span class="timer" counting="down" value="%s">%s</span> ساعت</li>',
+    'WWPlans' => '<li>تا ظهور نقشه‌های ساخت <span class="timer" counting="down" value="%s">%s</span> ساعت</li>',
+    'Medalt' => '<li>تا ظهور آثار <span class="timer" counting="down" value="%s">%s</span> ساعت</li>',
 );

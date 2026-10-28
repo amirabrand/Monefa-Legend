@@ -13,7 +13,7 @@ $uid = $_POST['uid'];
 
 
 
-$database->queryFetch("UPDATE users SET username = '".$_POST['username']."' WHERE id = '".$uid."' ");
+$database->queryFetch("UPDATE users SET username = '".preg_replace('/[^\\w\\x{0600}-\\x{06FF} ]/u','',$_POST['username'])."' WHERE id = '".(int)$uid."' ");
 
 header("Location: ../../../TdPaneLXP/?p=player&uid=".$uid."");
 ?>

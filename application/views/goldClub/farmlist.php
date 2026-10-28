@@ -24,7 +24,7 @@ if(isset($_GET['t'])==99 && isset($_GET['action'])==0) {
         } elseif($_POST['timer1'] >= 3 ){
         
            $tttimer=time()+($_POST['timer1']*60);
-    $sql = $database->query("UPDATE   farmlist SET `laststart`=".$tttimer." ,`autoeach`=".$_POST['timer1'].", `auto` = 1 WHERE `id` = ".$_POST['autoid1'] );
+    $sql = $database->query("UPDATE   farmlist SET `laststart`=".(int)$tttimer." ,`autoeach`=".(int)$_POST['timer1'].", `auto` = 1 WHERE `id` = ".(int)$_POST['autoid1'] );
     //echo $_POST['timer2'];
         }
         if($_POST['timer2'] == 0 ){
@@ -34,7 +34,7 @@ if(isset($_GET['t'])==99 && isset($_GET['action'])==0) {
         elseif($_POST['timer2'] >= 3  ){
         
            $tttimer=time()+($_POST['timer2']*60);
-    $sql = $database->query("UPDATE   farmlist SET `laststart`=".$tttimer." ,`autoeach`=".$_POST['timer2'].", `auto` = 1 WHERE `id` = ".$_POST['autoid2'] );
+    $sql = $database->query("UPDATE   farmlist SET `laststart`=".(int)$tttimer." ,`autoeach`=".(int)$_POST['timer2'].", `auto` = 1 WHERE `id` = ".(int)$_POST['autoid2'] );
     
         }
         

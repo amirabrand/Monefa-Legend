@@ -25,7 +25,7 @@
 
 if (isset($_GET['fid'])) {
     $fid = preg_replace('/[^0-9]/', '', $_GET['fid']);
-    $forum = mysql_query('SELECT `forum_name`,`forum_area`,`alliance` FROM ' . TB_PREFIX . 'forum_cat WHERE id = ' . $fid . '');
+    $forum = $database->query('SELECT `forum_name`,`forum_area`,`alliance` FROM ' . TB_PREFIX . 'forum_cat WHERE id = ' . $fid . '');
     $forum_type = mysql_fetch_assoc($forum);
     if ($forum_type['forum_name'] != '' && $forum_type['forum_area'] != 1) {
         if ($forum_type['forum_area'] == 0) {
@@ -81,7 +81,7 @@ if (isset($_GET['fid'])) {
 }
 
 if (isset($_POST['tid']) && $_POST['tid'] == 4) {
-    $q = mysql_query("SELECT `voters`,`p1`,`p2`,`p3`,`p4` FROM " . TB_PREFIX . "forum_poll where id = '" . $_GET['tid'] . "'");
+    $q = $database->query("SELECT `voters`,`p1`,`p2`,`p3`,`p4` FROM " . TB_PREFIX . "forum_poll where id = '" . $_GET['tid'] . "'");
     $q = mysql_fetch_assoc($q);
 
     $votr = explode(',', $q['voters']);
@@ -101,13 +101,13 @@ if (isset($_POST['tid']) && $_POST['tid'] == 4) {
             $poll = 4;
         }
         $p = ($q['p' . $poll] + 1);
-        $z = mysql_query("UPDATE " . TB_PREFIX . "forum_poll set `p" . $poll . "` = " . $p . " where id = '" . $_GET['tid'] . "'") or die(mysql_error());
+        $z = $database->query("UPDATE " . TB_PREFIX . "forum_poll set `p" . $poll . "` = " . $p . " where id = '" . $_GET['tid'] . "'") or die(mysql_error());
         if ($q['voters'] == 0) {
             $votcode = $session->uid;
         } else {
             $votcode = $q['voters'] . ',' . $session->uid;
         }
-        mysql_query("UPDATE " . TB_PREFIX . "forum_poll set `voters` = '" . $votcode . "' where id = '" . $_GET['tid'] . "'") or die(mysql_error());
+        $database->query("UPDATE " . TB_PREFIX . "forum_poll set `voters` = '" . $votcode . "' where id = '" . $_GET['tid'] . "'") or die(mysql_error());
     }
 }
     $alliance->procAlliance($_GET);
@@ -203,7 +203,7 @@ if (isset($_POST['tid']) && $_POST['tid'] == 4) {
     });
 </script>
 <?php
-            $result = mysql_query('SELECT `Alliance` FROM ' . TB_PREFIX . 'users WHERE id = ' . $session->uid . ' LIMIT 1');
+            $result = $database->query('SELECT `Alliance` FROM ' . TB_PREFIX . 'users WHERE id = ' . $session->uid . ' LIMIT 1');
             $row = mysql_fetch_assoc($result);
             $Alliance = $row['Alliance'];
 

@@ -42,7 +42,7 @@ $users = $tribe1[0]['sum']+$tribe2[0]['sum']+$tribe3[0]['sum'];
 
     <tr>
 
-        <th colspan="2">Player Information</th>
+        <th colspan="2">اطلاعات بازیکن</th>
 
     </tr>
 
@@ -52,7 +52,7 @@ $users = $tribe1[0]['sum']+$tribe2[0]['sum']+$tribe3[0]['sum'];
 
     <tr>
 
-        <td>Registered players</td>
+        <td>بازیکنان ثبت‌نام‌شده</td>
 
         <td><?php echo $users; ?></td>
 
@@ -60,7 +60,7 @@ $users = $tribe1[0]['sum']+$tribe2[0]['sum']+$tribe3[0]['sum'];
 
     <tr>
 
-        <td>Active players</td>
+        <td>بازیکنان فعال</td>
 
         <td><?php  echo $database->ActiveAndOnline((3600*24)); ?></td>
 
@@ -68,7 +68,7 @@ $users = $tribe1[0]['sum']+$tribe2[0]['sum']+$tribe3[0]['sum'];
 
     <tr>
 
-        <td>Players online</td>
+        <td>بازیکنان آنلاین</td>
 
         <td><?php echo $database->ActiveAndOnline((60*10));?>
 
@@ -78,7 +78,7 @@ $users = $tribe1[0]['sum']+$tribe2[0]['sum']+$tribe3[0]['sum'];
 
     <tr>
 
-        <td>Players Banned</td>
+        <td>بازیکنان مسدود</td>
 
         <td><?php
 
@@ -94,7 +94,7 @@ $users = $tribe1[0]['sum']+$tribe2[0]['sum']+$tribe3[0]['sum'];
 
     <tr>
 
-        <td>Villages settled</td>
+        <td>دهکده‌های تأسیس‌شده</td>
 
         <td><?php
 
@@ -122,13 +122,13 @@ $users = $tribe1[0]['sum']+$tribe2[0]['sum']+$tribe3[0]['sum'];
 
     <thead>
 
-    <tr><th colspan="3">Player Information</th></tr>
+    <tr><th colspan="3">اطلاعات بازیکن</th></tr>
 
-    <td class="b">Tribe</td>
+    <td class="b">قوم</td>
 
-    <td class="b">Registered</td>
+    <td class="b">ثبت‌نام‌شده</td>
 
-    <td class="b">Percent</td>
+    <td class="b">درصد</td>
 
     </thead>
 
@@ -136,7 +136,7 @@ $users = $tribe1[0]['sum']+$tribe2[0]['sum']+$tribe3[0]['sum'];
 
     <tr>
 
-        <td>Romans</td>
+        <td>رومی‌ها</td>
 
         <td><?php echo $tribes[0]; ?></td>
 
@@ -146,7 +146,7 @@ $users = $tribe1[0]['sum']+$tribe2[0]['sum']+$tribe3[0]['sum'];
 
     <tr>
 
-        <td>Teutons</td>
+        <td>توتن‌ها</td>
 
         <td><?php echo $tribes[1]; ?></td>
 
@@ -156,7 +156,7 @@ $users = $tribe1[0]['sum']+$tribe2[0]['sum']+$tribe3[0]['sum'];
 
     <tr>
 
-        <td>Gauls</td>
+        <td>گول‌ها</td>
 
         <td><?php echo $tribes[2]; ?></td>
 
@@ -180,15 +180,15 @@ $users = $tribe1[0]['sum']+$tribe2[0]['sum']+$tribe3[0]['sum'];
 
     <tr>
 
-        <th colspan="3">Server Information</th>
+        <th colspan="3">اطلاعات سرور</th>
 
     </tr>
 
     <td class="b"></td>
 
-    <td class="b">Total</td>
+    <td class="b">مجموع</td>
 
-    <td class="b">Average</td>
+    <td class="b">میانگین</td>
 
     </thead>
 
@@ -246,7 +246,7 @@ $users = $tribe1[0]['sum']+$tribe2[0]['sum']+$tribe3[0]['sum'];
 
     <tr>
 
-        <th colspan="10">Troops on the Server</th>
+        <th colspan="10">نیروهای موجود در سرور</th>
 
     </tr>
 

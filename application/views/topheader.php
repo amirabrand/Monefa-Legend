@@ -169,7 +169,7 @@ ${'dorf'.$session->link}='active';
     <a id="logo" href="#" target="_blank">
 		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 172.7 60">
  
-  <image width="238" height="86" style="width: 180px;height: 66px;" xlink:href="<?= GP_LOCATION ?>logo.png"></image>
+  <image width="238" height="86" style="width: 180px;height: 66px;" xlink:href="<?= GP_LOCATION ?>logo-monefa.png?v=2"></image>
 </svg>
 	</a>
 
@@ -426,7 +426,7 @@ ${'dorf'.$session->link}='active';
                                     </li>
                 <li>
 	<li class="help">
-		<a onclick="Travian.React.openHelpDialog()">
+		<a href="#" onclick="openPopup(); return false;">
             <svg viewBox="0 0 12.24 20" class="answers"><g class="outline">
   <path d="M3.73 13.1v-.52c0-2.8 1.47-3.8 2.89-4.76 1-.72 2.14-1.46 2.14-2.9s-1.13-2.55-3-2.55A5.39 5.39 0 0 0 2 4.12L0 2.61A8.15 8.15 0 0 1 6.24 0c3 0 6 1.4 6 4.52 0 2.42-1.4 3.38-2.88 4.4-1.33.91-2.7 1.85-2.7 3.82v.36zm3.61 4.8a2.09 2.09 0 0 0-2.1-2.07 2.09 2.09 0 0 0 0 4.17 2.1 2.1 0 0 0 2.1-2.1z"></path>
 </g><g class="icon">
@@ -597,7 +597,7 @@ jQuery('#outOfGame li.logout a').click(function() {
 </div>
 
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="fa">
 <head><meta charset="utf-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -647,6 +647,19 @@ jQuery('#outOfGame li.logout a').click(function() {
             cursor: pointer;
             font-size: 16px;
         }
+
+        /* T23: keep the dialog close (X) button visible and clickable */
+        #popup .dialogContents {
+            position: relative;
+        }
+        #popup #closeContentButton {
+            position: absolute;
+            top: 10px;
+            left: 14px;
+            z-index: 60;
+            cursor: pointer;
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -664,7 +677,7 @@ jQuery('#outOfGame li.logout a').click(function() {
                   <form action="?" method="get" accept-charset="UTF-8">
                     <div class="dialogDragBar"></div>
 					
-                    <a id="closeContentButton" class="dialogCancelButton iconButton buttonFramed green withIcon rectangle cancel " href="dorf1.php"><svg viewBox="0 0 20 20">
+                    <a id="closeContentButton" class="dialogCancelButton iconButton buttonFramed green withIcon rectangle cancel " href="#" onclick="closePopup(); return false;"><svg viewBox="0 0 20 20">
                         <g class="outline">
                           <path d="M0 17.01L7.01 10 .14 3.13 3.13.14 10 7.01 17.01 0 20 2.99 12.99 10l6.87 6.87-2.99 2.99L10 12.99 2.99 20 0 17.01z"></path>
                         </g>
@@ -674,43 +687,43 @@ jQuery('#outOfGame li.logout a').click(function() {
                       </svg></a>
                     <div class="content" id="dialogContent">
                       <div class="contentV2 helpDialog">
-                        <h1 class="titleInHeader">قائمة المساعدة</h1>
+                        <h1 class="titleInHeader">منوی راهنما</h1>
                         <div class="content">
                           <div class="supportCharacter"></div>
                           <div class="helpSections">
                             <div class="support">
-                              <h3>مساعدة</h3>
-                              <p> هل تبحث عن مساعدة؟ تحقق من جميع تفاصيل البناء والوحدات في اللعبة أو استخدم قاعدة المعرفة خاصتنا على بوابة الدعم للعثور على المعلومات. لا تتردد في التواصل معنا مباشرة من خلال بوابة خدمة العملاء.</p>
+                              <h3>راهنما</h3>
+                              <p> به دنبال راهنمایی هستید؟ جزئیات کامل تمام ساختمان‌ها و نیروهای بازی را ببینید یا برای یافتن اطلاعات از پایگاه دانش ما در بخش پشتیبانی استفاده کنید. همچنین می‌توانید از طریق خدمات پشتیبانی مستقیماً با ما در تماس باشید.</p>
                               <ul>
-                                <li><a><span class="listIcon"></span><span>المباني والقوات</span></a></li>
-                                <li><a class="" target="_blank" href="#"><span class="listIcon"></span><span>لاعبين جدد</span></a></li>
-                                <li><a class="" target="_blank" href="#"><span class="listIcon"></span><span>دعم المدفوعات</span></a></li>
+                                <li><a href="manual.php"><span class="listIcon"></span><span>ساختمان‌ها و نیروها</span></a></li>
+                                <li><a class="" target="_blank" href="#"><span class="listIcon"></span><span>بازیکنان تازه‌کار</span></a></li>
+                                <li><a class="" target="_blank" href="#"><span class="listIcon"></span><span>پشتیبانی پرداخت‌ها</span></a></li>
                               </ul>
                             </div>
                             <div class="helpBox customerService">
                               <div>
-                                <h3>خدمة العملاء وقاعدة المعرفة</h3><svg viewBox="0 0 20 20">
+                                <h3>پشتیبانی بازیکنان و پایگاه دانش</h3><svg viewBox="0 0 20 20">
                                   <path d="M16.29 2.23a4.4 4.4 0 0 0-.41-.31A9.9 9.9 0 0 0 10 0a10 10 0 1 0 6.29 2.23zm-.53 14a8.37 8.37 0 0 1-3.55 2 7.14 7.14 0 0 0 1.06-1.71 11.16 11.16 0 0 0 .56-1.54c1.27.38 1.93.9 1.93 1.24zm-11.52 0c0-.32.6-.81 1.76-1.19a11.83 11.83 0 0 0 .55 1.49 6.94 6.94 0 0 0 1 1.64 8.44 8.44 0 0 1-3.31-1.91zm7.92-.2c-.63 1.4-1.45 2.2-2.25 2.2s-1.62-.8-2.26-2.2a9.31 9.31 0 0 1-.47-1.29A14.26 14.26 0 0 1 10 14.4a14.52 14.52 0 0 1 2.65.23 9.76 9.76 0 0 1-.49 1.37zM10 12.8a16.35 16.35 0 0 0-3.14.29 16.28 16.28 0 0 1-.3-2.7h6.7a16.15 16.15 0 0 1-.3 2.67A16.72 16.72 0 0 0 10 12.8zM6.56 9.39a17.66 17.66 0 0 1 .32-2.7A16.52 16.52 0 0 0 10 7a17.16 17.16 0 0 0 3-.27 17 17 0 0 1 .31 2.66zM10 5.52a15 15 0 0 1-2.8-.25 9.36 9.36 0 0 1 .45-1.2c.64-1.41 1.46-2.21 2.26-2.21s1.62.8 2.25 2.21a9.84 9.84 0 0 1 .47 1.23 14.44 14.44 0 0 1-2.63.22zM6 5c-1.1-.39-1.71-.86-1.76-1.18A8.42 8.42 0 0 1 7.57 1.9a7 7 0 0 0-1 1.67A12 12 0 0 0 6 5zm7.25-1.4a7.23 7.23 0 0 0-1.05-1.76 8.4 8.4 0 0 1 3.56 2c-.06.34-.72.83-1.95 1.2a13.66 13.66 0 0 0-.54-1.47zM5.7 6.4a16.77 16.77 0 0 0-.35 3H1.58A8.48 8.48 0 0 1 3.3 5a4.86 4.86 0 0 0 2.4 1.4zm-.36 4a18.84 18.84 0 0 0 .34 3l-.46.16a4.21 4.21 0 0 0-1.95 1.28 8.51 8.51 0 0 1-1.7-4.44zm8.81 2.95a19.57 19.57 0 0 0 .33-2.95h3.95a8.51 8.51 0 0 1-1.7 4.44 4.92 4.92 0 0 0-2.58-1.5zm.32-3.95a18.21 18.21 0 0 0-.34-2.94l.65-.21A4.24 4.24 0 0 0 16.7 5a8.4 8.4 0 0 1 1.72 4.4z"></path>
-                                </svg><a class="textButtonV2 buttonFramed rectangle withText green" target="_blank" href="#">
-                                  <div>إنشاء تذكرة</div>
+                                </svg><a class="textButtonV2 buttonFramed rectangle withText green" target="_blank" href="support.php">
+                                  <div>ارسال تیکت پشتیبانی</div>
                                 </a>
                               </div>
                             </div>
                             <div class="information">
-                              <h3>المعلومات</h3>
-                              <p>اعثر على أحدث الأخبار والتغييرات على المدونة مباشرة. تأكد من البقاء على اطلاع بقواعد اللعبة.</p>
+                              <h3>اطلاعات</h3>
+                              <p>آخرین اخبار و تغییرات را مستقیماً در وبلاگ دنبال کنید و همیشه از قوانین بازی باخبر باشید.</p>
                               <ul>
-                                <li><a class="" target="_blank" href="#"><span class="listIcon"></span><span>المدوّنة</span></a></li>
-                                <li><a class="" target="_blank" href="#"><span class="listIcon"></span><span>سجلات التغيير وتحديثات اللعبة</span></a></li>
-                                <li><a class="" target="_blank" href="#"><span class="listIcon"></span><span>قواعد اللعبة</span></a></li>
+                                <li><a class="" target="_blank" href="#"><span class="listIcon"></span><span>وبلاگ</span></a></li>
+                                <li><a class="" target="_blank" href="#"><span class="listIcon"></span><span>تغییرات و به‌روزرسانی‌های بازی</span></a></li>
+                                <li><a class="" target="_blank" href="rules.php"><span class="listIcon"></span><span>قوانین بازی</span></a></li>
                               </ul>
                             </div>
                             <div class="helpBox discord">
                               <div>
-                                <h3>كن جزءًا من مجتمعنا</h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
+                                <h3>عضو جامعهٔ ما شوید</h3><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36">
                                   <path fill="#fff" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"></path>
                                 </svg><a class="textButtonV2 buttonFramed rectangle withText green" target="_blank" href="#">
-                                  <div>افتح تطبيق ديسكورد</div>
+                                  <div>ورود به دیسکورد</div>
                                 </a>
                               </div>
                             </div>
@@ -735,6 +748,17 @@ jQuery('#outOfGame li.logout a').click(function() {
     function closePopup() {
         document.getElementById('popup').style.display = 'none';
     }
+    document.addEventListener('DOMContentLoaded', function () {
+        var pop = document.getElementById('popup');
+        if (pop) {
+            pop.addEventListener('click', function (e) {
+                if (e.target === pop) { closePopup(); }
+            });
+        }
+        document.addEventListener('keydown', function (e) {
+            if ((e.key && e.key === 'Escape') || e.keyCode === 27) { closePopup(); }
+        });
+    });
 </script>
 
 </body>

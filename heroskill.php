@@ -1560,7 +1560,7 @@ if (isset($_GET['inventory']) && !$dis) {
                                     <input type="radio" class="radio" name="attackBehaviour" id="attackBehaviourFight"
                                         value="fight" <?= $check2; ?>>
                                     <label for="attackBehaviourFight">قهرمان شما همیشه با نیروهای شما باقی خواهد
-                                        ماندك.</label>
+                                        ماند.</label>
                                     <div class="clear">&nbsp;</div>
                                 </div>
 

@@ -375,7 +375,7 @@ if(($village->resarray['f99t'] == 40) or ($village->resarray['f99t'] == 40) or (
   <path d="M0 17.01L7.01 10 .14 3.13 3.13.14 10 7.01 17.01 0 20 2.99 12.99 10l6.87 6.87-2.99 2.99L10 12.99 2.99 20 0 17.01z"></path>
 </g></svg>
     </a>
-<a id="knowledgeBaseButton" class="contentTitleButton buttonFramed withIcon rectangle green" href="#" target="_blank">&nbsp;</a>
+<a id="knowledgeBaseButton" class="contentTitleButton buttonFramed withIcon rectangle green" href="help.php" target="_blank">&nbsp;</a>
                         </div>
                         <div class="contentContainer">
                             <div id="content" class="build">

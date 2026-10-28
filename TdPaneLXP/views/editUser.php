@@ -19,15 +19,15 @@ if(isset($id))
 				<div class="form-group">
 					<label>Tribe</label>
 					<select name="tribe" class="form-control">
-						<option value="1" <?php if($user['tribe'] == 1) { echo "selected='selected'"; } else {} ?>>Roman</option>
+						<option value="1" <?php if($user['tribe'] == 1) { echo "selected='selected'"; } else {} ?>>رومی</option>
 						<option value="2" <?php if($user['tribe'] == 2) { echo "selected='selected'"; } else {} ?>>Teuton</option>
 						<option value="3" <?php if($user['tribe'] == 3) { echo "selected='selected'"; } else {} ?>>Gauls</option>
 						<option value="4" <?php if($user['tribe'] == 4) { echo "selected='selected'"; } else {} ?>>Wild</option>
-						<option value="5" <?php if($user['tribe'] == 5) { echo "selected='selected'"; } else {} ?>>Natar</option>
+						<option value="5" <?php if($user['tribe'] == 5) { echo "selected='selected'"; } else {} ?>>ناتار</option>
 					</select>
 				</div>
 				<div class="form-group">
-					<label>Location</label>
+					<label>موقعیت</label>
 					<input class="form-control" name="location" value="<?php echo $user['location']; ?>">
 				</div>
 				<div class="form-group">
@@ -58,19 +58,19 @@ if(isset($id))
 
 			<tr>
 
-				<th colspan="4">Medals</th>
+				<th colspan="4">مدال‌ها</th>
 
 			</tr>
 
 			<tr>
 
-				<td>Section</td>
+				<td>بخش</td>
 
-				<td>Type</td>
+				<td>نوع</td>
 
 				<td>week</td>
 
-				<td>BB code</td>
+				<td>کد BB</td>
 
 			</tr>
 
@@ -113,7 +113,7 @@ if(isset($id))
 
 			<tr>
 
-				<td>Protectors of beginners</td>
+				<td>محافظان تازه‌کار</td>
 
 				<td></td>
 
@@ -144,7 +144,7 @@ if(isset($id))
 				<td colspan="4">
 
 					<center>
-						<button type="submit" class="btn btn-primary">save</button>
+						<button type="submit" class="btn btn-primary">ذخیره</button>
 					</center>
 
 				</td>

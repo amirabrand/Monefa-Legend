@@ -1,6 +1,6 @@
 <?php 
 if(isset($_GET['replay'])){
-    $msData = $database->queryFetch('SELECT * FROM support WHERE id = '.$_GET['replay'].'');
+    $msData = $database->queryFetch('SELECT * FROM support WHERE id = '.(int)$_GET['replay'].'');
     if(!$msData['id']){ header('Location: ?p=support'); die(); }
     ?>
 <div class="card">
@@ -39,7 +39,7 @@ if(isset($_GET['replay'])){
     <?php
 }else{
     if(isset($_GET['del'])){
-        $database->query('DELETE FROM support WHERE id = '.$_GET['del'].'');
+        $database->query('DELETE FROM support WHERE id = '.(int)$_GET['del'].'');
         header('Location: ?p=support');
     }
 ?>

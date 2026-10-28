@@ -53,7 +53,7 @@ $simulators->procSim($_POST);
         </g>
       </svg>
     </a>
-    <a id="knowledgeBaseButton" class="contentTitleButton buttonFramed withIcon rectangle green" href="" target="_blank">&nbsp;</a>
+    <a id="knowledgeBaseButton" class="contentTitleButton buttonFramed withIcon rectangle green" href="help.php" target="_blank">&nbsp;</a>
   </div>
   <div class="contentContainer">
     <div id="content" class="playerProfile playerProfileOverview">

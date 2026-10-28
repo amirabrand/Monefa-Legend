@@ -18,7 +18,7 @@
 					<input name="s" class="form-control" value="<?php echo $_POST['s'];?>">
 				</td>
 				<td>
-					<button type="submit" class="btn btn-primary">Search</button>
+					<button type="submit" class="btn btn-primary">جستجو</button>
 				</td>
 			</tr>
 		</table>

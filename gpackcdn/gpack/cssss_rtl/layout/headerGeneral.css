@@ -67,7 +67,7 @@ div#header #logo {
   margin-right: -57px;
   position: absolute;
   top: 24px;
-  background-image: url('../../img_rtl/layout/logoLegends_black.svg');
+  background-image: url('../../img_rtl/layout/logoLegends_black.svg?v=2');
   background-size: 114px 40px;
 }
 div#header #logo.riseOfAlliances {

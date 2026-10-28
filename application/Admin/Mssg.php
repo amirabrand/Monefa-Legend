@@ -408,8 +408,8 @@ include('Templates/Header.tpl');
                                                                                             title="نیزه دار ناتار"></a>
                                             <a href="#" class="bbType{o} bbTag{tid42}"><img class="unit u42"
                                                                                             src="img/x.gif"
-                                                                                            alt="تيغ پوش"
-                                                                                            title="تيغ پوش"></a>
+                                                                                            alt="تیغ پوش"
+                                                                                            title="تیغ پوش"></a>
                                             <a href="#" class="bbType{o} bbTag{tid43}"><img class="unit u43"
                                                                                             src="img/x.gif"
                                                                                             alt="محافظ ناتار"
@@ -420,20 +420,20 @@ include('Templates/Header.tpl');
                                                                                             title="پرندگان شکاری"></a>
                                             <a href="#" class="bbType{o} bbTag{tid45}"><img class="unit u45"
                                                                                             src="img/x.gif"
-                                                                                            alt="تيشه زن"
-                                                                                            title="تيشه زن"></a>
+                                                                                            alt="تیشه زن"
+                                                                                            title="تیشه زن"></a>
                                             <a href="#" class="bbType{o} bbTag{tid46}"><img class="unit u46"
                                                                                             src="img/x.gif"
                                                                                             alt="شوالیۀ ناتار"
                                                                                             title="شوالیۀ ناتار"></a>
                                             <a href="#" class="bbType{o} bbTag{tid47}"><img class="unit u47"
                                                                                             src="img/x.gif"
-                                                                                            alt="فيل عظيم الجثۀ جنگی"
-                                                                                            title="فيل عظيم الجثۀ جنگی"></a>
+                                                                                            alt="فیل عظیم الجثۀ جنگی"
+                                                                                            title="فیل عظیم الجثۀ جنگی"></a>
                                             <a href="#" class="bbType{o} bbTag{tid48}"><img class="unit u48"
                                                                                             src="img/x.gif"
-                                                                                            alt="منجنیق عظيم"
-                                                                                            title="منجنیق عظيم"></a>
+                                                                                            alt="منجنیق عظیم"
+                                                                                            title="منجنیق عظیم"></a>
                                             <a href="#" class="bbType{o} bbTag{tid49}"><img class="unit u49"
                                                                                             src="img/x.gif"
                                                                                             alt="امپراطوری ناتار"

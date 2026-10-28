@@ -6,7 +6,7 @@ include_once "application/Account.php";
 
 
 
-$captcha_expiry_time = 1800; // 30 minutes
+$captcha_expiry_time = 43200; // 30 minutes
 
 
 
@@ -127,7 +127,7 @@ jQuery(document).ready(function($) {
 
             <div id="contentOuterContainer" class="contentPage">
     <div class="contentTitle buttonCount2">
-        <a id="closeContentButton" class="contentTitleButton buttonFramed green withIcon rectangle" href="/dorf2.php">
+        <a id="closeContentButton" class="contentTitleButton buttonFramed green withIcon rectangle" href="<?php echo (isset($_SESSION['cappage']) && $_SESSION['cappage'] && strpos($_SESSION['cappage'],'captcha')===false ? htmlspecialchars($_SESSION['cappage'],ENT_QUOTES) : 'dorf1.php'); ?>">
             <svg viewBox="0 0 20 20">
                 <g class="outline">
                     <path d="M0 17.01L7.01 10 .14 3.13 3.13.14 10 7.01 17.01 0 20 2.99 12.99 10l6.87 6.87-2.99 2.99L10 12.99 2.99 20 0 17.01z"></path>
@@ -137,7 +137,7 @@ jQuery(document).ready(function($) {
                 </g>
             </svg>
         </a>
-        <a id="knowledgeBaseButton" class="contentTitleButton buttonFramed withIcon rectangle green" href="#" target="_blank">&nbsp;</a>
+        <a id="knowledgeBaseButton" class="contentTitleButton buttonFramed withIcon rectangle green" href="help.php" target="_blank">&nbsp;</a>
     </div>
     <div class="contentContainer">
         <div id="content" class="referAFriend referAFriendOverview">
@@ -301,7 +301,7 @@ $imageUrls = [
 
 
 $correctImageIndex = rand(0, count($imageUrls) - 1);
-$_SESSION['captime'] = time() -1;
+if(!isset($_SESSION["captime"]) || $_SESSION["captime"] < time()) $_SESSION["captime"] = time() - 1;
 
 $correctImageUrl = $imageUrls[$correctImageIndex];
 

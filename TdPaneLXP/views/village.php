@@ -165,7 +165,7 @@ if(isset($id))
 
 				<tr>
 
-					<td>population <a href="index.php?action=recountPop&did=<?php echo $_GET['did']; ?>"><?php echo $refreshicon; ?></a></td>
+					<td>جمعیت <a href="index.php?action=recountPop&did=<?php echo $_GET['did']; ?>"><?php echo $refreshicon; ?></a></td>
 
 					<td colspan="2"><?php echo $village['pop'];?></td>
 
@@ -173,7 +173,7 @@ if(isset($id))
 
 								<tr>
 
-					<td>culture Points <a href="index.php?action=recountCp&did=<?php echo $_GET['did']; ?>"><?php echo $refreshicon; ?></a></td>
+					<td>امتیاز فرهنگی <a href="index.php?action=recountCp&did=<?php echo $_GET['did']; ?>"><?php echo $refreshicon; ?></a></td>
 
 					<td colspan="2"><?php echo $village['cp'];?></td>
 
@@ -189,7 +189,7 @@ if(isset($id))
 
 				<tr>
 
-					<td>id village</td>
+					<td>شناسه دهکده</td>
 
 					<td colspan="2"><?php echo $village['wref'];?></td>
 
@@ -349,7 +349,7 @@ if(isset($id))
 
 				<tr>
 
-					<th colspan="5">expansion</th>
+					<th colspan="5">توسعه</th>
 
 				</tr>
 
@@ -359,7 +359,7 @@ if(isset($id))
 
 					<td class="hab">population</td>
 
-					<td class="hab">Points civilization Daily</td>
+					<td class="hab">امتیاز فرهنگی روزانه</td>
 
 				</tr>
 
@@ -435,7 +435,7 @@ if(isset($id))
 
 				<tr>
 
-					<th colspan="6">Oases</th>
+					<th colspan="6">آبادی‌ها</th>
 
 				</tr>
 
@@ -443,11 +443,11 @@ if(isset($id))
 
 					<td class="ra"></td>
 
-					<td class="hab">name</td>
+					<td class="hab">نام</td>
 
-					<td class="hab">Coordinates</td>
+					<td class="hab">مختصات</td>
 
-					<td class="hab">Loyalty</td>
+					<td class="hab">وفاداری</td>
 
 					<td class="hab">Resources</td>
 
@@ -543,7 +543,7 @@ if(isset($id))
 
          <?php
 
-		if($_SESSION['access'] == 9){ ?><a href="index.php?p=doublelog&did=<?php echo $_GET['did']; ?>">Log oases</a>
+		if($_SESSION['access'] == 9){ ?><a href="index.php?p=doublelog&did=<?php echo $_GET['did']; ?>">آبادی‌های متصل</a>
 
 
 
@@ -711,7 +711,7 @@ if(isset($id))
 
 		<tr>
 
-			<th colspan="5">Buildings</th>
+			<th colspan="5">ساختمان‌ها</th>
 
 		</tr>
 
@@ -721,11 +721,11 @@ if(isset($id))
 
 			<td class="on">GID</td>
 
-			<td class="hab">Name</td>
+			<td class="hab">نام</td>
 
-			<td class="on">Level</td>
+			<td class="on">سطح</td>
 
-			<td class="on">Edit</td>
+			<td class="on">ویرایش</td>
 
 		</tr>
 

@@ -26,11 +26,11 @@
 
 				<td>Rank</td>
 
-				<td>Week</td>
+				<td>هفته</td>
 
 				<td>Points</td>
 
-				<td>Medal</td>
+				<td>مدال</td>
 
 				<td></td>
 

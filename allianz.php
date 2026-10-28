@@ -91,7 +91,7 @@ if (!empty($_GET['aid']) or $session->alliance != 0) {
 		}
 	}
 	if (isset($_POST['tid']) && $_POST['tid'] == 4) {
-		$q = $database->query("SELECT `voters`,`p1`,`p2`,`p3`,`p4` FROM forum_poll where id = '" . $_GET['tid'] . "'");
+		$q = $database->query("SELECT `voters`,`p1`,`p2`,`p3`,`p4` FROM forum_poll where id = '" . (int)$_GET['tid'] . "'");
 		$q = $q[0];
 	
 		$votr = explode(',', $q['voters']);
@@ -111,13 +111,13 @@ if (!empty($_GET['aid']) or $session->alliance != 0) {
 				$poll = 4;
 			}
 			$p = ($q['p' . $poll] + 1);
-			$z = $database->query("UPDATE forum_poll set `p" . $poll . "` = " . $p . " where id = '" . $_GET['tid'] . "'") ;
+			$z = $database->query("UPDATE forum_poll set `p" . (int)$poll . "` = " . (int)$p . " where id = '" . (int)$_GET['tid'] . "'") ;
 			if ($q['voters'] == 0) {
 				$votcode = $session->uid;
 			} else {
 				$votcode = $q['voters'] . ',' . $session->uid;
 			}
-			$database->query("UPDATE forum_poll set `voters` = '" . $votcode . "' where id = '" . $_GET['tid'] . "'") ;
+			$database->query("UPDATE forum_poll set `voters` = '" . $votcode . "' where id = '" . (int)$_GET['tid'] . "'") ;
 		}
 	}
 	?>
@@ -169,7 +169,7 @@ if (!empty($_GET['aid']) or $session->alliance != 0) {
   <path d="M0 17.01L7.01 10 .14 3.13 3.13.14 10 7.01 17.01 0 20 2.99 12.99 10l6.87 6.87-2.99 2.99L10 12.99 2.99 20 0 17.01z"></path>
 </g></svg>
     </a>
-<a id="knowledgeBaseButton" class="contentTitleButton buttonFramed withIcon rectangle green" href="#" target="_blank">&nbsp;</a>
+<a id="knowledgeBaseButton" class="contentTitleButton buttonFramed withIcon rectangle green" href="help.php" target="_blank">&nbsp;</a>
                         </div>
                         <div class="contentContainer">
                             <div id="content" class="alliance allianceProfile">

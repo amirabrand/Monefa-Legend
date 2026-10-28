@@ -3,11 +3,11 @@
     <div class="custom-menu">
       <button type="button" id="sidebarCollapse" class="btn btn-primary">
         <i class="fa fa-bars"></i>
-        <span class="sr-only">Toggle Menu</span>
+        <span class="sr-only">باز و بسته کردن منو</span>
       </button>
     </div>
     <div class="p-4 pt-5">
-      <h1><a href="index.php" class="logo">Panel</a></h1>
+      <h1><a href="index.php" class="logo">پنل مدیریت مونفا</a></h1>
 
       <ul class="list-unstyled components mb-5">
         <li><a href="index.php"><?php echo $lang['Admin']['sidebar01']; ?></a></li>
@@ -40,8 +40,8 @@
             <li><a href="?p=gold"><?php echo $lang['Admin']['sidebar16']; ?></a></li>
             <li><a href="?p=usergold"><?php echo $lang['Admin']['sidebar17']; ?></a></li>
             <li><a href="?p=mgold"><?php echo $lang['Admin']['sidebar10']; ?></a></li>
-            <li><a href="?p=recharge">recharge gold</a></li>
-            <li><a href="?p=codes">gold code</a></li>
+            <li><a href="?p=recharge">شارژ طلا برای همه</a></li>
+            <li><a href="?p=codes">تولید کد طلا</a></li>
           </ul>
         </li>
         <li>
@@ -53,8 +53,8 @@
             <li><a href="?p=farms"><?php echo $lang['Admin']['sidebar21']; ?></a></li>
             <li><a href="?p=endless">تغییر سبک بازی به بی پایان</a></li>
           
-            <li><a href="?p=reset">Delete Database</a></li>
-            <li><a href="?p=reset3">Install Again</a></li>
+            <li><a href="?p=reset">بازنشانی دیتابیس</a></li>
+            <li><a href="?p=reset3">نصب مجدد</a></li>
 
           </ul>
         </li>
@@ -67,7 +67,8 @@
             <li><a href="?p=setting"><?php echo $lang['Admin']['sidebar24']; ?></a></li>
             <li><a href="?p=natars"><?php echo $lang['Admin']['sidebar25']; ?></a></li>
             <li><a href="?p=plus"><?php echo $lang['Admin']['sidebar26']; ?></a></li>
-            <li><a href="?p=payments">Operations</a></li>
+            <li><a href="?p=payments">عملیات پرداخت</a></li>
+            <li><a href="?p=balebot">بات بله و پرداخت</a></li>
             <li><a href="?p=news"><?php echo $lang['Admin']['sidebar222']; ?></a></li>
             <li><a href="?p=outnews"><?php echo $lang['Admin']['sidebar2222']; ?></a></li>
             <li><a href="?p=autoauctions"><?php echo $lang['Admin']['sidebar221']; ?></a></li>
@@ -75,7 +76,8 @@
 
           </ul>
         </li>
-        <li><a href="?p=support">Support messages</a></li>
+        <li><a href="?p=email">ایمیل سرور</a></li>
+        <li><a href="?p=support">پیام‌های پشتیبانی</a></li>
         <li><a href="../dorf1.php"><?php echo $lang['Admin']['sidebar27']; ?></a></li>
         <li><a href="../logout.php"><?php echo $lang['Admin']['sidebar28']; ?></a></li>
       </ul>
@@ -84,7 +86,7 @@
       <div class="footer">
         <?php $isOkay = TRUE; ?>
         <p><?php echo $lang['Admin']['sidebar29']; ?> <a style="color:white;"
-            href="https://www.facebook.com/TraVian">TraVian</a>.</p>
+            href="https://monefa.net">Monefa Legend</a>.</p>
       </div>
 
     </div>

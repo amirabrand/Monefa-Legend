@@ -1,4 +1,4 @@
-<?php $user = $database->queryFetch("SELECT * FROM users WHERE id = ".$_GET['uid'].""); ?>
+<?php $user = $database->queryFetch("SELECT * FROM users WHERE id = ".(int)$_GET['uid'].""); ?>
 	<form action="../application/TdPaneLXP/Mods/editPassword.php" method="POST">
 		<input type="hidden" name="admid" id="admid" value="<?php echo $_SESSION['id']; ?>">
 		<input type="hidden" name="uid" id="uid" value="<?php echo $_GET['uid']; ?>">

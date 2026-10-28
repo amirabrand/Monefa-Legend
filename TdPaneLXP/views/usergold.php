@@ -4,10 +4,10 @@
 	<?php 
 		if(isset($_POST['addGold'])){
 			if(is_numeric($_POST['gold'])){
-				$uData = $database->queryFetch('SELECT id,gold,username FROM users WHERE id = '.$_POST['user'].'');
+				$uData = $database->queryFetch('SELECT id,gold,username FROM users WHERE id = '.(int)$_POST['user'].'');
 				if($uData['id']){
 					$oldGold = $uData['gold']; // maybe i'll user later
-					$database->query('UPDATE users SET gold = gold + '.$_POST['gold'].' WHERE id = '.$_POST['user'].'');
+					$database->query('UPDATE users SET gold = gold + '.(int)$_POST['gold'].' WHERE id = '.(int)$_POST['user'].'');
 					
 					echo '<div class="alert alert-success"> add '.$_POST['gold'].' to player '.$uData['username'].'.</div>';
 				}
@@ -28,7 +28,7 @@
 			</select>
 		</div>
 		<div class="form-group">
-			<button class="btn btn-primary" name="addGold">add</button>
+			<button class="btn btn-primary" name="addGold">افزودن</button>
 		</div>
 		</form>
 	</div>

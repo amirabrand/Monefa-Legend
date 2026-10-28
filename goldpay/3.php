@@ -39,15 +39,15 @@
 
         <div class="voucherForm">
 
-            <h2>أدخل رمز القسيمة الخاص بك:</h2>
+            <h2>کد کوپن خود را وارد کنید:</h2>
 
             <input type="text" id="voucherCode" name="voucher" autocomplete="off" maxlength="36" placeholder="مثال: FZTQ-4GF7-8Q61-75XH-8TKA-EK0A-LN5Q">
 
             <label for="voucherCode" class="errorMessageContainer"> </label>
 
-            <button type="submit" value="استخدام؟" id="redeemVoucher" class="textButtonV2 green  disabled buttonFramed withText rectangle" onclick="if(jQuery(this).hasClass('disabled')){event.stopPropagation(); return false;} else {}" version="textButtonV2" onfocus="jQuery('button', 'input[type!=hidden]', 'select').focus(); event.stopPropagation(); return false;">
+            <button type="submit" value="استفاده از کوپن" id="redeemVoucher" class="textButtonV2 green  disabled buttonFramed withText rectangle" onclick="if(jQuery(this).hasClass('disabled')){event.stopPropagation(); return false;} else {}" version="textButtonV2" onfocus="jQuery('button', 'input[type!=hidden]', 'select').focus(); event.stopPropagation(); return false;">
 	<div>
-		استخدام؟	</div>
+		استفاده از کوپن	</div>
 </button>
 <script type="text/javascript" id="redeemVoucher_script">
 	jQuery(function() {
@@ -60,17 +60,17 @@
 
        
         <div class="confirmation success">
-            <div class="confirmationTitle">تم تأكيد القسيمة</div>
+            <div class="confirmationTitle">کوپن تایید شد</div>
             <div class="confirmationImage"></div>
             <div class="confirmationText">
-                أُضيفَ <span class="value">-</span> من الذهب إلى عضويتك.            </div>
+                <span class="value">-</span> طلا به عضویت شما افزوده شد.            </div>
         </div>
     </div>
 
     <div class="paymentWrapper">
-        <button type="button" value="عودة إلى اللعبة" id="backToGame" class="textButtonV2 green  buttonFramed withText rectangle" version="textButtonV2">
+        <button type="button" value="بازگشت به بازی" id="backToGame" class="textButtonV2 green  buttonFramed withText rectangle" version="textButtonV2">
 	<div>
-		عودة إلى اللعبة	</div>
+		بازگشت به بازی	</div>
 </button>
 <script type="text/javascript" id="backToGame_script">
 	jQuery(function() {

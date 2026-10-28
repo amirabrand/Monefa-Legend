@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 error_reporting(0);
-// // include ("/../application/config.php"); // removed by installer: broken absolute path // removed by installer: broken absolute path
+// // // include ("/../application/config.php"); // removed by installer: broken absolute path // removed by installer: broken absolute path // removed by installer: broken absolute path
 include_once(dirname(__FILE__) . "/application/config.php");
 $servername = SQL_SERVER;
 $username = SQL_USER;

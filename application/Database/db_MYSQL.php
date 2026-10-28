@@ -2007,6 +2007,9 @@ class MYSQL_DB extends DB
 
 		$this->query($q, $p);
 
+		/* zai-fix T21: pre-built rally point (gid16) for every new village, like the founding path; guarded so WW village (f39=20) stays intact */
+		$this->query("UPDATE fdata SET f39 = 1, f39t = 16 WHERE vref = :V AND f39 = 0", $p);
+
 	}
 
 	function isVillageOases($wref)
@@ -11037,6 +11040,11 @@ function setendservermedals($widwinner)
 		$gethair = $herodetail['hair'];
 		$getface = $herodetail['face'];
 		$gender = $herodetail['gender'];
+
+		// T22: clamp hero look ids to available asset files (prevents GD fatal)
+		$getface = abs((int)$getface) % 6; $getear = abs((int)$getear) % 6; $geteye = abs((int)$geteye) % 6;
+		$getnose = abs((int)$getnose) % 5; $getmouth = abs((int)$getmouth) % 4;
+		$gethair = abs((int)$gethair) % 6; $geteyebrow = abs((int)$geteyebrow) % 5; $getbeard = abs((int)$getbeard) % 6;
 		if ($gender == 0) {
 			$gdir = 'male';
 		} else {

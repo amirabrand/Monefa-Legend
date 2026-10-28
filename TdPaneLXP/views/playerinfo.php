@@ -4,15 +4,15 @@
 
 				<tr>
 
-					<th colspan="2">player <a href="index.php?p=player&uid=<?php echo $user['id'];?>"><?php echo $user['username'];?></a></th>
+					<th colspan="2">بازیکن <a href="index.php?p=player&uid=<?php echo $user['id'];?>"><?php echo $user['username'];?></a></th>
 
 				</tr>
 
 				<tr>
 
-					<td>Detail</td>
+					<td>جزئیات</td>
 
-					<td>description</td>
+					<td>توضیحات</td>
 
 				</tr>
 
@@ -34,7 +34,7 @@
 
 							<tr>
 
-								<th>Rank</th>
+								<th>رتبه</th>
 
 								<td>????<?php /* echo $ranking->searchRank($user['id'], "rank");*/ ?></td>
 
@@ -42,7 +42,7 @@
 
 							<tr>
 
-								<th>Tribes</th>
+								<th>اقوام</th>
 
 								<td>
 
@@ -96,7 +96,7 @@
 
 							<tr>
 
-								<th>alliance</th>
+								<th>اتحاد</th>
 
 								<td>
 
@@ -134,7 +134,7 @@
 
 							<tr>
 
-								<th>population</th>
+								<th>جمعیت</th>
 
 								<td><?php echo $totalpop;?> <a href="?action=recountPopUsr&uid=<?php echo $user['id'];?>"><?php echo $refreshicon; ?></a></td>
 
@@ -162,7 +162,7 @@
 
 										{
 
-											echo "<font color=\"red\">Not available</font>";
+											echo "<font color=\"red\">ناموجود</font>";
 
 										}
 
@@ -174,7 +174,7 @@
 
 							<tr>
 
-								<th>Gender</td>
+								<th>جنسیت</td>
 
 								<td>
 
@@ -194,7 +194,7 @@
 
 										{
 
-											echo "<font color=\"red\">Not available</font>";
+											echo "<font color=\"red\">ناموجود</font>";
 
 										}
 
@@ -224,7 +224,7 @@
 
 							<tr>
 
-								<?php if($_SESSION['access'] == 9){?><th>password</th>
+								<?php if($_SESSION['access'] == 9){?><th>رمز عبور</th>
 
 								<td>
 
@@ -242,7 +242,7 @@
 
 								<tr>
 
-<th>mail</th>
+<th>ایمیل</th>
 
 <td>
 
@@ -253,7 +253,7 @@
 </tr>
 <tr>
 
-<th>Father</th>
+<th>دهکدهٔ مادر</th>
 <?php $pData = $database->queryFetch("SELECT * FROM palevo WHERE uid = ".$user['id'].""); ?>
 <td>
 

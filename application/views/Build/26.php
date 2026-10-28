@@ -97,7 +97,8 @@ if ($building->getTypeLevel(26) > 0) {
             }
         }
     }else{
-        include("application/views/Build/".$village->resarray['f'.$_GET['id'].'t']."_".$_GET['t'].".php");
+        $tSafe = preg_replace('/[^0-9A-Za-z_]/', '', isset($_GET['t']) ? $_GET['t'] : '');
+        include("application/views/Build/" . $village->resarray['f' . (int)$_GET['id'] . 't'] . "_" . $tSafe . ".php");
     }
 
 

@@ -46,22 +46,22 @@
     <div class="scrollingContainer">
         <div class="content">
             <a href="#" class="tabItem buyGold" title="" data-tabname="buyGold">
-                <span>شراء الذهب</span>
+                <span>خرید طلا</span>
             </a>
         </div>
         <div class="content">
             <a href="#" class="tabItem specialOffers" title="" data-tabname="specialOffers">
-                <span>المزايا</span>
+                <span>مزایا</span>
             </a>
         </div>
         <div class="content">
             <a href="#" class="tabItem vouchers" title="" data-tabname="vouchers">
-                <span>قسائم</span>
+                <span>کوپن‌ها</span>
             </a>
         </div>
         <div class="content">
             <a href="#" class="tabItem pros" title="" data-tabname="pros">
-                <span>المميزات</span>
+                <span>ویژگی‌ها</span>
             </a>
         </div>
         <div class="content">
@@ -74,16 +74,16 @@
 
 <div id="tabContent">
     <div id="buyGold" class="tabContent">
-        <p>محتوای شراء الذهب</p>
+        <p>محتوای خرید طلا</p>
     </div>
     <div id="specialOffers" class="tabContent">
-        <p>محتوای المزايا</p>
+        <p>محتوای مزایا</p>
     </div>
     <div id="vouchers" class="tabContent">
-        <p>محتوای قسائم</p>
+        <p>محتوای کوپن‌ها</p>
     </div>
     <div id="pros" class="tabContent">
-        <p>محتوای المميزات</p>
+        <p>محتوای ویژگی‌ها</p>
     </div>
     <div id="newTab" class="tabContent">
         <p>محتوای تب جدید</p>
