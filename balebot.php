@@ -46,6 +46,25 @@ function bale_reply($chatId, $text)
     ), 8);
 }
 
+function bale_reply_kb($chatId, $text, $kb)
+{
+    BaleApi::call('sendMessage', array(
+        'chat_id' => $chatId,
+        'text' => $text,
+        'parse_mode' => 'HTML',
+        'reply_markup' => json_encode($kb, JSON_UNESCAPED_UNICODE),
+    ), 8);
+}
+
+/* T28: MiniApp entry — opens balemini.php inside Bale */
+function bale_shop_keyboard()
+{
+    return array('inline_keyboard' => array(
+        array(array('text' => '🛒 فروشگاه طلا (مینی‌اپ بله)', 'web_app' => array('url' => 'https://monefa.net/balemini.php'))),
+        array(array('text' => '🌐 سایت بازی', 'url' => 'https://monefa.net')),
+    ));
+}
+
 function bale_credit_from_row($row, $chargeId, $chatId, $paidRial)
 {
     global $database;
@@ -186,11 +205,12 @@ if (strpos($text, '/start') === 0) {
         }
     } else {
         $link = BaleApi::botLink();
-        bale_reply($chatId,
+        bale_reply_kb($chatId,
             "👋 به ربات رسمی <b>Monefa Legend</b> خوش آمدید!\n\n"
             . "• برای دریافت <b>طلای وفاداری</b>: از بازی کد بگیرید و همان کد را اینجا بفرستید.\n"
             . "• برای <b>خرید طلا</b>: از منوی بازی (سکهٔ طلا) بستهٔ مورد نظر را انتخاب و پرداخت بله را بزنید.\n\n"
-            . "🌐 " . htmlspecialchars('https://monefa.net', ENT_QUOTES, 'UTF-8'));
+            . "🌐 " . htmlspecialchars('https://monefa.net', ENT_QUOTES, 'UTF-8'),
+            bale_shop_keyboard());
     }
     http_response_code(200);
     exit('ok');
@@ -202,9 +222,10 @@ if ($text === '/buy' || $text === 'خرید طلا') {
     foreach ($packs as $pk) {
         $lines[] = '• ' . (int)$pk['gold'] . ' طلا ← ' . (int)$pk['cost'] . ' تومان';
     }
-    bale_reply($chatId,
+    bale_reply_kb($chatId,
         "🛒 بسته‌های طلا:\n" . implode("\n", $lines) .
-        "\n\nبرای خرید، وارد بازی شوید و از منوی سکهٔ طلا، پرداخت با بله را انتخاب کنید.\nhttps://monefa.net");
+        "\n\nبرای خرید مستقیم، دکمهٔ «فروشگاه طلا» را بزنید:",
+        bale_shop_keyboard());
     http_response_code(200);
     exit('ok');
 }

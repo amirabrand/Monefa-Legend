@@ -84,6 +84,13 @@ if (empty($__cfg['token']) || empty($__cfg['provider'])) {
         )
     );
 
+    if ($__rial < 10000) {
+        echo '<p class="err">مبلغ این بسته کمتر از حداقل فاکتور بله (۱٬۰۰۰ تومان) است.</p>'
+           . '<p class="note">(مدیر سرور: قیمت بسته‌ها یا «ضریب تبدیل» در پنل → بات بله و پرداخت را افزایش دهد.)</p>'
+           . '<a class="btn" href="javascript:history.back()">بازگشت</a></div></body></html>';
+        exit;
+    }
+
     $__res = BaleApi::call('createInvoiceLink', array(
         'title'          => 'خرید ' . (int)$__pack['gold'] . ' سکه طلا',
         'description'    => 'شارژ ' . (int)$__pack['gold'] . ' سکه طلا برای حساب ' . $session->username . ' در Monefa Legend',

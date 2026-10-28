@@ -159,6 +159,12 @@ if (!is_array($__codes)) $__codes = array();
       برای دریافت پول، از BotFather بخش Payments توکن کیف‌پول بگیرید.
       برای تست بدون پول واقعی می‌توانید از توکن آزمایشی <span dir="ltr">WALLET-TEST-1111111111111111</span> استفاده کنید.
     </p>
+    <div style="background:#eef7ee;border:1px solid #9fce9f;border-radius:8px;padding:10px 12px;margin-top:10px;font-size:13px">
+      <b>مینی‌اپ بله (T28):</b> <span dir="ltr">https://monefa.net/balemini.php</span><br>
+      • دکمهٔ «فروشگاه طلا (مینی‌اپ بله)» به‌صورت خودکار زیر پیام‌های /start و /buy بازو ارسال می‌شود.<br>
+      • برای «مینی‌اپ اصلی»: در BotFather تنظیمات بازو → منو/Mini App را روی همین آدرس بگذارید تا از پروفایل و جستجوی بله هم باز شود.<br>
+      • توجه: حداقل مبلغ فاکتور بله <b>۱۰٬۰۰۰ ریال (۱٬۰۰۰ تومان)</b> است؛ قیمت بسته‌های طلا باید ≥ ۱٬۰۰۰ تومان باشد وگرنه دکمهٔ خرید در مینی‌اپ غیرفعال می‌شود.
+    </div>
   </div>
 
   <!-- ============ payments log ============ -->

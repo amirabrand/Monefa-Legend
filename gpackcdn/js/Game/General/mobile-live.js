@@ -18,6 +18,14 @@
   window.__t26live = true;
 
   function isMobile() {
+    /* T28: manual overrides for support/debugging
+       (set localStorage t26force=1 to force the mobile UI,
+        t26force=0 to force the desktop UI on this device). */
+    try {
+      var __f = window.localStorage.getItem('t26force');
+      if (__f === '1') return true;
+      if (__f === '0') return false;
+    } catch (e) {}
     /* phone = small screen AND touch capability.
        Touch guard keeps small non-touch displays (old netbooks,
        odd screen reports, desktop emulators) on the desktop UI. */
@@ -28,6 +36,13 @@
     var eff = (sw && sh) ? Math.min(sw, sh) : 0;
     if (!eff || eff >= 9999) {
       eff = document.documentElement.clientWidth || window.innerWidth || 9999;
+    }
+    if (!touch) {
+      /* T28 fallback: known mobile UAs on touch-less-reporting browsers */
+      if (/Android|iPhone|iPod|Mobile|Windows Phone/i.test(navigator.userAgent || '')) {
+        return eff > 0 && eff <= 620;
+      }
+      return false;
     }
     return eff <= 620;
   }

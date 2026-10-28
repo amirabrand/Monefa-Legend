@@ -33,3 +33,44 @@
   html,body{overflow-x:hidden;}
   body{min-width:1280px;}
 }
+
+/* ============================================================
+   T28 — phone-layout structural fixes (monefa.net)
+   The native mobile rules (compact.css imports) leave three
+   structural defects on phones:
+     1) #topBar (the bottom quick-bar) is parked 8px below the
+        viewport and shifted 10px off-canvas (rtl) -> the round
+        icons render half-cut.
+     2) label.mobileMenuButton flows BELOW the icon row (half
+        outside the bar) -> the hamburger is unreachable.
+     3) div#map_details (village info slide-over) is a desktop
+        "peek" element (margin-left:-180px); on phones it draws
+        cut-off white boxes over the village map.
+   ============================================================ */
+@media (max-width:620px){
+  body.mobileOptimized #topBar{
+    left:0!important;
+    right:0!important;
+    bottom:0!important;
+    height:auto!important;
+    margin:0!important;
+    padding:0!important;
+  }
+  body.mobileOptimized #topBar #header{
+    left:0!important;
+    height:120px!important;
+  }
+  /* dock the hamburger into the free left slot of the icon row */
+  body.mobileOptimized #topBar label.mobileMenuButton{
+    position:absolute!important;
+    left:8px!important;
+    top:15px!important;
+    bottom:auto!important;
+    margin:0!important;
+    z-index:501;
+  }
+  /* hide the desktop peek panel over the map on phones */
+  body.mobileOptimized div.village1 div#map_details{
+    display:none!important;
+  }
+}
