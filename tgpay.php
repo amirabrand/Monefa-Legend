@@ -60,7 +60,7 @@ $__cfg = BaleApi::config();
 </head>
 <body>
 <div class="box">
-  <div class="logo">🛒 خرید <?php echo (int)$__pack['gold']; ?> سکه طلا</div>
+  <div class="logo"><img src="/gpackcdn/img/provider/Logo-Bale.svg" alt="بله‌پی" style="height:30px;vertical-align:middle;margin-left:8px">خرید <?php echo (int)$__pack['gold']; ?> سکه طلا</div>
 <?php
 if (empty($__cfg['token']) || empty($__cfg['provider'])) {
     echo '<p class="err">پرداخت با پیام‌رسان بله هنوز راه‌اندازی نشده است.</p>'

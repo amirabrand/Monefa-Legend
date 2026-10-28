@@ -42,6 +42,7 @@
             <li><a href="?p=mgold"><?php echo $lang['Admin']['sidebar10']; ?></a></li>
             <li><a href="?p=recharge">شارژ طلا برای همه</a></li>
             <li><a href="?p=codes">تولید کد طلا</a></li>
+            <li><a href="?p=goldpacks">بسته‌های طلا و قیمت</a></li>
           </ul>
         </li>
         <li>

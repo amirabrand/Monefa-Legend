@@ -2699,10 +2699,9 @@ Travian.Tip.refresh();
         break;
     case 'paymentProviders':
         $html = '<div class="methodsPage visible">
-		
-                    
-                    <div class="methodItem" title="Pay by bank">
-                        <input type="hidden" class="providerId" value="11"\/><img src="' . GP_LOCATION2 . 'provider/Logo-ARB.png" alt="Bank">
+
+                    <div class="methodItem" title="پرداخت با بله‌پی (BalePay)">
+                        <input type="hidden" class="providerId" value="11"/><img src="' . GP_LOCATION2 . 'provider/Logo-Bale.svg" alt="BalePay" style="height:40px;width:auto">
                     </div>
                     </div>';
         echo '{"response": {"error":false,"errorMsg":null,"data":{"html":' . json_encode($html) . '}}}';
