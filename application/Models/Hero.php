@@ -54,7 +54,7 @@ Class Hero{
                     $reqTime = $mData['endtime'] - time();
 
                     return '<img alt="Held tot!" src="img/x.gif" class="heroStatus50">
-                    '.$lang['Hero']['status01'].' <a class="" href="karte.php?x='.$advCoors['x'].'&amp;y='.$advCoors['y'].'">&lrm;&#8237;<span class="coordinates coordinatesWrapper"><span class="coordinateX">('.$advCoors['x'].'&#8236;&#8236;</span><span class="coordinatePipe">|</span><span class="coordinateY">&#8237;'.$advCoors['y'].'&#8236;&#8236;)</span></span>&#8236;&lrm;</a>. '.$lang['Hero']['OW01'].' <span class="timer" counting="down" value="'.$reqTime.'">'.$generator->getTimeFormat($reqTime).'</span> '.$lang['Hero']['OW02'].' '.date('H:s', $mData['endtime']).'.<div class="subMessage"> '.$lang['Hero']['OW03'].' <a href="build.php?gid=16&amp;tt=1&amp;newdid=26019">'.$lang['Hero']['OW04'].'</a>.) </div>';    
+                    '.$lang['Hero']['status01'].' <a class="" href="karte.php?x='.$advCoors['x'].'&amp;y='.$advCoors['y'].'">&lrm;&#8237;<span class="coordinates coordinatesWrapper"><span class="coordinateX">('.$advCoors['x'].'&#8236;&#8236;</span><span class="coordinatePipe">|</span><span class="coordinateY">&#8237;'.$advCoors['y'].'&#8236;&#8236;)</span></span>&#8236;&lrm;</a>. '.$lang['Hero']['OW01'].' <span class="timer" counting="down" value="'.$reqTime.'">'.$generator->getTimeFormat($reqTime).'</span> '.$lang['Hero']['OW02'].' '.date('H:i', $mData['endtime']).'.<div class="subMessage"> '.$lang['Hero']['OW03'].' <a href="build.php?gid=16&amp;tt=1">'.$lang['Hero']['OW04'].'</a> دنبال کنید.</div>';    
                 }else{
                     return '<img alt="Held tot!" src="img/x.gif" class="heroStatus9">
 				    '.$lang['Hero']['status02'].'.';

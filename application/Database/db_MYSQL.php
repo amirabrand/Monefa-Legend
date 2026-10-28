@@ -12151,7 +12151,7 @@ function setendservermedals($widwinner)
 
 		$result = $this->row($q, $p);
 
-		if (count($result)) {
+		if (is_array($result) && count($result)) {
 
 			return $result;
 

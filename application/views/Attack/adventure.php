@@ -68,7 +68,6 @@ if($adv){
                                     <?php
                     }
                     ?>
-                    <?php/* if($heroF->getHeroStatus() != 100){ echo '</a>'; } */?>
                             </div>
                     <?php if($heroF->getHeroStatus() == 100){ ?> </form><?php } ?>
                     </div>
