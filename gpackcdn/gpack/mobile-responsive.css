@@ -1,0 +1,35 @@
+/* ============================================================
+   T26 — Responsive safety net (monefa.net)
+   Layout strategy (matches the game's own native design):
+   - phones (<=620): native body.mobileOptimized UI, viewport
+     width=620 -> phone browser scales the canvas
+   - tablets 621-1180: full desktop layout on a fixed 1280
+     canvas, viewport width=1280 -> browser scales it down
+   - desktop >1180: unchanged
+   This file only adds small safety nets the native CSS lacks.
+   ============================================================ */
+
+/* ---------- phones (<=620): native mobile UI is active ---------- */
+@media (max-width:620px){
+  /* JS-added horizontal scroll boxes for unusually wide tables */
+  .t26scroll{overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch;margin:4px 0;}
+  .t26scroll table{min-width:max-content;}
+
+  /* generic overflow guards */
+  #content img{max-width:100%;height:auto;}
+  .report,.details,.forecast,.description{max-width:100%;overflow-x:auto;}
+
+  /* comfortable touch targets on small title buttons */
+  .contentTitleButton{width:34px!important;height:34px!important;}
+
+  /* dialogs must fit the phone screen */
+  .dialogWrapper,.dialogContents,.dialogV2.dialogWrapper{max-width:96vw!important;}
+  .dialogV2 .dialogContents{overflow-x:auto;}
+}
+
+/* ---------- tablets (621-1180): fixed 1280 canvas, scaled ----------
+   Only guard against elements that would break uniform scaling */
+@media (min-width:621px) and (max-width:1180px){
+  html,body{overflow-x:hidden;}
+  body{min-width:1280px;}
+}

@@ -392,14 +392,14 @@ ${'dorf'.$session->link}='active';
     <rect width="40" height="89.11" rx="10.33"></rect>
     <ellipse cx="19.67" cy="115.67" rx="17.22" ry="14.56"></ellipse>
 </svg>
-<span class="value ">Daily quests</span></div>                    </a>
+<span class="value ">ماموریت‌های روزانه</span></div>                    </a>
                 </li>
                 <li>
                     <a class="statistics" href="/statistics">
                         <div class="inlineIcon " title=""><svg viewBox="0 0 120.56 137.33" class="statistics">
     <path d="M1.67 70.67h32.67V130H1.67zM43.56 35.56h32.67V130H43.56zM86.46 0h32.67v130H86.46zM0 133.56h120.56v3.78H0z"></path>
 </svg>
-<span class="value ">Statistics</span></div>                    </a>
+<span class="value ">آمار</span></div>                    </a>
                 </li>
 									<li>
 						<a class="referAFriend" href="/referAFriend">
@@ -407,7 +407,7 @@ ${'dorf'.$session->link}='active';
   <path class="human" d="M5.86 9a1.26 1.26 0 01-1.14-1.31V6.36a.72.72 0 01.55-.75.67.67 0 000-.42 4.87 4.87 0 01.2-2.51 1.63 1.63 0 01.28-.52c.29-.38.63-.73.94-1.09A3.84 3.84 0 0111.4.58a4.16 4.16 0 011.86 4.2 5.2 5.2 0 000 1c.63.3.41.88.39 1.38 0 .2-.05.41 0 .63a1.76 1.76 0 01-.09.75c-.15.43-.17.45-.59.6a3.31 3.31 0 01-.71 1.6c-.24.28-.16.65-.24 1s-.13.61-.21.91a1.56 1.56 0 00.83 2 6.14 6.14 0 011.63 1.14 4.54 4.54 0 01.91 1.38c.19.42.06.61-.4.61H.5c-.46 0-.51 0-.5-.52a4.13 4.13 0 012-3.48A6.1 6.1 0 013.57 13a4.77 4.77 0 002.07-1.21 1.2 1.2 0 00.36-1c-.06-.56-.1-1.16-.14-1.79z"></path>
   <path class="plus" d="M8.38 16.43v-2.56a.71.71 0 01.77-.57h2.27v-2.32c0-.53.17-.68.69-.68h2.09c.7 0 .88.15.89.9v2.1h2.17c.62 0 .81.19.82.81v2c0 .71-.17.88-.87.88h-2.12v2.21c0 .72-.19.8-.81.81h-2c-.69 0-.85-.17-.85-.85v-2.17H9.25c-.42.01-.75-.1-.87-.56z"></path>
 </svg>
-<span class="value ">Refer a friend</span></div>						</a>
+<span class="value ">دعوت دوستان</span></div>						</a>
 					</li>
 				                <li>
 
@@ -415,14 +415,14 @@ ${'dorf'.$session->link}='active';
                         <div class="inlineIcon " title=""><svg viewBox="0 0 15.76 21" class="profile">
   <path d="M7.88 1.77c2.1 0 3.8 2.09 3.8 4.65s-1.7 4.65-3.8 4.65S4.08 9 4.08 6.42s1.71-4.65 3.8-4.65m0-1.77c-3 0-5.49 2.88-5.49 6.42s2.46 6.42 5.49 6.42 5.49-2.84 5.49-6.42S10.92 0 7.88 0zm7.88 21a11.81 11.81 0 0 0-2.51-7 7.17 7.17 0 0 1-5.37 2.46A7.17 7.17 0 0 1 2.52 14 11.82 11.82 0 0 0 0 21z"></path>
 </svg>
-<span class="value "><?php echo DIRECTION; ?></span></div>                    </a>
+<span class="value ">پروفایل</span></div>                    </a>
                 </li>
                 <li>
                                             <a class="options" href="/options">
                             <div class="inlineIcon " title=""><svg viewBox="0 0 20 20" class="settings">
   <path d="M9 20l-.24-3.26-.57-.16A7.21 7.21 0 0 1 6.66 16l-.52-.29-2.47 2.1-1.48-1.48 2.14-2.47-.33-.52a7.21 7.21 0 0 1-.62-1.49l-.16-.57L0 11V9l3.26-.24.16-.57A7.21 7.21 0 0 1 4 6.66l.29-.52-2.1-2.47 1.48-1.48 2.47 2.14.52-.33a7.21 7.21 0 0 1 1.49-.62l.57-.16L9 0h2l.24 3.26.57.16a7.21 7.21 0 0 1 1.53.58l.52.29 2.47-2.14 1.48 1.48-2.14 2.51.29.52a7.21 7.21 0 0 1 .62 1.49l.16.57L20 9v2l-3.26.24-.16.57a7.21 7.21 0 0 1-.58 1.53l-.29.52 2.14 2.47-1.48 1.48-2.47-2.14-.52.29a7.21 7.21 0 0 1-1.49.62l-.57.16L11 20zm1-15a5 5 0 1 0 5 5 5 5 0 0 0-5-5z"></path>
 </svg>
-<span class="value ">Options</span></div>                        </a>
+<span class="value ">تنظیمات</span></div>                        </a>
                                     </li>
                 <li>
 	<li class="help">
@@ -438,14 +438,14 @@ ${'dorf'.$session->link}='active';
                         <div class="inlineIcon " title=""><svg viewBox="0 0 20 18.71" class="discord">
   <path d="M0 2.91v10.18A2.92 2.92 0 002.91 16h12.71a.93.93 0 01.65.27l2.17 2.17a.91.91 0 001.56-.65V2.91A2.92 2.92 0 0017.09 0H2.91A2.92 2.92 0 000 2.91zm15.72 9.59H4.28a.78.78 0 01-.78-.78V4.28a.78.78 0 01.78-.78h11.44a.78.78 0 01.78.78v7.44a.78.78 0 01-.78.78z"></path>
 </svg>
-<span class="value ">Discord</span></div>                    </a>
+<span class="value ">دیسکورد</span></div>                    </a>
                 </li>
                         <li>
                 <a class="logout" href="/logout" onclick="Travian.api('auth/logout'); return false;">
                     <div class="inlineIcon " title=""><svg viewBox="0 0 20 20" class="logout">
   <path d="M0 17.01L7.01 10 .14 3.13 3.13.14 10 7.01 17.01 0 20 2.99 12.99 10l6.87 6.87-2.99 2.99L10 12.99 2.99 20 0 17.01z"></path>
 </svg>
-<span class="value ">Logout</span></div>                </a>
+<span class="value ">خروج</span></div>                </a>
             </li>
         </ul>
 
