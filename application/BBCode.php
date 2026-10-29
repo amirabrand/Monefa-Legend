@@ -145,10 +145,8 @@ $replace[50] = "<img class='unit u48' src='". GP_LOCATION2."x.gif' title='" . U4
 $replace[51] = "<img class='unit u49' src='". GP_LOCATION2."x.gif' title='" . U49 . "' alt='" . U49 . "'>";
 $replace[52] = "<img class='unit u50' src='". GP_LOCATION2."x.gif' title='" . U50 . "' alt='" . U50 . "'>";
 $replace[53] = "<img class='unit uhero' src='". GP_LOCATION2."x.gif' title='" . U0 . "' alt='" . U0 . "'>";
-$replace[54] = "<img src='". GP_LOCATION2."x.gif' class='r1' title='" . R1 . "' alt='" . R1 . "'>";
-$replace[55] = "<img src='". GP_LOCATION2."x.gif' class='r2' title='" . R2 . "' alt='" . R2 . "'>";
-$replace[56] = "<img src='". GP_LOCATION2."x.gif' class='r3' title='" . R3 . "' alt='" . R3 . "'>";
-$replace[57] = "<img src='". GP_LOCATION2."x.gif' class='r4' title='" . R4 . "' alt='" . R4 . "'>";
+/* T31: R1..R4 constants were undefined -> PHP 8 fatal on nachrichten.php.
+   The literal block right below already defines entries 54..57. */
 $replace[54] = "<img src='". GP_LOCATION2."x.gif' class='r1' title='Lumber' alt='Lumber'>";
 $replace[55] = "<img src='". GP_LOCATION2."x.gif' class='r2' title='Clay' alt='Clay'>";
 $replace[56] = "<img src='". GP_LOCATION2."x.gif' class='r3' title='Iron' alt='Iron'>";

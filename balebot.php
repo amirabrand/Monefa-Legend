@@ -24,15 +24,46 @@ if (!class_exists('MYSQL_DB')) {
 }
 $database = new MYSQL_DB();
 
+/* ------------------------------ T31 request log ------------------------------ */
+/* Every webhook POST is logged (incl. rejected ones) so webhook delivery
+   problems are visible in /var/www/monefa-secure/ConfsData/monefa.net/logs/webhook.log */
+$__t31cli = (PHP_SAPI === 'cli');
+$__t31log = '/var/www/monefa-secure/ConfsData/monefa.net/logs/webhook.log';
+if (!$__t31cli && isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $__t31body = (string)file_get_contents('php://input');
+    $__t31sec = isset($_SERVER['HTTP_X_TELEGRAM_BOT_API_SECRET_TOKEN']) ? $_SERVER['HTTP_X_TELEGRAM_BOT_API_SECRET_TOKEN'] : '';
+    @file_put_contents($__t31log, date('Y-m-d H:i:s')
+        . ' | ' . (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '-')
+        . ' | UA=' . (isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '-')
+        . ' | secretHeader=' . ($__t31sec !== '' ? ('present(len=' . strlen($__t31sec) . ')') : 'ABSENT')
+        . ' | qs=' . (isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '')
+        . ' | body=' . substr(preg_replace('/\s+/', ' ', $__t31body), 0, 300) . "\n",
+        FILE_APPEND | LOCK_EX);
+}
+
 /* ------------------------------ auth ------------------------------ */
-$__cfg = BaleApi::config();
-if ($__cfg['secret'] !== '') {
-    $hdr = isset($_SERVER['HTTP_X_TELEGRAM_BOT_API_SECRET_TOKEN']) ? $_SERVER['HTTP_X_TELEGRAM_BOT_API_SECRET_TOKEN'] : '';
-    $okHeader = $hdr !== '' && hash_equals($__cfg['secret'], (string)$hdr);
-    $okQuery  = isset($_GET['key']) && hash_equals($__cfg['secret'], (string)$_GET['key']);
-    if (!$okHeader && !$okQuery) {
-        http_response_code(403);
-        exit('forbidden');
+/* T31: Bale does NOT sign webhook POSTs with X-Telegram-Bot-Api-Secret-Token
+   (verified: real Bale POSTs hit 403 because the expected header never came).
+   Policy:
+     - header or ?key present and valid -> allow
+     - header present but wrong         -> 403 (probe with a stale secret)
+     - no credential at all             -> allow (logged) until Bale sends one
+   CLI (--update=/--updatefile=) bypasses auth. */
+if (!$__t31cli) {
+    $__cfg = BaleApi::config();
+    if ($__cfg['secret'] !== '') {
+        $hdr = isset($_SERVER['HTTP_X_TELEGRAM_BOT_API_SECRET_TOKEN']) ? $_SERVER['HTTP_X_TELEGRAM_BOT_API_SECRET_TOKEN'] : '';
+        $okHeader = $hdr !== '' && hash_equals($__cfg['secret'], (string)$hdr);
+        $okQuery  = isset($_GET['key']) && hash_equals($__cfg['secret'], (string)$_GET['key']);
+        if (!$okHeader && !$okQuery) {
+            if ($hdr === '' && !isset($_GET['key'])) {
+                @file_put_contents($__t31log, date('Y-m-d H:i:s') . " | AUTH=no-cred-allowed\n", FILE_APPEND | LOCK_EX);
+            } else {
+                @file_put_contents($__t31log, date('Y-m-d H:i:s') . " | AUTH=WRONG-CRED-REJECTED\n", FILE_APPEND | LOCK_EX);
+                http_response_code(403);
+                exit('forbidden');
+            }
+        }
     }
 }
 
@@ -103,7 +134,21 @@ function bale_credit_from_row($row, $chargeId, $chatId, $paidRial)
 }
 
 /* ------------------------------ update ------------------------------ */
-$update = json_decode((string)file_get_contents('php://input'), true);
+/* T31: CLI mode — php balebot.php --update='<json>'  |  --updatefile=<path>
+   lets the server replay a queued update (getUpdates) through the exact same
+   handler the webhook uses. */
+$update = null;
+if ($__t31cli) {
+    foreach ($argv as $__a) {
+        if (strpos($__a, '--update=') === 0) {
+            $update = json_decode(substr($__a, 9), true);
+        } elseif (strpos($__a, '--updatefile=') === 0) {
+            $update = json_decode((string)file_get_contents(substr($__a, 13)), true);
+        }
+    }
+} else {
+    $update = json_decode((string)file_get_contents('php://input'), true);
+}
 if (!is_array($update)) {
     http_response_code(200);
     exit('ok');
@@ -143,6 +188,20 @@ if (!empty($msg['successful_payment'])) {
         $row = $database->queryFetch("SELECT * FROM payments WHERE pMethod = :pm LIMIT 1", array('pm' => 'bale:' . $payload));
     }
     if ($row) {
+        /* T31b: verify the paid amount against the pending row (cost is Toman,
+           the invoice was issued with cost * multiplier in Rial). A mismatch is
+           flagged, never auto-credited. */
+        $__cfgV = BaleApi::config();
+        $__expectRial = (int)$row['cost'] * max(1, (int)$__cfgV['multiplier']);
+        if ($paidRial > 0 && $__expectRial > 0 && $paidRial != $__expectRial) {
+            bale_reply($chatId,
+                "مبلغ پرداخت‌شده (" . number_format($paidRial) . " ریال) با فاکتور ثبت‌شده ("
+                . number_format($__expectRial) . " ریال) مطابقت ندارد.\n"
+                . "طلا به‌صورت خودکار واریز نشد؛ لطفاً با پشتیبانی بازی در تماس باشید. کد تراکنش: <code>"
+                . htmlspecialchars((string)$charge, ENT_QUOTES, 'UTF-8') . "</code>");
+            http_response_code(200);
+            exit('ok');
+        }
         bale_credit_from_row($row, $charge, $chatId, $paidRial);
     } elseif (preg_match('/^MFA:(\d+):(\d+):/', $payload, $m)) {
         // fallback: rebuild from payload MFA:{uid}:{pkgId}:{rand}
@@ -192,6 +251,42 @@ if (preg_match('/^\/code[_ -]?([A-Za-z0-9]{4,20})/i', $text, $cm)) {
 
 if (strpos($text, '/start') === 0) {
     $param = trim(substr($text, 6));
+    /* T31: /start PAYxxxxxxxxxxxx -> bot-mode invoice for a pending web payment
+       (tgpay.php records the pending row and sends the player here). */
+    if (preg_match('/^PAY([A-Fa-f0-9]{12})$/', $param, $__pm)) {
+        $__rand   = strtolower($__pm[1]);
+        $__cfgP   = BaleApi::config();
+        $__rowP   = $database->queryFetch("SELECT * FROM payments WHERE pMethod LIKE :pm LIMIT 1", array('pm' => 'bale:%:' . $__rand));
+        if (empty($__rowP)) {
+            bale_reply($chatId, "این فاکتور پیدا نشد. لطفاً از فروشگاه بازی دوباره اقدام کنید.");
+        } elseif (!empty($__rowP['idTrans'])) {
+            bale_reply($chatId, "این فاکتور قبلاً پرداخت یا استفاده شده است. از فروشگاه بازی دوباره اقدام کنید.");
+        } elseif (empty($__cfgP['provider'])) {
+            bale_reply($chatId, "پرداخت بله هنوز راه‌اندازی نشده است.");
+        } else {
+            $__rialP = (int)$__rowP['cost'] * (int)$__cfgP['multiplier'];
+            if ($__rialP < 10000) {
+                bale_reply($chatId, "مبلغ این فاکتور کمتر از حداقل بله‌پی است. از فروشگاه بازی دوباره اقدام کنید.");
+            } else {
+                $__invP = BaleApi::call('sendInvoice', array(
+                    'chat_id'        => $chatId,
+                    'title'          => 'خرید ' . (int)$__rowP['gAmount'] . ' سکه طلا',
+                    'description'    => 'شارژ ' . (int)$__rowP['gAmount'] . ' سکه طلا — Monefa Legend',
+                    'payload'        => substr((string)$__rowP['pMethod'], 5),
+                    'provider_token' => $__cfgP['provider'],
+                    'currency'       => 'IRR',
+                    'prices'         => array(array('label' => (int)$__rowP['gAmount'] . ' سکه طلا', 'amount' => $__rialP)),
+                ), 12);
+                if (!empty($__invP['ok'])) {
+                    bale_reply($chatId, "🧾 فاکتور «" . (int)$__rowP['gAmount'] . " سکه طلا» برای شما ارسال شد.\nبا کیف‌پول بله پرداخت کنید؛ طلا بلافاصله واریز می‌شود.");
+                } else {
+                    bale_reply($chatId, "خطا در ارسال فاکتور: " . htmlspecialchars(isset($__invP['description']) ? $__invP['description'] : 'پاسخی از بله دریافت نشد', ENT_QUOTES, 'UTF-8'));
+                }
+            }
+        }
+        if (!$__t31cli) { http_response_code(200); }
+        exit('ok');
+    }
     if ($param !== '') {
         $code = preg_replace('/[^A-Za-z0-9]/', '', $param);
         $row = $database->queryFetch("SELECT id, username FROM botusersshaker WHERE shaker = :c LIMIT 1", array('c' => $code));

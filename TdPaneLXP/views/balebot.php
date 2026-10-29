@@ -100,11 +100,12 @@ if (!is_array($__codes)) $__codes = array();
 
       <div style="background:#e3f2fd;border:1px dashed #1976d2;border-radius:8px;padding:12px;margin:10px 0">
         <b>لینک مینی‌اپ فروشگاه طلا (بله):</b>
-        <div dir="ltr" style="background:#fff;border:1px solid #90caf9;border-radius:6px;padding:6px 10px;margin:6px 0;font-family:monospace;word-break:break-all"><?php echo $__botLink; ?>?startapp</div>
+        <div dir="ltr" style="background:#fff;border:1px solid #90caf9;border-radius:6px;padding:6px 10px;margin:6px 0;font-family:monospace;word-break:break-all">https://monefa.net/balemini.php</div>
         <ul style="margin:6px 0 0 0;padding-right:18px;line-height:1.9">
           <li>این لینک را برای بازیکن‌ها بفرستید؛ وقتی داخل بله باز شود، فروشگاه طلا (مینی‌اپ) بالا می‌آید.</li>
           <li>دکمهٔ «فروشگاه طلا (مینی‌اپ بله)» هم زیر پیام‌های /start و /buy بات نمایش داده می‌شود.</li>
           <li>برای قرار دادن فروشگاه در منوی خود بات، داخل بله به @BotFather بروید و Menu Button را روی همین لینک تنظیم کنید.</li>
+          <li><b>همین آدرس</b> (https://monefa.net/balemini.php) را در «تنظیمات مینی‌اپ» بله (BotFather ← Bot Settings ← Menu Button / Mini App) ثبت کنید — نه لینک ble.ir ربات.</li>
         </ul>
       </div>
     </div>

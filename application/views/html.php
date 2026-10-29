@@ -33,17 +33,30 @@ $t29tablet = !$t29phone && (
 <html<?php echo $t29phone ? ' class="t26m"' : ''; ?>>
 
 <head><meta charset="utf-8">
-    <?php if ($t29phone) { ?>
-    <meta name="viewport" content="width=620, user-scalable=yes">
-    <script>/* T29: mobile class before first paint */
-    (function(){function a(){try{document.body&&document.body.classList.add('mobileOptimized')}catch(e){}}
-    if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',a)}else{a()}})();
+    <meta name="viewport" id="t26vp" content="width=device-width, initial-scale=1">
+    <script>/* T31: universal viewport fixer (runs before first paint).
+       1) explicit initial-scale: Chrome Android restores per-site zoom on
+          repeat visits and rendered the 620 canvas at scale 1.0 (cropped);
+       2) screen-based fallback: Chrome "Desktop site" mode sends a desktop
+          UA (X11/Linux) so PHP sees a desktop - real phones are caught via
+          touch + min(screen)<=620. */
+    (function(){
+      var F=null;try{F=window.localStorage.getItem('t26force')}catch(e){}
+      if(F==='0')return;
+      var s=window.screen||{},w=parseInt(s.width,10)||9e9,h=parseInt(s.height,10)||9e9,m=Math.min(w,h);
+      if(m>=9e9){m=document.documentElement.clientWidth||390}
+      var touch=('ontouchstart' in window)||(navigator.maxTouchPoints||0)>0;
+      var phpMob=<?php echo $t29phone?'1':'0';?>,phpTab=<?php echo $t29tablet?'1':'0';?>;
+      var mob=phpMob||((F==='1')||(touch&&m<=620)||(m<=480));
+      var cw=mob?620:1280;
+      var sc=Math.min(1,m/cw);if(!isFinite(sc)||sc<=0)sc=1;
+      var vp=document.getElementById('t26vp');
+      if(vp)vp.setAttribute('content','width='+cw+', initial-scale='+sc.toFixed(4)+', user-scalable=yes, viewport-fit=cover');
+      if(mob)document.documentElement.classList.add('t26m');
+      var a=function(){try{document.body.classList.add('mobileOptimized')}catch(e){}};
+      if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',a)}else{a()}
+    })();
     </script>
-    <?php } elseif ($t29tablet) { ?>
-    <meta name="viewport" content="width=1280">
-    <?php } else { ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php } ?>
     <script>/* t26NativeMobileConfig */
     window.Travian = window.Travian || {};
     Travian.Game = Travian.Game || {};
@@ -351,4 +364,4 @@ if(isset($session->uid) && basename($_SERVER['PHP_SELF']) !== 'captcha.php' && b
 }
 </style>
 <script src="/gpackcdn/js/Game/General/shopui-live.js?v=2"></script>
-<script src="/gpackcdn/js/Game/General/mobile-live.js?v=9"></script>
+<script src="/gpackcdn/js/Game/General/mobile-live.js?v=10"></script>
