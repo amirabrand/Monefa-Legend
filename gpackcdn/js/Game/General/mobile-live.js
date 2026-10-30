@@ -1,5 +1,13 @@
 /* ============================================================
    T26/T29/T31 - Viewport & native-mobile activator (monefa.net)
+   v11:
+     - T33: the server-side decision (window.__t26php, from html.php:
+       UA detection + sticky t26m cookie + Bale webview marker) is
+       authoritative and can no longer be overwritten by heuristics,
+     - T33: Bale / ble.ir webview UAs always get the mobile canvas
+       (Bale desktop reports the monitor size, not the window),
+     - T33: no-touch windows narrower than the canvas (Bale desktop
+       webview) shrink-to-fit instead of cropping horizontally,
    v10:
      - explicit initial-scale everywhere (Chrome Android zoom-restore
        rendered the 620 canvas at scale 1.0 without it),
@@ -32,6 +40,11 @@
       if (__f === '1') return true;
       if (__f === '0') return false;
     } catch (e) {}
+    /* T33: the server-side decision (html.php stashes it in __t26php)
+       is authoritative: UA detection + sticky t26m cookie + Bale mark. */
+    var php = (typeof window.__t26php === 'number') ? window.__t26php : -1;
+    if (php === 1) return true;
+    if (php === 0) return false;
     var eff = effSide();
     /* T29: phones by UA - authoritative even when touch is not
        reported (in-app webviews, accessibility modes). */
@@ -41,6 +54,9 @@
     if (uaPhone) return eff > 0 && eff <= 620;
     /* tablets & desktops keep the desktop canvas */
     if (/iPad|Tablet|PlayBook|Silk/i.test(ua)) return false;
+    /* T33: Bale messenger webviews (mini-app) - always mobile; the
+       desktop Bale client reports the monitor size, not the window. */
+    if (/Bale|ble\.ir/i.test(ua)) return true;
     /* T31: UAs that lie (Chrome "Desktop site" on phones, some webviews):
        a touch device with a phone-sized screen gets the mobile UI, and any
        screen whose short side is <=480 is a phone even without touch. */
@@ -62,6 +78,12 @@
       var cw = mob ? 620 : 1280;
       var sc = Math.min(1, eff / cw);
       if (!isFinite(sc) || sc <= 0) sc = 1;
+      /* T33: no-touch windows narrower than the canvas (Bale desktop
+         webview) shrink to fit instead of cropping horizontally. */
+      if (mob && !(('ontouchstart' in window) || (navigator.maxTouchPoints > 0))) {
+        var icw = document.documentElement.clientWidth || window.innerWidth || 0;
+        if (icw > 200 && icw < cw) sc = Math.min(1, icw / cw);
+      }
       var want = 'width=' + cw + ', initial-scale=' + sc.toFixed(4)
                + ', user-scalable=yes, viewport-fit=cover';
       if (vpm.getAttribute('content') !== want) vpm.setAttribute('content', want);

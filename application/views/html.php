@@ -28,6 +28,30 @@ $t29tablet = !$t29phone && (
     || strpos($t29ua, 'tablet') !== false
     || strpos($t29ua, 'kindle') !== false
     || strpos($t29ua, 'silk') !== false);
+
+/* T33 - webview hardening (Bale mini-app): Bale's desktop client embeds
+   pages in a webview that sends a plain Windows UA, so auto-detection
+   yields the 1280 desktop canvas inside a small window (broken layout).
+   a) any UA that identifies itself as Bale / ble.ir counts as a phone;
+   b) sticky override cookie "t26m" (1=mobile, 0=desktop, 90 days), set
+      by balemini.php or via ?t26m=1|0 - it wins over every heuristic. */
+$t26ov = isset($_GET['t26m']) ? $_GET['t26m'] : (isset($_COOKIE['t26m']) ? $_COOKIE['t26m'] : '');
+if ($t26ov === '1' || $t26ov === '0') {
+    if (!isset($_COOKIE['t26m']) || $_COOKIE['t26m'] !== $t26ov) {
+        @setcookie('t26m', $t26ov, array('expires' => time() + 7776000, 'path' => '/', 'samesite' => 'Lax'));
+        $_COOKIE['t26m'] = $t26ov;
+    }
+}
+if ($t26ov === '1') {
+    $t29phone = true;
+    $t29tablet = false;
+} elseif ($t26ov === '0') {
+    $t29phone = false;
+    $t29tablet = false;
+} elseif (strpos($t29ua, 'bale') !== false || strpos($t29ua, 'ble.ir') !== false) {
+    $t29phone = true;
+    $t29tablet = false;
+}
 ?>
 <!DOCTYPE html>
 <html<?php echo $t29phone ? ' class="t26m"' : ''; ?>>
@@ -46,7 +70,7 @@ $t29tablet = !$t29phone && (
       var s=window.screen||{},w=parseInt(s.width,10)||9e9,h=parseInt(s.height,10)||9e9,m=Math.min(w,h);
       if(m>=9e9){m=document.documentElement.clientWidth||390}
       var touch=('ontouchstart' in window)||(navigator.maxTouchPoints||0)>0;
-      var phpMob=<?php echo $t29phone?'1':'0';?>,phpTab=<?php echo $t29tablet?'1':'0';?>;
+      var phpMob=<?php echo $t29phone?'1':'0';?>,phpTab=<?php echo $t29tablet?'1':'0';?>;window.__t26php=phpMob;window.__t26php=phpMob;
       var mob=phpMob||((F==='1')||(touch&&m<=620)||(m<=480));
       var cw=mob?620:1280;
       var sc=Math.min(1,m/cw);if(!isFinite(sc)||sc<=0)sc=1;
@@ -364,4 +388,4 @@ if(isset($session->uid) && basename($_SERVER['PHP_SELF']) !== 'captcha.php' && b
 }
 </style>
 <script src="/gpackcdn/js/Game/General/shopui-live.js?v=2"></script>
-<script src="/gpackcdn/js/Game/General/mobile-live.js?v=10"></script>
+<script src="/gpackcdn/js/Game/General/mobile-live.js?v=11"></script>

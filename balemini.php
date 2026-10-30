@@ -185,6 +185,11 @@ if (isset($_POST['action'])) {
 }
 
 /* ------------------------------ page ------------------------------ */
+/* T33: opening the mini-app marks this device as mobile for the whole
+   site (sticky 90-day cookie). Bale's desktop client embeds pages in a
+   webview with a plain Windows UA - without this, game pages fall back
+   to the 1280 desktop canvas inside a small window (broken layout). */
+@setcookie('t26m', '1', array('expires' => time() + 7776000, 'path' => '/', 'samesite' => 'Lax'));
 ?>
 <!doctype html>
 <html lang="fa" dir="rtl">
@@ -230,6 +235,7 @@ if (isset($_POST['action'])) {
 </div>
 <script>
 (function () {
+  try { document.cookie = 't26m=1;path=/;max-age=7776000;SameSite=Lax'; } catch (e) {}
   var W = (window.Bale && window.Bale.WebApp) ? window.Bale.WebApp : null;
   var app = document.getElementById('app');
 
