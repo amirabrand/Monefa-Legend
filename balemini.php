@@ -295,10 +295,16 @@ if (isset($_POST['action'])) {
 
   function render(d) {
     if (!d || !d.ok) {
+      if (W) {
+        /* bridge loaded but initData missing/invalid: user IS inside
+           Bale - a stale webview session usually fixes on reopen. */
+        app.innerHTML = '<div class="warn">ارتباط با بله برقرار نشد.<br>صفحه را کاملاً ببندید و دوباره از داخل بله (از ربات) باز کنید.'
+          + '<div style="margin-top:10px;text-align:center"><button class="buy" onclick="location.reload()">تلاش دوباره</button></div></div>';
+      } else {
       app.innerHTML = '<div class="warn">برای استفاده، این صفحه را از داخل پیام‌رسان <b>بله</b> باز کنید:<br>'
         + '<span dir="ltr">ble.ir/monefabot?startapp</span><br>'
         + 'یا در گفتگو با بازو، دکمهٔ «فروشگاه طلا» را بزنید.</div>';
-      return;
+        }return;
     }
     var h = '';
     if (d.account) {

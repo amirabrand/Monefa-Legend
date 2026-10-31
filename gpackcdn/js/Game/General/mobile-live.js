@@ -96,25 +96,30 @@
       if (vpm.getAttribute('content') !== want) vpm.setAttribute('content', want);
     }
 
-    /* T34: scale fallback for webviews that ignore meta initial-scale.
-       Detected state: layout viewport (=cw) but visible viewport far
-       narrower at scale ~1, on a touch device. Normal phones (scale
-       applied) have vv.width == clientWidth and never match; desktop
-       browsers have no touch and never match. */
-    if (mob && (('ontouchstart' in window) || (navigator.maxTouchPoints > 0)) && window.visualViewport) {
+    /* T35: universal auto-fit. The game renders on a fixed canvas (cw =
+       620 in mobile mode, 1280 in desktop mode). Webviews that ignore
+       meta initial-scale (Bale desktop AND mobile clients) or the whole
+       meta viewport (desktop browsers) show that canvas cropped at
+       scale ~1. Shrink the whole body with CSS zoom until the full
+       canvas fits the visible width. No touch/mode gate: one rule for
+       every client. Clients that DID apply our initial-scale render at
+       scale != 1 and never enter this branch. */
+    if (window.visualViewport) {
       var vv = window.visualViewport;
       var vwid = Math.round(vv.width) || 0;
       var gap = cw - vwid;
       var zoomed = parseFloat(document.body.style.zoom) || 0;
-      if (gap > 150 && vv.scale > 0.98 && vv.scale < 1.02) {
+      var near1 = vv.scale > 0.98 && vv.scale < 1.02;
+      if (vwid > 200 && gap > 40 && near1) {
         var z = +(vwid / cw).toFixed(4);
         if (Math.abs(zoomed - z) > 0.005) {
           document.body.style.zoom = z;
           document.documentElement.style.overflowX = 'hidden';
         }
-      } else if (zoomed && vv.scale > 0.98 && vv.scale < 1.02 && gap <= 0) {
+      } else if (zoomed && near1 && gap <= 0) {
         /* environment renders our own scale again - drop the fallback */
         document.body.style.zoom = '';
+        document.documentElement.style.overflowX = '';
       }
     }
 

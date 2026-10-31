@@ -70,7 +70,7 @@ if ($t26ov === '1') {
       var s=window.screen||{},w=parseInt(s.width,10)||9e9,h=parseInt(s.height,10)||9e9,m=Math.min(w,h);
       if(m>=9e9){m=document.documentElement.clientWidth||390}
       var touch=('ontouchstart' in window)||(navigator.maxTouchPoints||0)>0;
-      var phpMob=<?php echo $t29phone?'1':'0';?>,phpTab=<?php echo $t29tablet?'1':'0';?>;window.__t26php=phpMob;window.__t26php=phpMob;
+      var phpMob=<?php echo $t29phone?'1':'0';?>,phpTab=<?php echo $t29tablet?'1':'0';?>;window.__t26php=phpMob;
       var mob=phpMob||((F==='1')||(touch&&m<=620)||(m<=480));
       var cw=mob?620:1280;
       var sc=Math.min(1,m/cw);if(!isFinite(sc)||sc<=0)sc=1;
@@ -388,4 +388,4 @@ if(isset($session->uid) && basename($_SERVER['PHP_SELF']) !== 'captcha.php' && b
 }
 </style>
 <script src="/gpackcdn/js/Game/General/shopui-live.js?v=2"></script>
-<script src="/gpackcdn/js/Game/General/mobile-live.js?v=12"></script>
+<script src="/gpackcdn/js/Game/General/mobile-live.js?v=13"></script>

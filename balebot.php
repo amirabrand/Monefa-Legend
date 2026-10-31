@@ -92,7 +92,7 @@ function bale_shop_keyboard()
 {
     return array('inline_keyboard' => array(
         array(array('text' => '🛒 فروشگاه طلا (مینی‌اپ بله)', 'web_app' => array('url' => 'https://monefa.net/balemini.php'))),
-        array(array('text' => '🌐 سایت بازی', 'url' => 'https://monefa.net')),
+        array(array('text' => '🌐 سایت بازی', 'url' => 'https://monefa.net/?t26m=1')),
     ));
 }
 
@@ -304,7 +304,7 @@ if (strpos($text, '/start') === 0) {
             "👋 به ربات رسمی <b>Monefa Legend</b> خوش آمدید!\n\n"
             . "• برای دریافت <b>طلای وفاداری</b>: از بازی کد بگیرید و همان کد را اینجا بفرستید.\n"
             . "• برای <b>خرید طلا</b>: از منوی بازی (سکهٔ طلا) بستهٔ مورد نظر را انتخاب و پرداخت بله را بزنید.\n\n"
-            . "🌐 " . htmlspecialchars('https://monefa.net', ENT_QUOTES, 'UTF-8'),
+            . "🌐 " . htmlspecialchars('https://monefa.net/?t26m=1', ENT_QUOTES, 'UTF-8'),
             bale_shop_keyboard());
     }
     http_response_code(200);
