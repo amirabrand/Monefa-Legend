@@ -295,7 +295,7 @@ if (isset($_POST['action'])) {
 
   function render(d) {
     if (!d || !d.ok) {
-      if (W) {
+      if (W && (W.isMiniAppSupported || W.isIframe)) {
         /* bridge loaded but initData missing/invalid: user IS inside
            Bale - a stale webview session usually fixes on reopen. */
         app.innerHTML = '<div class="warn">ارتباط با بله برقرار نشد.<br>صفحه را کاملاً ببندید و دوباره از داخل بله (از ربات) باز کنید.'
