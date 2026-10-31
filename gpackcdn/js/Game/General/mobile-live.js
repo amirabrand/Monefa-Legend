@@ -1,5 +1,12 @@
 /* ============================================================
    T26/T29/T31 - Viewport & native-mobile activator (monefa.net)
+   v12:
+     - T34: webviews that force their own initial scale (they ignore the
+       meta initial-scale) rendered the 620 canvas at scale 1 and the
+       user saw a cropped zoomed-in slice (mostly the green map). When
+       the layout viewport is much wider than the visible viewport at
+       scale ~1 on a touch device, the whole game is re-laid-out to the
+       real visible width via document.body.style.zoom (Chromium).
    v11:
      - T33: the server-side decision (window.__t26php, from html.php:
        UA detection + sticky t26m cookie + Bale webview marker) is
@@ -87,6 +94,28 @@
       var want = 'width=' + cw + ', initial-scale=' + sc.toFixed(4)
                + ', user-scalable=yes, viewport-fit=cover';
       if (vpm.getAttribute('content') !== want) vpm.setAttribute('content', want);
+    }
+
+    /* T34: scale fallback for webviews that ignore meta initial-scale.
+       Detected state: layout viewport (=cw) but visible viewport far
+       narrower at scale ~1, on a touch device. Normal phones (scale
+       applied) have vv.width == clientWidth and never match; desktop
+       browsers have no touch and never match. */
+    if (mob && (('ontouchstart' in window) || (navigator.maxTouchPoints > 0)) && window.visualViewport) {
+      var vv = window.visualViewport;
+      var vwid = Math.round(vv.width) || 0;
+      var gap = cw - vwid;
+      var zoomed = parseFloat(document.body.style.zoom) || 0;
+      if (gap > 150 && vv.scale > 0.98 && vv.scale < 1.02) {
+        var z = +(vwid / cw).toFixed(4);
+        if (Math.abs(zoomed - z) > 0.005) {
+          document.body.style.zoom = z;
+          document.documentElement.style.overflowX = 'hidden';
+        }
+      } else if (zoomed && vv.scale > 0.98 && vv.scale < 1.02 && gap <= 0) {
+        /* environment renders our own scale again - drop the fallback */
+        document.body.style.zoom = '';
+      }
     }
 
     /* 2) html + body classes and native config sync */

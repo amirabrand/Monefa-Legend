@@ -102,7 +102,7 @@ if ($t26ov === '1') {
     <link href="<?= GP_LOCATION ?>lang/<?php echo LANG_UR; ?>/compact.css" rel="stylesheet" type="text/css"/>
     <link href="<?= GP_LOCATION ?>lang/<?php echo LANG_UR; ?>/lang.css" rel="stylesheet" type="text/css"/>
 	<link href="<?= GP_LOCATION ?>lang/<?php echo LANG_UR; ?>/fixes.css?rev13" rel="stylesheet" type="text/css"/>
-    <link href="/gpackcdn/gpack/mobile-responsive.css?v=6" rel="stylesheet" type="text/css"/>
+    <link href="/gpackcdn/gpack/mobile-responsive.css?v=7" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="<?= GP_LOCATION1 ?>default/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="<?= GP_LOCATION1 ?>default/jquery.md5.min.js"></script>
    
@@ -388,4 +388,4 @@ if(isset($session->uid) && basename($_SERVER['PHP_SELF']) !== 'captcha.php' && b
 }
 </style>
 <script src="/gpackcdn/js/Game/General/shopui-live.js?v=2"></script>
-<script src="/gpackcdn/js/Game/General/mobile-live.js?v=11"></script>
+<script src="/gpackcdn/js/Game/General/mobile-live.js?v=12"></script>

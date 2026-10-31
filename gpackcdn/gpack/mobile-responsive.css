@@ -81,3 +81,14 @@
     display:none!important;
   }
 }
+
+/* ============================================================
+   T34 - v7: captcha gate page (captcha.php) on the 620 canvas.
+   #center is over-constrained by the desktop sheet (right:10px plus
+   margin:10px), so the beige frame sits at 0..600 while #header sits
+   at 10..610 - the frame hugs/crosses the left edge and looks cut.
+   Drop the extra margin so the frame centers symmetrically.
+   Scoped with :has(.captchaButton) - only the captcha page matches.
+   ============================================================ */
+html.t26m #center:has(.captchaButton),
+body.mobileOptimized #center:has(.captchaButton){margin-right:0!important}
