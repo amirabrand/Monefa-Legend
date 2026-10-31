@@ -330,7 +330,7 @@ ${'dorf'.$session->link}='active';
 
 								<label class="mobileMenuButton" for="mobileMenuState">
 											</label>
-					<a class="mobileShopButton" href="#" accesskey="8" title="" onclick="jQuery(window).trigger('startPaymentWizard', {}); this.blur(); return false;"></a>
+					<a class="mobileShopButton" href="/balemini.php" accesskey="8" title="فروشگاه طلا (بله‌پی)"></a>
 					</div>
 
 		<div class="currency">
@@ -424,16 +424,17 @@ ${'dorf'.$session->link}='active';
 </svg>
 <span class="value ">تنظیمات</span></div>                        </a>
                                     </li>
-                <li>
-	<li class="help">
-		<a href="#" onclick="openPopup(); return false;">
-            <svg viewBox="0 0 12.24 20" class="answers"><g class="outline">
+                <li class="help">
+                    <a href="#" onclick="openPopup(); return false;">
+                        <div class="inlineIcon " title=""><svg viewBox="0 0 12.24 20" class="answers"><g class="outline">
   <path d="M3.73 13.1v-.52c0-2.8 1.47-3.8 2.89-4.76 1-.72 2.14-1.46 2.14-2.9s-1.13-2.55-3-2.55A5.39 5.39 0 0 0 2 4.12L0 2.61A8.15 8.15 0 0 1 6.24 0c3 0 6 1.4 6 4.52 0 2.42-1.4 3.38-2.88 4.4-1.33.91-2.7 1.85-2.7 3.82v.36zm3.61 4.8a2.09 2.09 0 0 0-2.1-2.07 2.09 2.09 0 0 0 0 4.17 2.1 2.1 0 0 0 2.1-2.1z"></path>
 </g><g class="icon">
   <path d="M3.73 13.1v-.52c0-2.8 1.47-3.8 2.89-4.76 1-.72 2.14-1.46 2.14-2.9s-1.13-2.55-3-2.55A5.39 5.39 0 0 0 2 4.12L0 2.61A8.15 8.15 0 0 1 6.24 0c3 0 6 1.4 6 4.52 0 2.42-1.4 3.38-2.88 4.4-1.33.91-2.7 1.85-2.7 3.82v.36zm3.61 4.8a2.09 2.09 0 0 0-2.1-2.07 2.09 2.09 0 0 0 0 4.17 2.1 2.1 0 0 0 2.1-2.1z"></path>
 </g></svg>
-		</a>
-	</li>
+<span class="value ">راهنما</span></div>
+                    </a>
+                </li>
+                <li>
                     <a class="discord" target="_blank" href="#">
                         <div class="inlineIcon " title=""><svg viewBox="0 0 20 18.71" class="discord">
   <path d="M0 2.91v10.18A2.92 2.92 0 002.91 16h12.71a.93.93 0 01.65.27l2.17 2.17a.91.91 0 001.56-.65V2.91A2.92 2.92 0 0017.09 0H2.91A2.92 2.92 0 000 2.91zm15.72 9.59H4.28a.78.78 0 01-.78-.78V4.28a.78.78 0 01.78-.78h11.44a.78.78 0 01.78.78v7.44a.78.78 0 01-.78.78z"></path>

@@ -92,3 +92,48 @@
    ============================================================ */
 html.t26m #center:has(.captchaButton),
 body.mobileOptimized #center:has(.captchaButton){margin-right:0!important}
+
+/* ============================================================
+   T36 - v8: side menu + gold shop button (mini-app report)
+   1) #mobileMenu was malformed (help <li> nested inside a bare <li>,
+      the discord link dangling outside its item). Browsers rebuilt
+      the tree and the help/discord SVGs lost their sizing context ->
+      giant glyphs covered the menu. HTML repaired in topheader.php;
+      these caps keep any future SVG inside its slot.
+   2) a.mobileShopButton had no icon rules of its own (the gold skin
+      only fires on combined selectors), so it rendered as an empty
+      circle stacked on the menu button at the left edge of the bottom
+      bar - taps hit the wrong button and the menu seemed dead. It is
+      now a real link to balemini.php with the native gold shop skin,
+      parked right of the hamburger.
+   ============================================================ */
+html.t26m #mobileMenu .inlineIcon svg,
+body.mobileOptimized #mobileMenu .inlineIcon svg{
+  width:26px!important;height:26px!important;flex:0 0 26px;
+}
+@media (max-width:620px){
+  html.t26m #topBar a.mobileShopButton,
+  body.mobileOptimized #topBar a.mobileShopButton{
+    position:absolute!important;
+    left:74px!important;
+    top:15px!important;
+    bottom:auto!important;
+    margin:0!important;
+    width:58px;height:58px;
+    background-image:linear-gradient(to bottom,#cba467 5%,#f3e2ae 13%,#efbf7b 32%,#aa8050 48%,#835e35 72%,#ad8a54 93%,#d7b672 100%);
+    border:1px solid #34220d;
+    box-shadow:none;
+    z-index:501;
+  }
+  html.t26m #topBar a.mobileShopButton:after,
+  body.mobileOptimized #topBar a.mobileShopButton:after{
+    content:"";
+    position:absolute;
+    top:2px;left:2px;bottom:2px;right:2px;
+    z-index:3;
+    border-radius:50%;
+    width:52px;height:52px;
+    background-image:url('/gpackcdn/gpack/img_rtl/hud/topBar/header/shop.png');
+    background-size:cover;
+  }
+}

@@ -230,6 +230,7 @@ if (isset($_POST['action'])) {
   <div class="hero">
     <div class="t">🛒 فروشگاه طلا — Monefa Legend</div>
     <div class="s">پرداخت امن با کیف‌پول بله (بله‌پی)</div>
+    <a href="/dorf1.php" style="display:inline-block;margin-top:8px;color:#fff;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.45);border-radius:8px;padding:3px 12px;font-size:12px;text-decoration:none">بازگشت به بازی</a>
   </div>
   <div id="app"><div class="card">در حال بارگذاری…</div></div>
 </div>
