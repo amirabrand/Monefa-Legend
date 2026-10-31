@@ -351,7 +351,7 @@ if(($village->resarray['f99t'] == 40) or ($village->resarray['f99t'] == 40) or (
                 include("application/views/topheader.php");
    
                 ?>
-      
+        </div>
         <div id="center">
             <?php include("application/views/sideinfo.php"); ?>
 

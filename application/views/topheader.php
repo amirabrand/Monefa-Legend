@@ -442,7 +442,7 @@ ${'dorf'.$session->link}='active';
 <span class="value ">دیسکورد</span></div>                    </a>
                 </li>
                         <li>
-                <a class="logout" href="/logout" onclick="Travian.api('auth/logout'); return false;">
+                <a class="logout" href="logout.php">
                     <div class="inlineIcon " title=""><svg viewBox="0 0 20 20" class="logout">
   <path d="M0 17.01L7.01 10 .14 3.13 3.13.14 10 7.01 17.01 0 20 2.99 12.99 10l6.87 6.87-2.99 2.99L10 12.99 2.99 20 0 17.01z"></path>
 </svg>
@@ -578,7 +578,7 @@ ${'dorf'.$session->link}='active';
 	
 	
 		<li class="logout " alt="<?=LOGOUT?>" title="<?=$lang['Toolbar']['05'];?>">
-		<a href="logout.php" onclick="Travian.api('auth/logout'); return false;">
+		<a href="logout.php">
             <svg viewBox="0 0 20 20" class="logout"><g class="outline">
   <path d="M0 17.01L7.01 10 .14 3.13 3.13.14 10 7.01 17.01 0 20 2.99 12.99 10l6.87 6.87-2.99 2.99L10 12.99 2.99 20 0 17.01z"></path>
 </g><g class="icon">

@@ -220,6 +220,30 @@ if(!isset($_COOKIE['PW'])) {
                             </div>
 
                             <div class="clear"></div>
+                        <?php $t37reg = 1; try { $t37cfg = $database->config(); if (isset($t37cfg['regstatus']) && !$t37cfg['regstatus']) { $t37reg = 0; } unset($t37cfg); } catch (Exception $e) { } if ($t37reg) { ?>
+                        <div class="greenbox signupBox">
+                            <div class="greenbox-top"></div>
+                            <div class="greenbox-content">
+                                <div style="text-align:center;padding:10px 4px 14px;">
+                                    <div style="margin-bottom:10px;font-size:15px;">&#1581;&#1587;&#1575;&#1576; &#1705;&#1575;&#1585;&#1576;&#1585;&#1740; &#1606;&#1583;&#1575;&#1585;&#1740;&#1583;&#1567; &#1607;&#1605;&#1740;&#1606; &#1581;&#1575;&#1604;&#1575; &#1583;&#1585; &#1605;&#1608;&#1606;&#1601;&#1575; &#1604;&#1580;&#1606;&#1583; &#1579;&#1576;&#1578;&#8204;&#1606;&#1575;&#1605; &#1705;&#1606;&#1740;&#1583;:</div>
+                                    <button type="button" class="textButtonV1 green " onclick="window.location.href='anmelden.php';" style="cursor:pointer;">
+                                        <div class="button-container addHoverClick ">
+                                            <div class="button-background">
+                                                <div class="buttonStart">
+                                                    <div class="buttonEnd">
+                                                        <div class="buttonMiddle"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="button-content"><?php echo defined('REG') ? REG : '&#1579;&#1576;&#1578; &#1606;&#1575;&#1605;'; ?></div>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="greenbox-bottom"></div>
+                            <div class="clear"></div>
+                        </div>
+                        <?php } ?>
                         <div class="greenbox passwordForgotten">
                             <div class="greenbox-top"></div>
                             <div class="greenbox-content">
