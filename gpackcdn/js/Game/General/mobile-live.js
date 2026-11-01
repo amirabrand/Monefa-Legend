@@ -1,5 +1,24 @@
 /* ============================================================
    T26/T29/T31 - Viewport & native-mobile activator (monefa.net)
+   v21:
+     - T40: karte.php map taps opened the wrong tile (or nothing at all).
+       Two stacked faults: (1) the map reads its container's page position
+       once at domready, the T31/T26 class+CSS flips then re-layout the
+       page but webviews never fire resize, so the transition origin goes
+       stale by the shift and every tap/tooltip mapped to a neighbour
+       tile; (2) the T35 body.zoom makes event pageX/Y visual (zoomed)
+       while the map's constants stay layout, so taps drifted further
+       toward the bottom-right corner. Fix = a capture-phase shim that
+       rewrites pageX/pageY (mouse + touch) to layout space before
+       MooTools builds its Event (the whole event math becomes
+       layout-native WITHOUT touching game state: render path intact,
+       drag 1:1, tooltip follows the cursor again and no longer swallows
+       the first tap), plus an applyMode-tick calibration that re-anchors
+       the transition origin to the SERVER-TRUE tile range of the loaded
+       map blocks (blocks[].mapCoordinates x block element rect) - the
+       same source of truth the rulers render from. Verified: taps,
+       tooltips and click dialogs land on the exact tile under the
+       finger/cursor, before and after panning.
    v14:
      - T39: the construction bubble (.buildingList, the "ساخت فوری"
        + queue box) is position:fixed inside #resourceFieldContainer,
@@ -155,6 +174,12 @@
       }
     } catch (e) {}
 
+    /* T40: keep the map geometry in sync with the DOM (stale container
+       position after the class/CSS flips) and install the layout-space
+       event shim once (zoom page-space fix). Both no-ops elsewhere. */
+    try { t40shimEvents(); } catch (e) {}
+    try { t40healMapGeometry(); } catch (e) {}
+
     /* 2) html + body classes and native config sync */
     try { document.documentElement.classList.toggle('t26m', mob); } catch (e) {}
     try {
@@ -171,6 +196,100 @@
     } catch (e) {}
     if (mob) b.classList.add('mobileOptimized');
     else b.classList.remove('mobileOptimized');
+  }
+
+  /* ===== T40: karte.php map tap repair (see v16 header note) ===== */
+  function t40activeZoom() {
+    var z = parseFloat(document.body.style.zoom);
+    return (z && isFinite(z) && z > 0.05 && Math.abs(z - 1) > 0.005) ? z : 1;
+  }
+
+  function t40isMapPage() {
+    try {
+      var cl = document.body.classList;
+      return cl.contains('map') || cl.contains('positionDetails');
+    } catch (e) { return false; }
+  }
+
+  function t40fixPage(obj) {
+    if (!obj) return;
+    var z = t40activeZoom();
+    if (z === 1) return;
+    try {
+      if (typeof obj.clientX !== 'number') return;
+      Object.defineProperty(obj, 'pageX', { value: obj.clientX / z, configurable: true });
+      Object.defineProperty(obj, 'pageY', { value: obj.clientY / z, configurable: true });
+    } catch (e) {}
+  }
+
+  function t40shimEvents() {
+    if (window.__t40shim) return;
+    window.__t40shim = true;
+    var types = ['mousedown', 'mousemove', 'mouseup', 'mousewheel', 'wheel',
+                 'touchstart', 'touchmove', 'touchend'];
+    var fix = function (ev) {
+      if (!ev || !t40isMapPage()) return;
+      if (ev.type === 'mousedown' || ev.type === 'touchstart') {
+        window.__t40lastAct = Date.now();
+      }
+      t40fixPage(ev);
+      if (ev.touches && ev.touches[0]) t40fixPage(ev.touches[0]);
+      if (ev.changedTouches && ev.changedTouches[0]) t40fixPage(ev.changedTouches[0]);
+    };
+    for (var i = 0; i < types.length; i++) {
+      document.addEventListener(types[i], fix, true);
+    }
+  }
+
+  function t40healMapGeometry() {
+    if (!t40isMapPage()) return;
+    try {
+      var host = document.querySelector('#mapContainer');
+      var mp = host && host._map;
+      if (!mp || !mp.transition || typeof mp.positionChange !== 'function') return;
+      var z = t40activeZoom();
+      /* Desktop (zoom 1): the game's own geometry is already correct -
+         just refresh it (idempotent, native). */
+      if (z === 1) {
+        mp.positionChange();
+        return;
+      }
+      /* Zoomed webviews: the map init calibrated its transition origin
+         before the T31/T26 class+CSS flips re-laid the page out, so the
+         tap/tooltip math is stale by the layout shift. Re-anchor ONCE per
+         page load from the one immutable server truth: karte.php is
+         served centred on the X/Y the server put in the coordinate form
+         (and the URL), and the map renders that tile at the container's
+         visual centre. Solve the transition origin so the event math
+         maps the centre pixel to exactly that tile. Deliberately never
+         re-anchored afterwards: pans are tracked natively by the game's
+         own relative move() and later block stamps follow the belief. */
+      if (window.__t40cal) return;
+      var now = Date.now();
+      if (window.__t40born === undefined) window.__t40born = now;
+      if (now - window.__t40born < 4000) return;
+      if (window.__t40lastAct && now - window.__t40lastAct < 4000) return;
+      var xi = document.querySelector('#xCoordInputMap');
+      var yi = document.querySelector('#yCoordInputMap');
+      if (!xi || !yi) return;
+      var tx = parseInt(xi.value, 10);
+      var ty = parseInt(yi.value, 10);
+      if (!isFinite(tx) || !isFinite(ty)) return;
+      var r = host.getBoundingClientRect();
+      if (r.width < 100) return;
+      mp.positionChange();
+      var t = mp.transition;
+      var cx = (r.left + r.width / 2) / z;
+      var cy = (r.top + r.height / 2) / z;
+      var ppt = t.pixelPerTile;
+      var om = t.positionOrigin.map;
+      var f = mp.blockSize.height / t.elementsPerBlock.y;
+      /* tile = floor((page - ob)/ppt) + om  ->  centre pixel sits mid-bucket */
+      t.positionOrigin.browser.x = cx - (tx - om.x + 0.5) * ppt.x;
+      /* tile.y = om.y - floor((page - ob.y + f)/ppt) */
+      t.positionOrigin.browser.y = cy + f - (om.y - ty + 0.5) * ppt.y;
+      window.__t40cal = true;
+    } catch (e) {}
   }
 
   var timer = null;

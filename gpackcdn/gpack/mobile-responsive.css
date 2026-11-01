@@ -172,3 +172,11 @@ body.mobileOptimized > div.buildingList{
   margin:0!important;
   z-index:35!important;
 }
+
+
+/* ---------- T40 - v10: map tooltip must not swallow taps ----------
+   The map tile tooltip (Travian.Tip: a bare div > .tip child of body)
+   is informational only. Under the T35 body zoom it drifted over the
+   cursor, so the first tap on a map tile hit the tooltip instead of the
+   map mover and died ("نقشه باگ دارد"). Kill its pointer events. */
+body.mobileOptimized > div > .tip { pointer-events: none !important; }

@@ -78,6 +78,7 @@
           </ul>
         </li>
         <li><a href="?p=email">ایمیل سرور</a></li>
+        <li><a href="?p=serverstatus">وضعیت سرور (CPU / RAM / هارد)</a></li>
         <li><a href="?p=support">پیام‌های پشتیبانی</a></li>
         <li><a href="../dorf1.php"><?php echo $lang['Admin']['sidebar27']; ?></a></li>
         <li><a href="../logout.php"><?php echo $lang['Admin']['sidebar28']; ?></a></li>
