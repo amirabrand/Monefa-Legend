@@ -142,12 +142,12 @@
     }
 
     /* T39: the build bubble must not stay inside the scaled map
-       container - see the v14 header note. The bubble may not exist
-       (no construction queued) and mobileForced is set by the game's
-       own script (crypt.js), possibly after this runs; applyMode
-       re-runs on the interval below, so late class flips are caught. */
+       container - see the v14 header note. Gated on mobileOptimized
+       (set here, reliably) rather than mobileForced: crypt.js only
+       flips mobileForced inside its resize handler, which webviews
+       that never resize after load never fire. */
     try {
-      if (b.classList.contains('mobileForced')) {
+      if (b.classList.contains('mobileOptimized')) {
         var __bl = document.querySelector('div.buildingList');
         if (__bl && __bl.parentElement && __bl.parentElement !== b) {
           b.appendChild(__bl);

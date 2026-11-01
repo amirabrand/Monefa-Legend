@@ -388,4 +388,4 @@ if(isset($session->uid) && basename($_SERVER['PHP_SELF']) !== 'captcha.php' && b
 }
 </style>
 <script src="/gpackcdn/js/Game/General/shopui-live.js?v=2"></script>
-<script src="/gpackcdn/js/Game/General/mobile-live.js?v=14"></script>
+<script src="/gpackcdn/js/Game/General/mobile-live.js?v=15"></script>
