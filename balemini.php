@@ -18,6 +18,14 @@
  *   action=link  {initData, code}        -> link game account (botusersshaker code)
  *   action=buy   {initData, product}     -> pending payments row + createInvoiceLink
  * Payment completes through balebot.php webhook (successful_payment -> gold credit).
+ *
+ * T38: auth fallback - when the shop is opened from inside the game
+ * (bottom-bar shop button) there is no Bale bridge in that webview, so
+ * initData is empty and every API call failed with "auth" -> dead-end
+ * "open in Bale" warning. The game's own PHP session (username + sessid
+ * row in `online`, probed exactly like application/Session.php) is now
+ * accepted instead, so the shop works from the game in the container
+ * AND in plain browsers. Bridge/initData auth stays first choice.
  */
 error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
 @set_time_limit(20);
@@ -106,24 +114,48 @@ function balemini_account($database, $baleId)
     return $u ?: null;
 }
 
+/** T38: game-session auth fallback. Mirrors application/Session.php
+ *  checkLogin(): $_SESSION['username'] + $_SESSION['sessid'] must have a
+ *  live row in the `online` table. Session lock is released immediately
+ *  (session_write_close) so the invoice API call never blocks the game. */
+function balemini_session_account($database)
+{
+    if (session_status() !== PHP_SESSION_ACTIVE) { @session_start(); }
+    $name = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+    $ssid = isset($_SESSION['sessid']) ? $_SESSION['sessid'] : '';
+    @session_write_close();
+    if ($name === '' || $ssid === '') return null;
+    $mas = count($database->GetAOnline2($ssid));
+    if (!$mas) return null;
+    $u = $database->queryFetch(
+        "SELECT id, username, gold FROM users WHERE username = :u LIMIT 1",
+        array('u' => $name)
+    );
+    return $u ?: null;
+}
+
 /* ------------------------------ API ------------------------------ */
 if (isset($_POST['action'])) {
     $user = balemini_validate(isset($_POST['initData']) ? $_POST['initData'] : '', $__cfg['token']);
-    if (!$user) {
+    /* T38: no valid initData -> try the game session (shop opened from
+       inside the game; that webview shares the game cookies). */
+    $sacc = $user ? null : balemini_session_account($database);
+    if (!$user && !$sacc) {
         balemini_json(array('ok' => false, 'error' => 'auth'));
     }
-    $baleId = (int)$user['id'];
+    $baleId = $user ? (int)$user['id'] : 0;
     $act = (string)$_POST['action'];
 
     if ($act === 'me') {
-        $acc = balemini_account($database, $baleId);
+        $acc = $user ? balemini_account($database, $baleId) : $sacc;
         $packs = array();
         foreach ((isset($packages) ? $packages : array()) as $p) {
             $packs[] = array('id' => (int)$p['id'], 'gold' => (int)$p['gold'], 'cost' => (int)$p['cost']);
         }
         balemini_json(array(
             'ok'         => true,
-            'bale'       => array('id' => $baleId, 'name' => isset($user['first_name']) ? $user['first_name'] : ''),
+            'auth'       => $user ? 'bale' : 'session',
+            'bale'       => $user ? array('id' => $baleId, 'name' => isset($user['first_name']) ? $user['first_name'] : '') : null,
             'account'    => $acc ? array('uid' => (int)$acc['id'], 'username' => $acc['username'], 'gold' => (int)$acc['gold']) : null,
             'packages'   => $packs,
             'multiplier' => (int)$__cfg['multiplier'],
@@ -131,6 +163,10 @@ if (isset($_POST['action'])) {
     }
 
     if ($act === 'link') {
+        if ($sacc) {
+            /* T38: session-authed shop already knows the game account */
+            balemini_json(array('ok' => true, 'username' => $sacc['username']));
+        }
         $code = preg_replace('/[^A-Za-z0-9]/', '', isset($_POST['code']) ? $_POST['code'] : '');
         if ($code === '') balemini_json(array('ok' => false, 'error' => 'code'));
         $row = $database->queryFetch(
@@ -148,7 +184,7 @@ if (isset($_POST['action'])) {
     }
 
     if ($act === 'buy') {
-        $acc = balemini_account($database, $baleId);
+        $acc = $user ? balemini_account($database, $baleId) : $sacc;
         if (!$acc) balemini_json(array('ok' => false, 'error' => 'notlinked'));
         $pid = isset($_POST['product']) ? (int)$_POST['product'] : 0;
         $pack = null;
@@ -262,7 +298,10 @@ if (isset($_POST['action'])) {
             if (st && (st.status === 'paid' || st.status === 'pending')) { load(); }
           });
         } else {
-          window.open(r.invoice, '_blank');
+          /* T38: no bridge -> popups are often blocked inside webviews;
+             if window.open returns null, navigate the same tab instead. */
+          var w = window.open(r.invoice, '_blank');
+          if (!w) { location.href = r.invoice; }
         }
       } else {
         var m = {
@@ -302,9 +341,10 @@ if (isset($_POST['action'])) {
         app.innerHTML = '<div class="warn">ارتباط با بله برقرار نشد.<br>صفحه را کاملاً ببندید و دوباره از داخل بله (از ربات) باز کنید.'
           + '<div style="margin-top:10px;text-align:center"><button class="buy" onclick="location.reload()">تلاش دوباره</button></div></div>';
       } else {
-      app.innerHTML = '<div class="warn">برای استفاده، این صفحه را از داخل پیام‌رسان <b>بله</b> باز کنید:<br>'
-        + '<span dir="ltr">ble.ir/monefabot?startapp</span><br>'
-        + 'یا در گفتگو با بازو، دکمهٔ «فروشگاه طلا» را بزنید.</div>';
+      app.innerHTML = '<div class="warn">اتصال به بله در این صفحه برقرار نشد. دو راه دارید:<br>'
+        + '۱) وارد بازی شوید و در نوار پایین، دکمهٔ «فروشگاه طلا» را بزنید.<br>'
+        + '۲) فروشگاه را مستقیم داخل پیام‌رسان <b>بله</b> باز کنید:'
+        + '<div style="margin-top:10px;text-align:center"><a class="buy" style="display:inline-block;text-decoration:none" href="https://ble.ir/monefabot?startapp=shop">باز کردن فروشگاه در بله</a></div></div>';
         }return;
     }
     var h = '';
