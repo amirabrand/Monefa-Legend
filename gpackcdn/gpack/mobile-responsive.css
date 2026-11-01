@@ -137,3 +137,38 @@ body.mobileOptimized #mobileMenu .inlineIcon svg{
     background-size:cover;
   }
 }
+
+/* ============================================================
+   T39 - v9: build bubble (.buildingList, the "ساخت فوری" +
+   construction-queue box) misplaced - user report: the confirm
+   buttons end up below/outside the box ("دکمه تایید زیر کادر
+   میروند").
+   Root cause: the game's mobile CSS anchors the bubble with
+   position:fixed (bottom:105px) INSIDE #resourceFieldContainer
+   while scaling that same container with transform:scale(1.35).
+   A fixed element inside a transformed ancestor takes the
+   ancestor as its containing block, so the bubble anchors to
+   the ~330px map band mid-screen; with the T35 body zoom
+   Chromium additionally paints it detached from its hit-rect
+   (bubble jumps up-right, oversized, taps miss).
+   mobile-live.js v14 reparents the bubble to <body> (the layer
+   where the game's own dialog overlay lives and renders
+   correctly) and publishes --t26z = active body zoom. After the
+   reparent the game's descendant selectors stop matching, so
+   style body>div.buildingList here. Fixed offsets paint x zoom,
+   hence bottom = 105px / --t26z: ~105 visual px above the bottom
+   bar on zoomed webviews, the game's own 105px when the meta
+   viewport is honored (--t26z = 1).
+   ============================================================ */
+html.t26m body > div.buildingList,
+body.mobileOptimized > div.buildingList{
+  position:fixed!important;
+  left:auto!important;
+  right:10px!important;
+  top:auto!important;
+  bottom:calc(105px / var(--t26z, 1))!important;
+  width:405px!important;
+  max-width:96vw;
+  margin:0!important;
+  z-index:35!important;
+}

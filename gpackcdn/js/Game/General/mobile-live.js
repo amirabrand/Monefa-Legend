@@ -1,5 +1,20 @@
 /* ============================================================
    T26/T29/T31 - Viewport & native-mobile activator (monefa.net)
+   v14:
+     - T39: the construction bubble (.buildingList, the "ساخت فوری"
+       + queue box) is position:fixed inside #resourceFieldContainer,
+       and the game's mobile CSS scales that container with
+       transform:scale(1.35). A fixed element inside a transformed
+       ancestor uses the ancestor as its containing block -> the
+       bubble anchored to the 330px map band mid-screen instead of
+       the viewport, and under the v12 body zoom Chromium even
+       painted it detached from its hit-rect (bubble jumped up-right,
+       oversized, taps missed: "دکمه تایید زیر کادر میروند"). The
+       game's own dialog overlay (fixed, child of <body>) renders
+       fine, so applyMode now reparents the bubble to <body> every
+       tick and publishes --t26z (the active body zoom) so the CSS
+       can keep the bubble ~105 visual px above the bottom bar on
+       zoomed webviews and at the game's own 105px elsewhere.
    v12:
      - T34: webviews that force their own initial scale (they ignore the
        meta initial-scale) rendered the 620 canvas at scale 1 and the
@@ -116,12 +131,29 @@
           document.body.style.zoom = z;
           document.documentElement.style.overflowX = 'hidden';
         }
+        /* T39: publish the active zoom for CSS (bubble bottom calc) */
+        document.documentElement.style.setProperty('--t26z', z);
       } else if (zoomed && near1 && gap <= 0) {
         /* environment renders our own scale again - drop the fallback */
         document.body.style.zoom = '';
         document.documentElement.style.overflowX = '';
+        document.documentElement.style.setProperty('--t26z', '1');
       }
     }
+
+    /* T39: the build bubble must not stay inside the scaled map
+       container - see the v14 header note. The bubble may not exist
+       (no construction queued) and mobileForced is set by the game's
+       own script (crypt.js), possibly after this runs; applyMode
+       re-runs on the interval below, so late class flips are caught. */
+    try {
+      if (b.classList.contains('mobileForced')) {
+        var __bl = document.querySelector('div.buildingList');
+        if (__bl && __bl.parentElement && __bl.parentElement !== b) {
+          b.appendChild(__bl);
+        }
+      }
+    } catch (e) {}
 
     /* 2) html + body classes and native config sync */
     try { document.documentElement.classList.toggle('t26m', mob); } catch (e) {}
