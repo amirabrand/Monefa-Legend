@@ -169,7 +169,7 @@ class Session {
         // NoBody
         if($u['msg'] == 0 && $this->page != 'messages.php' && ($u)){
             if(isset($_GET['ok'])){
-                $database->query("UPDATE `users` SET `msg` = 1 WHERE `id` = ".$u['id']."");
+                $database->query("UPDATE `users` SET `msg` = 1 WHERE `id` = ".(int)$u['id']."");
                 header('Location: dorf1.php'); exit();
             }else{
                 header('Location: messages.php'); exit();
@@ -209,9 +209,12 @@ class Session {
         $_SESSION['wid'] = $this->vid;
 
         //
-        $qData = $database->queryFetch("SELECT * FROM quests WHERE userid = ".$u['id']."");
+        // zai-fix T45: hard-cast user id (is_scalar guard) — an unexpected
+        // array value could reach SQL and produce "userid = Array" 1054 errors
+        $uidSafe = is_scalar($u['id'] ?? null) ? (int)$u['id'] : 0;
+        $qData = $database->queryFetch("SELECT * FROM quests WHERE userid = ".$uidSafe."");
         $this->fData = $database->queryFetch("SELECT * FROM fdata WHERE vref = ".$_SESSION['wid']."");
-        $this->acData = $database->queryFetch("SELECT * FROM achiev WHERE uid = ".$u['id']."");
+        $this->acData = $database->queryFetch("SELECT * FROM achiev WHERE uid = ".$uidSafe."");
         
         $this->qData = $qData;
         $this->questNum = $qData['quest'];

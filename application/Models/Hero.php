@@ -16,19 +16,24 @@ Class Hero{
         // 103 => enforcement
 
         // need to edit code to check if hero is already in one of the players villages, give 100
-        $hData = $database->queryFetch('SELECT * FROM hero WHERE uid = '.$session->uid.'');
-        if($hData['dead'] == 1){
+        $hData = $database->queryFetch('SELECT * FROM hero WHERE uid = '.(int)$session->uid.'');
+        // zai-fix T45: missing hero row (fresh/admin accounts) made wref empty
+        // and crashed dorf1 with SQL 1064 on units/movement/enforcement
+        if(!$hData || !isset($hData['wref']) || $hData['wref'] === '' || $hData['wref'] === null){
+            $status = 100; // no hero yet — treat as home
+        }elseif($hData['dead'] == 1){
             $status = 101;
         }else{
+            $hwref = (int)$hData['wref'];
             //print_r($database->getVillID2($session->uid));
-            $unitN = $database->queryFetch('SELECT u11 FROM units WHERE `vref` = '.$hData['wref'].'');
+            $unitN = $database->queryFetch('SELECT u11 FROM units WHERE `vref` = '.$hwref.'');
             if($unitN['u11'] == 0){ // Not in the village (enforcement or caged) or in adventure
-                $mNumber = $database->queryNumRow('SELECT `sort_type` FROM `movement` WHERE sort_type = 9 AND `from` = '.$hData['wref'].' AND endtime > '.time().'');
+                $mNumber = $database->queryNumRow('SELECT `sort_type` FROM `movement` WHERE sort_type = 9 AND `from` = '.$hwref.' AND endtime > '.time().'');
                 if($mNumber != 0){
                     $status = 9;
                 }
-                
-                $enf = $database->queryFetch('SELECT `u11` FROM `enforcement` WHERE `from` ='.$hData['wref'].'');
+
+                $enf = $database->queryFetch('SELECT `u11` FROM `enforcement` WHERE `from` ='.$hwref.'');
                 if($enf['u11'] != 0){
                     $status = 103;
                 }

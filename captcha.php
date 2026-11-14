@@ -10,7 +10,10 @@ $captcha_expiry_time = 43200; // 30 minutes
 
 
 
-if (isset($_POST['selected_index'], $_SESSION['correctindex'], $_SESSION['captime']) && $_SESSION['captime'] < time()) {
+// zai-fix T45: dropped '&& captime < time()' — after any previous successful
+// solve captime is time()+43200 (future) and correct answers were silently
+// ignored, leaving the user stuck on the puzzle
+if (isset($_POST['selected_index'], $_SESSION['correctindex'], $_SESSION['captime'])) {
     $selectedIndex = $_POST['selected_index'];
     $correctIndex = $_SESSION['correctindex'];
 
@@ -22,9 +25,12 @@ if (isset($_POST['selected_index'], $_SESSION['correctindex'], $_SESSION['captim
         //unset($_SESSION['captime']);
         $_SESSION['captime'] = time() + $captcha_expiry_time;
         //$_SESSION['captime'] = 'TRUE';
-        // Set `cappage` if not already set to prevent redirect issues
-        if (!isset($_SESSION['cappage'])) {
-            $_SESSION['cappage'] = basename($_SERVER['PHP_SELF']);
+        // zai-fix T45: never bounce back into the puzzle page — if cappage is
+        // missing or is captcha.php itself, send logged-in users to dorf1 and
+        // pre-login users back to the login form
+        if (!isset($_SESSION['cappage']) || $_SESSION['cappage'] === ''
+            || strpos($_SESSION['cappage'], 'captcha.php') !== false) {
+            $_SESSION['cappage'] = isset($_SESSION['sessid']) ? 'dorf1.php' : 'login.php';
         }
        // var_dump($_SESSION['captime']<time());die();
         // Redirect to the set page
