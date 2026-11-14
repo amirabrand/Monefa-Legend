@@ -90,6 +90,13 @@ if (isset($_GET['typ']) && isset($_GET['gid'])) {
 
 
 <body class="manual ar-AE buildingsV1">
+<a id="manualCloseBtn" href="dorf1.php" title="بستن راهنما و بازگشت به بازی" aria-label="بستن راهنما"><svg viewBox="0 0 20 20"><path fill="#fff" d="M0 17.01L7.01 10 .14 3.13 3.13.14 10 7.01 17.01 0 20 2.99 12.99 10l6.87 6.87-2.99 2.99L10 12.99 2.99 20 0 17.01z"></path></svg></a>
+<style>
+#manualCloseBtn{position:fixed;top:10px;left:10px;z-index:999999;width:44px;height:44px;border-radius:10px;background:rgba(35,32,24,.78);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.45);cursor:pointer}
+#manualCloseBtn svg{width:20px;height:20px;display:block}
+#manualCloseBtn:hover{background:rgba(35,32,24,.9)}
+#manualCloseBtn:active{background:rgba(35,32,24,.98)}
+</style>
     <?php if (!isset($_GET['typ']) && !isset($_GET['s'])) { ?>
         <div id="troops">
             <h3>
