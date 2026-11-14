@@ -2,8 +2,9 @@
 include("application/views/Plus/pmenu.php");
 $extragoud="0";
 $_SESSION['email']=$session->email;
+$isError = 0; $Error = '';
 if(isset($_POST) && !empty($_POST)){
-    $_POST = filter_var_array($_POST, FILTER_SANITIZE_STRING);
+    $_POST = array_map(fn($v) => is_string($v) ? htmlspecialchars(trim($v), ENT_QUOTES) : $v, $_POST);
         $Q = $database->query("SELECT * FROM codes WHERE codeNum = '".$_POST['code']."'");
 
         if(count($Q) > 0){
@@ -14,7 +15,7 @@ if(isset($_POST) && !empty($_POST)){
                 $database->query("UPDATE codes SET isUsed = 1 WHERE id = ".$Q[0]['id']."");
                 $database->modifyGold($session->uid,$Q[0]['goldAmount'],1);
                 $isError++;
-                $Error = 'The code has been shipped successfully and add '. $Q[0][' goldAmount '].' gold to you.';
+                $Error = 'The code has been shipped successfully and add '. $Q[0]['goldAmount'].' gold to you.';
             }
         }else{
             $isError++;
@@ -23,8 +24,8 @@ if(isset($_POST) && !empty($_POST)){
 
 }
 ?>
-<h4 class="round">Recharge gold code</h4>
-<p>If you have one of the gold codes, enter it to get detection of the From gold code.</p>
+<h4 class="round">شارژ طلا با کد</h4>
+<p>اگر یکی از کدهای طلا را دارید، آن را وارد کنید تا طلای آن به حساب شما اضافه شود.</p>
 <?php if($isError){ ?>
     <b style="color:red;"><?php echo $Error; ?></b> <br>
 <?php } ?>
@@ -46,7 +47,7 @@ if(isset($_POST) && !empty($_POST)){
                 <tr>
                     <td>
                     
-                        <span class="">club gold</span>
+                        <span class="">کد طلا</span>
                         <input name="code" type="text" autocomplete="off">
                         <span class="clear"></span>
                     </td>
@@ -65,7 +66,7 @@ if(isset($_POST) && !empty($_POST)){
                     </div>
                 </div>
             </div>
-            <div class="button-content">Charge</div>
+            <div class="button-content">شارژ</div>
         </div>
     </button>    
 

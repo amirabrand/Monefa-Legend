@@ -252,10 +252,10 @@ define("PROFILE","پروفایل");
 define("SUPPORT","پشتیبانی");
 define("RULES","قوانین");
 
-define("P","P");
-define("L","l");
-define("U","u");
-define("S","s");
+define("P","پ");
+define("L","ل");
+define("U","ا");
+define("S","س");
 define("UPDATE_T_10","به روز رسانی تاپ 10");
 define("SYSTEM_MESSAGE","پیام سیستمی");
 define("TRAVIAN_PLUS","Travian <b><font color=\"#71D000\">P</font><font color=\"#FF6F0F\">l</font><font color=\"#71D000\">u</font><font color=\"#FF6F0F\">s</font></b>");

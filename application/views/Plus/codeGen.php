@@ -1,5 +1,5 @@
 <?php include("application/views/Plus/pmenu.php"); ?>
-<h4 class="round">Generate codes</h4>
+<h4 class="round">ساخت کد طلا</h4>
 <?php
 if($session->access != 9){
     header('Location: dorf1.php'); exit();
@@ -52,12 +52,12 @@ if($session->access != 9){
                 <tbody>
                 <tr>
                     <td>
-                        <span class="">quantity gold</span>
+                        <span class="">مقدار طلا</span>
                         <input name="goldAmount" type="number" autocomplete="off">
                         <span class="clear"></span>
                     </td>
                     <td>
-                        <span class="">number code</span>
+                        <span class="">تعداد کد</span>
                         <input name="codeNum" type="number" value="1" autocomplete="off">
                         <span class="clear"></span>
                     </td>
@@ -76,21 +76,21 @@ if($session->access != 9){
                     </div>
                 </div>
             </div>
-            <div class="button-content">Birth</div>
+            <div class="button-content">ساخت کد</div>
         </div>
     </button>    
 
 </form>
 <br><br>
-<h4 class="round">List the Codes</h4>
+<h4 class="round">فهرست کدها</h4>
 <table cellpadding="1" cellspacing="1" id="overview" class="inbox">
     <thead>
         <tr>
             <th>#</th>
-            <th>code</th>
-            <th>gold</th>
-            <th>h</th>
-            <th>Operations</th>
+            <th>کد</th>
+            <th>طلا</th>
+            <th>مصرف‌شده</th>
+            <th>عملیات</th>
         </tr>
     </thead>
     <tbody>
@@ -102,13 +102,13 @@ if($session->access != 9){
         <td><?php echo $code['id']; ?></td>
         <td><?php echo $code['codeNum']; ?></td>
         <td><?php echo $code['goldAmount']; ?></td>
-        <td><?php echo $code['isUsed'] ? 'yes':'no'; ?></td>
-        <td><a href="plus.php?id=6&del=<?php echo $code['id']; ?>">delete</a></td>
+        <td><?php echo $code['isUsed'] ? 'بله':'خیر'; ?></td>
+        <td><a href="plus.php?id=6&del=<?php echo $code['id']; ?>">حذف</a></td>
         </tr>
     <?php 
         }
         }else{
-            echo '<tr><td colspan="5">No codes found yet.</td></tr>';
+            echo '<tr><td colspan="5">هنوز کدی ساخته نشده است.</td></tr>';
         } ?>
     </tbody>
 </table>

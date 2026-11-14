@@ -12,7 +12,7 @@ include("application/views/Plus/pmenu.php");
 
     <h3><?=mkg2?> </h3><b><?=mkg2?></b>:
     <br>
-    <span class="link"><?php echo HOMEPAGE; ?>anmelden.php?ref=<?php echo $session->uid; ?></span>
+    <span class="link"><?php echo rtrim(HOMEPAGE,"/"); ?>/anmelden.php?ref=<?php echo $session->uid; ?></span>
 <br/><br/><b><?=mkg4?></b>
     <p><?=mkg5?> <b><?= REF_POP?></b> <?=mkg6?> <b><?= REF_GOLD?></b> <?=mkg7?> <?php echo $g;?>.</p>
     <p><?=mkg8?>

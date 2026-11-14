@@ -384,8 +384,8 @@ if($session->gold >= COSTRES) {
 <?php }if(true){?>
 <tr>
 
-    <td class="desc">Train troops for one hour</td>
-    <td class="dur">Now</td>
+    <td class="desc">آموزش نیروها به مدت یک ساعت</td>
+    <td class="dur">الان</td>
     <td class="cost"><img src="img/x.gif" class="gold" alt="Золота" title="Золота" /><span id='costres'><?=COSTRES?></span></td>
     <td class="act"><span class="none">
 <?php
