@@ -198,13 +198,13 @@ if(!isset($_GET['t']) || !is_numeric($_GET['t']) || $_GET['t'] > 5){$_GET['t'] =
                 <?php if($_GET['t'] != 5){ ?>
                 <div class="productionContainer">
                     <div class="productionPerHour">
-                        <h4>Production hour:</h4>
+                        <h4>تولید در ساعت:</h4>
                         <table cellspacing="1" cellpadding="1" class="row_table_data">
                             <thead>
                             <tr>
-                                <td>Field Resources</td>
-                                <td>Produce</td>
-                                <td>Premium</td>
+                                <td>زمین منابع</td>
+                                <td>تولید</td>
+                                <td>پلاس</td>
                             </tr>
                             </thead>
                             <tbody>
@@ -214,13 +214,13 @@ if(!isset($_GET['t']) || !is_numeric($_GET['t']) || $_GET['t'] > 5){$_GET['t'] =
                                     $base+= ${'bid'.$_GET['t']}[$fdataarr[[$i]]]['prod'];
                                 ?>
                             <tr>
-                                <td>woodcutter level <?php echo $session->fData['f'.$i]; ?></td>
+                                <td><?php echo ($lang['buildings'][$session->fData['f'.$i.'t']] ?? 'منبع'); ?> سطح <?php echo $session->fData['f'.$i]; ?></td>
                                 <td class="numberCell"><?php echo $base /100 * (${'bid'.$_GET['t']}[$zavod]['attri']); ?></td>
                                 <td class="numberCell">0</td>
                             </tr>
                             <?php }} ?>
                             <tr class="productionSum">
-                                <td>total</td>
+                                <td>جمع</td>
                                 <td class="numberCell">105,000</td>
                                 <td class="numberCell">0</td>
                             </tr>
@@ -241,22 +241,22 @@ if(!isset($_GET['t']) || !is_numeric($_GET['t']) || $_GET['t'] > 5){$_GET['t'] =
                                 <div class="fluidSpeechBubble-bc"></div>
                                 <div class="speechArrowBack"></div>
                                 <div class="fluidSpeechBubble-contents cf">
-                                    <h5>جایزه                        :</h5>
+                                    <h5>جایزه:</h5>
                                     <table cellspacing="0" cellpadding="0" class="row_table_data">
                                         <tbody>
                                         <tr class="inactive">
                                             <td>کارگاه نجاری سطح 0:</td>
                                             <td class="numberCell">0%&lrm;</td>
                                         </tr>                        <tr class="inactive">
-                                            <td>واحه‌ها                                (×0)
+                                            <td>واحه‌ها (×0)
                                             </td>
                                             <td class="numberCell">
-                                                &lrm;0%&lrm;
+                                                0%
                                             </td>
                                         </tr>
                                                                 <tr>
                                             <td class="bold">جمع جوایز</td>
-                                            <td class="bold numberCell">0                                %&lrm;
+                                            <td class="bold numberCell">0%
                                             </td>
                                         </tr>
                                         </tbody>
@@ -269,7 +269,7 @@ if(!isset($_GET['t']) || !is_numeric($_GET['t']) || $_GET['t'] > 5){$_GET['t'] =
 
                 <div class="total productionContainer">
                     <div class="productionPerHourTotal">
-                        <h4>تولید کل در ساعت            :</h4>
+                        <h4>تولید کل در ساعت:</h4>
                         <table cellspacing="0" cellpadding="0" class="row_table_data">
                             <tbody>
                             <tr>
@@ -285,14 +285,14 @@ if(!isset($_GET['t']) || !is_numeric($_GET['t']) || $_GET['t'] > 5){$_GET['t'] =
                                 <td class="numberCell">120,000</td>
                             </tr>
                             <tr class="subtotal">
-                                <td class="bold">جمع موقت                    =
+                                <td class="bold">جمع موقت:
                                 </td>
                                                 <td class="numberCell bold">225,000</td>
                             </tr>
 
                             <tr class="inactive">
                                 <td>
-                                    +25%&lrm; تولید (پلاس فعال نیست)</td>
+                                    تولید <span dir="ltr">+25%</span> (پلاس فعال نیست)</td>
                                 <td class="numberCell">56,250</td>
                             </tr>
                             <tr class="total bold">
@@ -318,7 +318,7 @@ if(!isset($_GET['t']) || !is_numeric($_GET['t']) || $_GET['t'] > 5){$_GET['t'] =
                                 <div class="speechArrowBack"></div>
                                 <div class="fluidSpeechBubble-contents cf">
                                     <form id="fluidSpeechBubble" method="post" action="">
-                                        <p>تولید در ساعت با احتساب جایزه                            : <span class="bold">281,250</span>
+                                        <p>تولید در ساعت با احتساب جایزه: <span class="bold">281,250</span>
                                         </p>
 
                                         <div>
@@ -407,7 +407,7 @@ if(!isset($_GET['t']) || !is_numeric($_GET['t']) || $_GET['t'] > 5){$_GET['t'] =
                     </tr>
                     <tr>
                         <td>جمعیت و سفارش‌های ساخت</td>
-                        <td class="numberCell">-54                    &lrm;
+                        <td class="numberCell"><span dir="ltr">-54</span>
                         </td>
                     </tr>
                     <tr class="subtotal">
@@ -424,7 +424,7 @@ if(!isset($_GET['t']) || !is_numeric($_GET['t']) || $_GET['t'] > 5){$_GET['t'] =
                     </tr>
                     <tr class="inactive">
                         <td>
-                            +25%&lrm; تولید (پلاس فعال نیست)</td>
+                            تولید <span dir="ltr">+25%</span> (پلاس فعال نیست)</td>
                         <td class="numberCell">63,252</td>
                     </tr>
                     <tr class="subtotal">
@@ -479,7 +479,7 @@ if(!isset($_GET['t']) || !is_numeric($_GET['t']) || $_GET['t'] > 5){$_GET['t'] =
                                         <tr>
                                             <td class="troopLabel">
                                                 - اسیر</td>
-                                            <td class="numberCell">0                                        &lrm;
+                                            <td class="numberCell">0
                                             </td>
                                         </tr>
                                         <tr class=" inactive">
@@ -566,7 +566,7 @@ if(!isset($_GET['t']) || !is_numeric($_GET['t']) || $_GET['t'] > 5){$_GET['t'] =
                 <table cellspacing="0" cellpadding="0" class="row_table_data">
                     <tbody>
                     <tr class="total">
-                        <td class="bold">مانده گندم                    =
+                        <td class="bold">مانده گندم:
                         </td>
                         <td class="bold numberCell">252,946</td>
                     </tr>
