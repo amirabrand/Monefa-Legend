@@ -761,6 +761,78 @@ jQuery('#outOfGame li.logout a').click(function() {
         });
     });
 </script>
+<style>
+/* T42QST: quest dialog close guarantee */
+div#center .contentTitle a#closeContentButton{z-index:90!important}
+</style>
+<script type="text/javascript">
+(function(){
+  function ensureQuestClose(){
+    try{
+      var ovs=document.querySelectorAll('.dialogOverlay');
+      for(var i=0;i<ovs.length;i++){
+        var st=getComputedStyle(ovs[i]);
+        if(st.display!=='none'&&parseFloat(st.opacity)===0){ovs[i].style.pointerEvents='none';}
+      }
+      var t=document.querySelector('#center .contentTitle');
+      if(!t){return;}
+      var x=t.querySelector('a#closeContentButton');
+      if(x&&x.getAttribute('data-t42x')==='1'){
+        var cl=x.cloneNode(true);
+        cl.removeAttribute('data-t42x');
+        x.parentNode.replaceChild(cl,x);
+        x=cl;
+      }
+      if(!x){
+        x=document.createElement('a');
+        x.id='closeContentButton';
+        x.className='contentTitleButton buttonFramed green withIcon';
+        x.href='/dorf1.php';
+        x.title='بستن';
+        x.innerHTML='<svg viewBox="0 0 20 20"><path fill="#fff" d="M0 17.01L7.01 10 .14 3.13 3.13.14 10 7.01 17.01 0 20 2.99 12.99 10l6.87 6.87-2.99 2.99L10 12.99 2.99 20 0 17.01z"></path></svg>';
+        x.style.top='10px';
+        x.style.left='14px';
+        t.appendChild(x);
+      }
+      if(x.getBoundingClientRect().width<10){
+        x.style.width='26px';
+        x.style.height='26px';
+        x.style.top='10px';
+        x.style.left='14px';
+      }
+      x.style.position='absolute';
+      x.style.display='block';
+      x.style.zIndex='90';
+    }catch(e){}
+  }
+  function t42wrapAuto(){
+    try{
+      var Q=window.Travian&&Travian.Game&&Travian.Game.Quest;
+      if(!Q||Q.__t42wrapped){return;}
+      ['openTodoListDialog','openInformationDialog','mentorClick'].forEach(function(m){
+        if(typeof Q[m]!=='function'){return;}
+        var orig=Q[m];
+        Q[m]=function(){
+          if(sessionStorage.getItem('__t42qclosed')==='1'){
+            sessionStorage.removeItem('__t42qclosed');
+            return;
+          }
+          return orig.apply(this,arguments);
+        };
+      });
+      Q.__t42wrapped=true;
+    }catch(e){}
+  }
+  document.addEventListener('click',function(ev){
+    try{
+      var t=ev.target&&ev.target.closest?ev.target.closest('#center .contentTitle #closeContentButton'):null;
+      if(t){sessionStorage.setItem('__t42qclosed','1');}
+    }catch(e){}
+  },true);
+  t42wrapAuto();
+  setInterval(function(){ensureQuestClose();t42wrapAuto();},600);
+})();
+</script>
 
 </body>
 </html>
