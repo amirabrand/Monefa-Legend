@@ -8,9 +8,9 @@ Class Ajax{
                 <ul>';
 
                 foreach($building->buildArray as $jobs) {
-                    if($jobs['master'] == 0){
-                        $html .= '<li><span>'.$building->procResType($jobs['type']).' </span><span class="lvl">'.BUILDING_LEVEL.' '.$jobs['level'].'</span></li>';
-                    }
+                    // zai-fix T49: list master-builder jobs too - the dialog
+                    // showed an empty list when only master jobs were queued
+                    $html .= '<li><span>'.$building->procResType($jobs['type']).' </span><span class="lvl">'.BUILDING_LEVEL.' '.$jobs['level'].'</span>' . ($jobs['master'] == 1 ? ' (master)' : '') . '</li>';
                 }
         $html .= '</ul>
                 <div class="buttonWrapper">

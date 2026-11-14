@@ -1295,27 +1295,30 @@ $doublebuild = ($cur && $loop)?1:0;
                     $database->query("UPDATE quests SET step1 = 1,isFinished = 1 WHERE userid = ".$session->uid."");
                 }
 
-                $x++;
+                
                 $q = "UPDATE fdata set f".$jobs['field']." = ".$jobs['level'].", f".$jobs['field']."t = ".$jobs['type']." where vref = '".$jobs['wid']."'";
                 if($jobs['master'] == 0){
+                    $x++;
                     $database->query($q);
                     $q = "DELETE FROM bdata where id = '".$jobs['id']."'";
                     $database->query($q);
                 }else{
-
-                    /*
+                    // zai-fix T49: master-builder jobs (goldclub) were
+                    // silently skipped - the queued build never finished
+                    // and no gold was charged. Resources are deducted here
+                    // because master builds pay them at completion time.
                     $type = $jobs['type'];
                     $buildarray = $GLOBALS["bid".$type];
-                    if($session->gold>0 && $database->modifyResource($jobs['wid'],$buildarray[$level]['wood'],$buildarray[$level]['clay'],$buildarray[$level]['iron'],$buildarray[$level]['crop'],0)){
+                    if($database->modifyResource($jobs['wid'],$buildarray[$level]['wood'],$buildarray[$level]['clay'],$buildarray[$level]['iron'],$buildarray[$level]['crop'],0)){
                         $village->awood-=$buildarray[$level]['wood'];
                         $village->aclay-=$buildarray[$level]['clay'];
                         $village->airon-=$buildarray[$level]['iron'];
                         $village->acrop-=$buildarray[$level]['crop'];
-
+                        $x++;
                         $database->query($q);
                         $q = "DELETE FROM bdata where id = '".$jobs['id']."'";
                         $database->query($q);
-                    }*/
+                    }
                 }
 
 
