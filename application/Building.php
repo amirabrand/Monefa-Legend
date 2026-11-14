@@ -1287,9 +1287,9 @@ $doublebuild = ($cur && $loop)?1:0;
 		public function finishAll() {
 		global $database,$session,$village,$bid18;
         $golduse=2;
+		$x=0; // zai-fix T49b: count every finished job, not just the last
 		foreach($this->buildArray as $jobs) {
             $level = $jobs['level'];
-            $x=0;
 			if($jobs['type'] != 25 AND $jobs['type'] != 26 AND $jobs['type'] != 40 AND $village->natar==0) {
                 if($session->qData['quest'] == 10 && $session->qData['step2'] == 0){ // Quest
                     $database->query("UPDATE quests SET step1 = 1,isFinished = 1 WHERE userid = ".$session->uid."");
@@ -1307,18 +1307,27 @@ $doublebuild = ($cur && $loop)?1:0;
                     // silently skipped - the queued build never finished
                     // and no gold was charged. Resources are deducted here
                     // because master builds pay them at completion time.
+                    // zai-fix T49b: master builds are queued precisely because
+                    // resources are missing, so require full payment or the
+                    // finish-now button stays dead. Finish the job regardless
+                    // and floor the deduction at zero per resource.
                     $type = $jobs['type'];
                     $buildarray = $GLOBALS["bid".$type];
-                    if($database->modifyResource($jobs['wid'],$buildarray[$level]['wood'],$buildarray[$level]['clay'],$buildarray[$level]['iron'],$buildarray[$level]['crop'],0)){
-                        $village->awood-=$buildarray[$level]['wood'];
-                        $village->aclay-=$buildarray[$level]['clay'];
-                        $village->airon-=$buildarray[$level]['iron'];
-                        $village->acrop-=$buildarray[$level]['crop'];
-                        $x++;
-                        $database->query($q);
-                        $q = "DELETE FROM bdata where id = '".$jobs['id']."'";
-                        $database->query($q);
+                    $mwood = (int)$buildarray[$level]['wood'];
+                    $mclay = (int)$buildarray[$level]['clay'];
+                    $miron = (int)$buildarray[$level]['iron'];
+                    $mcrop = (int)$buildarray[$level]['crop'];
+                    if(!$database->modifyResource($jobs['wid'],$mwood,$mclay,$miron,$mcrop,0)){
+                        $database->query("UPDATE vdata SET wood = GREATEST(wood - ".$mwood.",0), clay = GREATEST(clay - ".$mclay.",0), iron = GREATEST(iron - ".$miron.",0), crop = GREATEST(crop - ".$mcrop.",0) WHERE wref = '".(int)$jobs['wid']."'");
                     }
+                    $village->awood-=$mwood;
+                    $village->aclay-=$mclay;
+                    $village->airon-=$miron;
+                    $village->acrop-=$mcrop;
+                    $x++;
+                    $database->query($q);
+                    $q = "DELETE FROM bdata where id = '".$jobs['id']."'";
+                    $database->query($q);
                 }
 
 
