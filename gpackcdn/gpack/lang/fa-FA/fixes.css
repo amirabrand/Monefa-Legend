@@ -180,3 +180,8 @@ body.login.buildingsV3.perspectiveBuildings div#background {
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+/* T57: dialog header banner from The Settlers Online art (tsowiki.eu) */
+#content.referAFriend .referAFriendInfo .header {
+    background-image: url('../../../img/views/ReferAFriend/headerImage-tso.png');
+}
