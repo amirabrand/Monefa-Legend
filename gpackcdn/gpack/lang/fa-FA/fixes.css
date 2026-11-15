@@ -170,3 +170,9 @@ div.village1 table#movements div.mov {
 div.player .description1, div.player .description2 {
   overflow: hidden;
 }
+
+/* T54: login background from The Settlers Online art (tsowiki.eu) */
+body.login.buildingsV3.perspectiveBuildings div#background {
+    background-image: url('../../img_rtl/layout/background2019/bgBuildings-tso.jpg');
+    background-position: center top;
+}
