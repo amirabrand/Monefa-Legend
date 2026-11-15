@@ -169,7 +169,7 @@ ${'dorf'.$session->link}='active';
     <a id="logo" href="#" target="_blank">
 		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 172.7 60">
  
-  <image width="238" height="86" style="width: 180px;height: 66px;" xlink:href="<?= GP_LOCATION ?>logo-monefa.png?v=2"></image>
+  <image width="238" height="86" style="width: 180px;height: 66px;" xlink:href="<?= GP_LOCATION ?>logo-monefa.png?v=3"></image>
 </svg>
 	</a>
 
