@@ -180,3 +180,99 @@ body.mobileOptimized > div.buildingList{
    cursor, so the first tap on a map tile hit the tooltip instead of the
    map mover and died ("نقشه باگ دارد"). Kill its pointer events. */
 body.mobileOptimized > div > .tip { pointer-events: none !important; }
+
+
+/* ============================================================
+   T61 - v11: sidebar drawers must survive hostile webviews
+   (user report, web-app + mobile: "ارتفاع‌ها ... زیرمنوها گم
+   می‌شوند" - the village-profile / village-list / quest-list
+   boxes vanish or float cut over the page).
+   The game's own drawer rules (imports_compressed.css) live in
+   @media (max-width:620px) AND (orientation:portrait) and are
+   anchored to "#center .sidebar". In-app webviews (Telegram,
+   Bale, ir.nasim ...) can fail the orientation clause, and some
+   pages render the sidebar outside #center, so the drawer never
+   engages: the boxes either sit off-canvas (translateX(-100%))
+   or paint raw over the page. Below is the SAME drawer state
+   machine, re-scoped to html.t26m / body.mobileOptimized
+   (first-paint, PHP/UA based - no orientation clause, no #center
+   requirement), so it engages everywhere the phones do. Where
+   the native rules already apply these are identical values and
+   simply win the cascade (mobile-responsive.css loads last).
+   Open/close stays with the game's swipe JS (.mobileOpened).
+   ============================================================ */
+@media (max-width:620px){
+  body.mobileOptimized .sidebar,
+  html.t26m .sidebar{
+    min-height:0;
+    max-height:100%;
+    width:100%;
+    overflow:auto;
+    margin:0;
+    position:fixed;
+    top:54px;
+    bottom:100px;
+    pointer-events:auto;
+    box-sizing:border-box;
+    z-index:400;
+    right:0;
+    left:0;
+    padding-top:20px;
+    background-color:transparent;
+    transition-duration:250ms;
+    height:calc(100% - 154px);
+  }
+  body.mobileOptimized .sidebar .sidebarBoxWrapper,
+  html.t26m .sidebar .sidebarBoxWrapper{
+    width:300px;
+    max-width:100%;
+    position:absolute;
+    transform:scale(1.4);
+  }
+  body.mobileOptimized .sidebar#sidebarBeforeContent,
+  html.t26m .sidebar#sidebarBeforeContent{
+    transform-origin:right top;
+    right:0;
+  }
+  body.mobileOptimized .sidebar#sidebarBeforeContent .sidebarBoxWrapper,
+  html.t26m .sidebar#sidebarBeforeContent .sidebarBoxWrapper{
+    transform-origin:right top;
+    right:0;
+  }
+  body.mobileOptimized .sidebar#sidebarBeforeContent:not(.mobileOpened),
+  html.t26m .sidebar#sidebarBeforeContent:not(.mobileOpened){
+    transform:translateX(100%);
+  }
+  body.mobileOptimized .sidebar#sidebarAfterContent,
+  html.t26m .sidebar#sidebarAfterContent{
+    transform-origin:left top;
+    left:0;
+  }
+  body.mobileOptimized .sidebar#sidebarAfterContent .sidebarBoxWrapper,
+  html.t26m .sidebar#sidebarAfterContent .sidebarBoxWrapper{
+    transform-origin:left top;
+    left:0;
+  }
+  body.mobileOptimized .sidebar#sidebarAfterContent .sidebarBox,
+  html.t26m .sidebar#sidebarAfterContent .sidebarBox{
+    justify-content:end;
+  }
+  body.mobileOptimized .sidebar#sidebarAfterContent:not(.mobileOpened),
+  html.t26m .sidebar#sidebarAfterContent:not(.mobileOpened){
+    transform:translateX(-100%);
+  }
+  body.mobileOptimized .sidebar.mobileOpened,
+  html.t26m .sidebar.mobileOpened{
+    transform:translateX(0);
+    background-color:rgba(0,0,0,0.6);
+  }
+  /* webviews that ignore the width=620 meta render a ~390px layout
+     viewport: the 300px wrapper x1.4 = 420px would clip - unscale
+     there so the wrapper always fits the real viewport */
+  @media (max-width:419px){
+    body.mobileOptimized .sidebar .sidebarBoxWrapper,
+    html.t26m .sidebar .sidebarBoxWrapper{
+      transform:none;
+    }
+  }
+}

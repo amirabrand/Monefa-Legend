@@ -76,7 +76,7 @@ if ($t26ov === '1') {
       var sc=Math.min(1,m/cw);if(!isFinite(sc)||sc<=0)sc=1;
       var vp=document.getElementById('t26vp');
       if(vp)vp.setAttribute('content','width='+cw+', initial-scale='+sc.toFixed(4)+', user-scalable=yes, viewport-fit=cover');
-      if(mob)document.documentElement.classList.add('t26m');
+      if(mob)document.documentElement.classList.add('t26m');/* T61: also engage the game's ungated mobileForced drawer rules (no orientation clause) on the 620 phone canvas */if(mob&&cw===620)document.documentElement.classList.add('mobileForced');
       var a=function(){try{document.body.classList.add('mobileOptimized')}catch(e){}};
       if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',a)}else{a()}
     })();
@@ -102,7 +102,7 @@ if ($t26ov === '1') {
     <link href="<?= GP_LOCATION ?>lang/<?php echo LANG_UR; ?>/compact.css?v=19" rel="stylesheet" type="text/css"/>
     <link href="<?= GP_LOCATION ?>lang/<?php echo LANG_UR; ?>/lang.css" rel="stylesheet" type="text/css"/>
 	<link href="<?= GP_LOCATION ?>lang/<?php echo LANG_UR; ?>/fixes.css?rev18" rel="stylesheet" type="text/css"/>
-    <link href="/gpackcdn/gpack/mobile-responsive.css?v=10" rel="stylesheet" type="text/css"/>
+    <link href="/gpackcdn/gpack/mobile-responsive.css?v=11" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="<?= GP_LOCATION1 ?>default/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="<?= GP_LOCATION1 ?>default/jquery.md5.min.js"></script>
    
