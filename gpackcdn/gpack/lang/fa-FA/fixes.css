@@ -185,3 +185,13 @@ body.login.buildingsV3.perspectiveBuildings div#background {
 #content.referAFriend .referAFriendInfo .header {
     background-image: url('../../../img/views/ReferAFriend/headerImage-tso.png');
 }
+
+/* T58: village-center (dorf2) background from The Settlers Online art -
+   user request: replace the ground with houses. Scoped to body.village2
+   only; login (T54) and other pages keep their own backgrounds. */
+body.village2.buildingsV3.perspectiveBuildings div#background {
+    background-image: url('../../img_rtl/layout/background2019/bgBuildings-tso-town.jpg');
+    background-position: center bottom;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
