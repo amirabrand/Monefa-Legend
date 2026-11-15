@@ -40,17 +40,13 @@ define('GP_LOCATION2', 'https://{{DOMAIN}}/gpackcdn/img/');
 define('GP_LOCATIONALL', 'https://{{DOMAIN}}/gpackcdn/');
 define("OPENING", $sData['OPENING']);
 define( "REINSTALL_TIME",$sData['reinstalltime']);
-if($sData['OPENING']+259200 <= time() ){
-    if($sData['regstatus']==1){
-        $db->query("update config set regstatus ='0' ");
-    }
+/* T37: automatic regstatus toggle disabled. The old block force-closed
+   registration 3 days after OPENING (and force-opened it before), so
+   the admin's choice was overwritten on every request and the signup
+   section never showed on the login page. Registration is now managed
 
-
-}else{
-    if($sData['regstatus']==0){
-        $db->query("update config set regstatus ='1' ");
-    }
-}
+   manually from the admin panel (TdPaneLXP); it is initialized to 1. */
+if(!defined('T37_REG_INIT')){ define('T37_REG_INIT', 1); }
 //$db->query("update config set regstatus ='1' ");
 define("REF_POP",500);
 define("LOYALGOLD",1000);
