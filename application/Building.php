@@ -427,7 +427,9 @@ if( $village->resarray['f'.$id.'t'] ==25 || $village->resarray['f'.$id.'t'] ==26
 			  if($maxhouselvl>$currentlvl and $wwblock==0)
 			  {
                 if(!$master && $id!=99 && $uprequire['time']<1 && ($session->tribe==1 && ($townbuild==0 && $id >= 19 || $fieldbuild==0 && $id < 19) || !$loop)){
-                    $database->modifyResource($village->wid,$uprequire['wood'],$uprequire['clay'],$uprequire['iron'],$uprequire['crop'],0);
+                    // zai-fix T60: return was ignored - at zero resources modifyResource
+                    // deducts nothing but the build still went through (free upgrades)
+                    if(!$database->modifyResource($village->wid,$uprequire['wood'],$uprequire['clay'],$uprequire['iron'],$uprequire['crop'],0)){ return; }
                     $jobs=array('field'=>$id,'level'=>$currentlvl+1,'type'=>$village->resarray['f'.$id.'t'],'wid'=>$village->wid);
                         $village->awood-=$uprequire['wood'];
                         $village->aclay-=$uprequire['clay'];
@@ -458,8 +460,9 @@ if( $village->resarray['f'.$id.'t'] ==25 || $village->resarray['f'.$id.'t'] ==26
                         $this->BuildNow($jobs);
                     }else{
                         if(!$master){ // no master building
+                            // zai-fix T60: deduct before queueing; abort when resources are missing
+                            if(!$database->modifyResource($village->wid,$uprequire['wood'],$uprequire['clay'],$uprequire['iron'],$uprequire['crop'],0)){ return; }
                             $database->addBuilding($village->wid,$id,$village->resarray['f'.$id.'t'],$loop,$time,$currentlvl+1,$master,0);
-                            $database->modifyResource($village->wid,$uprequire['wood'],$uprequire['clay'],$uprequire['iron'],$uprequire['crop'],0);
                             $village->awood-=$uprequire['wood'];
                             $village->aclay-=$uprequire['clay'];
                             $village->airon-=$uprequire['iron'];
