@@ -101,7 +101,7 @@ if ($t26ov === '1') {
     <meta name="content-language" content="<?php echo LANG_UR; ?>"/>
     <link href="<?= GP_LOCATION ?>lang/<?php echo LANG_UR; ?>/compact.css" rel="stylesheet" type="text/css"/>
     <link href="<?= GP_LOCATION ?>lang/<?php echo LANG_UR; ?>/lang.css" rel="stylesheet" type="text/css"/>
-	<link href="<?= GP_LOCATION ?>lang/<?php echo LANG_UR; ?>/fixes.css?rev14" rel="stylesheet" type="text/css"/>
+	<link href="<?= GP_LOCATION ?>lang/<?php echo LANG_UR; ?>/fixes.css?rev15" rel="stylesheet" type="text/css"/>
     <link href="/gpackcdn/gpack/mobile-responsive.css?v=10" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="<?= GP_LOCATION1 ?>default/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="<?= GP_LOCATION1 ?>default/jquery.md5.min.js"></script>
