@@ -454,15 +454,15 @@ body.buildingsV3.perspectiveBuildings div#background.showWall:after {
 }
 
 body.buildingsV3.perspectiveBuildings div#background.showWall.roman:after {
-    background-image: url('../../img_rtl/g/buildings2019/roman/g31Bottom-rtl.png?v=59'),url('../../img_rtl/g/buildings2019/roman/g31Top-rtl.png?v=59')
+    background-image: url('../../img_rtl/g/buildings2019/roman/g31Bottom-rtl.png?v=60'),url('../../img_rtl/g/buildings2019/roman/g31Top-rtl.png?v=60')
 }
 
 body.buildingsV3.perspectiveBuildings div#background.showWall.teuton:after {
-    background-image: url('../../img_rtl/g/buildings2019/teuton/g32Bottom-rtl.png?v=59'),url('../../img_rtl/g/buildings2019/teuton/g32Top-rtl.png?v=59')
+    background-image: url('../../img_rtl/g/buildings2019/teuton/g32Bottom-rtl.png?v=60'),url('../../img_rtl/g/buildings2019/teuton/g32Top-rtl.png?v=60')
 }
 
 body.buildingsV3.perspectiveBuildings div#background.showWall.gaul:after {
-    background-image: url('../../img_rtl/g/buildings2019/gaul/g33Bottom-rtl.png?v=59'),url('../../img_rtl/g/buildings2019/gaul/g33Top-rtl.png?v=59')
+    background-image: url('../../img_rtl/g/buildings2019/gaul/g33Bottom-rtl.png?v=60'),url('../../img_rtl/g/buildings2019/gaul/g33Top-rtl.png?v=60')
 }
 
 body.buildingsV3.perspectiveBuildings div#background.showWall.egyptian:after {
