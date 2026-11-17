@@ -99,7 +99,7 @@ if ($t26ov === '1') {
     <meta http-equiv="imagetoolbar" content="no"/>
     
     <meta name="content-language" content="<?php echo LANG_UR; ?>"/>
-    <link href="<?= GP_LOCATION ?>lang/<?php echo LANG_UR; ?>/compact.css?v=21" rel="stylesheet" type="text/css"/>
+    <link href="<?= GP_LOCATION ?>lang/<?php echo LANG_UR; ?>/compact.css?v=23" rel="stylesheet" type="text/css"/>
     <link href="<?= GP_LOCATION ?>lang/<?php echo LANG_UR; ?>/lang.css" rel="stylesheet" type="text/css"/>
 	<link href="<?= GP_LOCATION ?>lang/<?php echo LANG_UR; ?>/fixes.css?rev18" rel="stylesheet" type="text/css"/>
     <link href="/gpackcdn/gpack/mobile-responsive.css?v=11" rel="stylesheet" type="text/css"/>

@@ -454,7 +454,7 @@ body.buildingsV3.perspectiveBuildings div#background.showWall:after {
 }
 
 body.buildingsV3.perspectiveBuildings div#background.showWall.roman:after {
-    background-image: url('../../img_rtl/g/buildings2019/roman/g31Bottom-rtl.png?v=60'),url('../../img_rtl/g/buildings2019/roman/g31Top-rtl.png?v=60')
+    background-image: url('../../img_rtl/g/buildings2019/roman/g31Bottom-rtl.png?v=63'),url('../../img_rtl/g/buildings2019/roman/g31Top-rtl.png?v=63')
 }
 
 body.buildingsV3.perspectiveBuildings div#background.showWall.teuton:after {
