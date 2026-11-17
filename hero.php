@@ -93,7 +93,7 @@ $getnose = $herodetail['nose'];if ($gender==0) $getnose%=5;
 $getear = $herodetail['ear'];if ($gender==0) $getear%=5;
 $getmouth = $herodetail['mouth'];if ($gender==0) $getmouth%=4;
 $getbeard = $herodetail['beard']; if ($gender==1) $getbeard=5;
-$gethair = $herodetail['hair'];if ($gender==0) $gethair%=5;
+$gethair = $herodetail['hair'];
 $getface = $herodetail['face'];if ($gender==0) $getface%=5;
 ?>
 
@@ -112,14 +112,85 @@ $getface = $herodetail['face'];if ($gender==0) $getface%=5;
 
 	
         <img style="width:254px; height:330px; position:absolute;left:0px;top:0px;" src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/head/254x330/face0.png" alt="" />
-        <img style="width:254px; height:330px; position:absolute;left:0px;top:0px;" src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/head/254x330/eye/eye<?php echo $geteye; ?>.png" alt="" />
-        <img style="width:254px; height:330px; position:absolute;left:0px;top:0px;" src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/head/254x330/eyebrow/eyebrow<?php echo $geteyebrow.(($gender==0)?'-'.$color:''); ?>.png" alt="" />
-        <?php if(!($gender==0 && $gethair==5)){ ?><img style="width:254px; height:330px; position:absolute;left:0px;top:0px;" src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/head/254x330/hair/hair<?php echo $gethair.'-'.$color; ?>.png" alt="" /><?php } ?>
-        <img style="width:254px; height:330px; position:absolute;left:0px;top:0px;" src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/head/254x330/face/face<?php echo $getface; ?>.png" alt="" />
-        <img style="width:254px; height:330px; position:absolute;left:0px;top:0px;" src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/head/254x330/mouth/mouth<?php echo $getmouth; ?>.png" alt="" />
-        <img style="width:254px; height:330px; position:absolute;left:0px;top:0px;" src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/head/254x330/nose/nose<?php echo $getnose; ?>.png" alt="" />
-        <img style="width:254px; height:330px; position:absolute;left:0px;top:0px;" src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/head/254x330/ear/ear<?php echo $getear; ?>.png" alt="" />
-        <?php if($getbeard!=5){ ?><img style="width:254px; height:330px; position:absolute;left:0px;top:0px;" src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/head/254x330/beard/beard<?php echo $getbeard.'-'.$color; ?>.png" alt="" /><?php } ?>
+        <img id="pvEye" style="width:254px; height:330px; position:absolute;left:0px;top:0px;" src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/head/254x330/eye/eye<?php echo $geteye; ?>.png" alt="" />
+        <img id="pvEyebrow" style="width:254px; height:330px; position:absolute;left:0px;top:0px;" src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/head/254x330/eyebrow/eyebrow<?php echo $geteyebrow.(($gender==0)?'-'.$color:''); ?>.png" alt="" />
+        <?php if(!($gender==0 && $gethair==5)){ ?><img id="pvHair" style="width:254px; height:330px; position:absolute;left:0px;top:0px;" src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/head/254x330/hair/hair<?php echo $gethair.'-'.$color; ?>.png" alt="" /><?php } ?>
+        <img id="pvFace" style="width:254px; height:330px; position:absolute;left:0px;top:0px;" src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/head/254x330/face/face<?php echo $getface; ?>.png" alt="" />
+        <img id="pvMouth" style="width:254px; height:330px; position:absolute;left:0px;top:0px;" src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/head/254x330/mouth/mouth<?php echo $getmouth; ?>.png" alt="" />
+        <img id="pvNose" style="width:254px; height:330px; position:absolute;left:0px;top:0px;" src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/head/254x330/nose/nose<?php echo $getnose; ?>.png" alt="" />
+        <img id="pvEar" style="width:254px; height:330px; position:absolute;left:0px;top:0px;" src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/head/254x330/ear/ear<?php echo $getear; ?>.png" alt="" />
+        <?php if($getbeard!=5){ ?><img id="pvBeard" style="width:254px; height:330px; position:absolute;left:0px;top:0px;" src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/head/254x330/beard/beard<?php echo $getbeard.'-'.$color; ?>.png" alt="" /><?php } ?>
+
+<script type="text/javascript">
+var heroEd = {
+    g: "<?php echo $gstr; ?>",
+    male: <?php echo ($herodetail['gender']==0)?'true':'false'; ?>,
+    face: <?php echo $getface; ?>,
+    color: <?php echo $herodetail['color']; ?>,
+    hair: <?php echo $gethair; ?>,
+    ear: <?php echo $getear; ?>,
+    eyebrow: <?php echo $geteyebrow; ?>,
+    eye: <?php echo $geteye; ?>,
+    nose: <?php echo $getnose; ?>,
+    mouth: <?php echo $getmouth; ?>,
+    beard: <?php echo $getbeard; ?>,
+    base: "<?php echo GP_LOCATION2; ?>hero/"
+};
+var heroColors = ["black", "brown", "darkbrown", "yellow", "red"];
+var heroKeyMap = { HeroFace: "face", color: "color", HeroHair: "hair", HeroEar: "ear",
+    HeroEyebrow: "eyebrow", HeroEye: "eye", HeroNose: "nose", HeroMouth: "mouth", HeroBeard: "beard" };
+
+function heroPick(field, val, el) {
+    var f = document.getElementById("HeroEditorForm");
+    if (f && f[field]) { f[field].value = val; }
+    var n = parseInt(val, 10);
+    heroEd[heroKeyMap[field] || field] = isNaN(n) ? val : n;
+    if (el && el.parentElement) {
+        var imgs = el.parentElement.querySelectorAll("img.attribute");
+        for (var i = 0; i < imgs.length; i++) { imgs[i].classList.remove("attributeSelected"); }
+        el.classList.add("attributeSelected");
+    }
+    heroRender();
+}
+
+function heroSet(id, show, src) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (!show) { el.style.display = "none"; return; }
+    el.style.display = "";
+    if (el.getAttribute("src") != src) { el.setAttribute("src", src); }
+}
+
+function heroRender() {
+    var b = heroEd.base + heroEd.g + "/head/254x330/";
+    var c = heroColors[heroEd.color] || "black";
+    var m = heroEd.male;
+    heroSet("pvEye", true, b + "eye/eye" + (m ? heroEd.eye % 5 : heroEd.eye) + ".png");
+    heroSet("pvEyebrow", true, b + "eyebrow/eyebrow" + (m ? heroEd.eyebrow % 5 : heroEd.eyebrow) + "-" + c + ".png");
+    heroSet("pvHair", !(m && heroEd.hair == 5), b + "hair/hair" + heroEd.hair + "-" + c + ".png");
+    heroSet("pvFace", true, b + "face/face" + (m ? heroEd.face % 5 : heroEd.face) + ".png");
+    heroSet("pvMouth", true, b + "mouth/mouth" + (m ? heroEd.mouth % 4 : heroEd.mouth) + ".png");
+    heroSet("pvNose", true, b + "nose/nose" + (m ? heroEd.nose % 5 : heroEd.nose) + ".png");
+    heroSet("pvEar", true, b + "ear/ear" + (m ? heroEd.ear % 5 : heroEd.ear) + ".png");
+    heroSet("pvBeard", m && heroEd.beard != 5, b + "beard/beard" + heroEd.beard + "-" + c + ".png");
+}
+
+(function heroMarkInitial() {
+    var rows = document.querySelectorAll("#heroEditor .info .details");
+    for (var r = 0; r < rows.length; r++) {
+        var imgs = rows[r].querySelectorAll("img.attribute");
+        for (var i = 0; i < imgs.length; i++) {
+            var oc = imgs[i].getAttribute("onclick") || "";
+            var mch = oc.match(/heroPick\("([^"]+)","(\d+)"/);
+            if (!mch) continue;
+            var key = heroKeyMap[mch[1]] || mch[1], v = parseInt(mch[2], 10);
+            if (heroEd[key] === v) { imgs[i].classList.add("attributeSelected"); break; }
+        }
+    }
+})();
+heroRender();
+</script>
+
     </div>
 </div>
 <div class="attributes">
@@ -159,13 +230,13 @@ $getface = $herodetail['face'];if ($gender==0) $getface%=5;
                 </div>
                 <div   class="details ">
 				
-                    <img style=" width:60px; hight:100px; background-color:#5e4500;" id="attribute_button_0" class="attribute" onclick='$("HeroEditorForm").HeroFace.value="0";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/face/face0.png" alt=""/>
-                    <img id="attribute_button_1" class="attribute" onclick='$("HeroEditorForm").HeroFace.value="1";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/face/face1.png" alt=""/>
-                    <img id="attribute_button_2" class="attribute" onclick='$("HeroEditorForm").HeroFace.value="2";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/face/face2.png" alt=""/>
-                    <img id="attribute_button_3" class="attribute" onclick='$("HeroEditorForm").HeroFace.value="3";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/face/face3.png" alt=""/>
-                    <img id="attribute_button_4" class="attribute" onclick='$("HeroEditorForm").HeroFace.value="4";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/face/face4.png" alt=""/>
+                    <img style=" width:60px; hight:100px; background-color:#5e4500;" id="attribute_button_0" class="attribute" onclick='heroPick(\"HeroFace\",\"0\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/face/face0.png" alt=""/>
+                    <img id="attribute_button_1" class="attribute" onclick='heroPick(\"HeroFace\",\"1\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/face/face1.png" alt=""/>
+                    <img id="attribute_button_2" class="attribute" onclick='heroPick(\"HeroFace\",\"2\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/face/face2.png" alt=""/>
+                    <img id="attribute_button_3" class="attribute" onclick='heroPick(\"HeroFace\",\"3\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/face/face3.png" alt=""/>
+                    <img id="attribute_button_4" class="attribute" onclick='heroPick(\"HeroFace\",\"4\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/face/face4.png" alt=""/>
                     <?php if ($herodetail['gender']==1) {?>
-                        <img id="attribute_button_5" class="attribute" onclick='$("HeroEditorForm").HeroFace.value="5";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/face/face5.png" alt=""/>
+                        <img id="attribute_button_5" class="attribute" onclick='heroPick(\"HeroFace\",\"5\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/face/face5.png" alt=""/>
                     <?php } ?>
                     <div class="clear"></div>
                 </div>
@@ -176,11 +247,11 @@ $getface = $herodetail['face'];if ($gender==0) $getface%=5;
                     <div class="clear"></div>
                 </div>
                 <div class="details">
-                    <img id="attribute_button_0" class="attribute" onclick='$("HeroEditorForm").color.value="0";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/color0.png" alt=""/>
-                    <img id="attribute_button_1" class="attribute" onclick='$("HeroEditorForm").color.value="1";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/color1.png" alt=""/>
-                    <img id="attribute_button_2" class="attribute" onclick='$("HeroEditorForm").color.value="2";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/color2.png" alt=""/>
-                    <img id="attribute_button_3" class="attribute" onclick='$("HeroEditorForm").color.value="3";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/color3.png" alt=""/>
-                    <img id="attribute_button_4" class="attribute" onclick='$("HeroEditorForm").color.value="4";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/color4.png" alt=""/>
+                    <img id="attribute_button_0" class="attribute" onclick='heroPick(\"color\",\"0\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/color0.png" alt=""/>
+                    <img id="attribute_button_1" class="attribute" onclick='heroPick(\"color\",\"1\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/color1.png" alt=""/>
+                    <img id="attribute_button_2" class="attribute" onclick='heroPick(\"color\",\"2\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/color2.png" alt=""/>
+                    <img id="attribute_button_3" class="attribute" onclick='heroPick(\"color\",\"3\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/color3.png" alt=""/>
+                    <img id="attribute_button_4" class="attribute" onclick='heroPick(\"color\",\"4\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/color4.png" alt=""/>
                     <div class="clear"></div>
                 </div>
             </div>
@@ -191,16 +262,16 @@ $getface = $herodetail['face'];if ($gender==0) $getface%=5;
                 </div>
                 <div class="details">
 				
-                    <img id="attribute_button_0" class="attribute" onclick='$("HeroEditorForm").HeroHair.value="0";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/hair0.png" alt=""/>
-                    <img id="attribute_button_1" class="attribute" onclick='$("HeroEditorForm").HeroHair.value="1";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/hair1.png" alt=""/>
-                    <img id="attribute_button_2" class="attribute" onclick='$("HeroEditorForm").HeroHair.value="2";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/hair2.png" alt=""/>
-                    <img id="attribute_button_3" class="attribute" onclick='$("HeroEditorForm").HeroHair.value="3";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/hair3.png" alt=""/>
-                    <img id="attribute_button_4" class="attribute" onclick='$("HeroEditorForm").HeroHair.value="4";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/hair4.png" alt=""/>
+                    <img id="attribute_button_0" class="attribute" onclick='heroPick(\"HeroHair\",\"0\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/hair0.png" alt=""/>
+                    <img id="attribute_button_1" class="attribute" onclick='heroPick(\"HeroHair\",\"1\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/hair1.png" alt=""/>
+                    <img id="attribute_button_2" class="attribute" onclick='heroPick(\"HeroHair\",\"2\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/hair2.png" alt=""/>
+                    <img id="attribute_button_3" class="attribute" onclick='heroPick(\"HeroHair\",\"3\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/hair3.png" alt=""/>
+                    <img id="attribute_button_4" class="attribute" onclick='heroPick(\"HeroHair\",\"4\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/hair4.png" alt=""/>
                     <?php if($herodetail['gender']==0) {?>
-                        <img id="attribute_button_5" class="attribute" onclick='$("HeroEditorForm").HeroHair.value="5";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/hairNone.png" alt=""/>
+                        <img id="attribute_button_5" class="attribute" onclick='heroPick(\"HeroHair\",\"5\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/hairNone.png" alt=""/>
                     <?php }?>
                     <?php if ($herodetail['gender']==1) {?>
-                        <img id="attribute_button_5" class="attribute" onclick='$("HeroEditorForm").HeroHair.value="5";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/hair5.png" alt=""/>
+                        <img id="attribute_button_5" class="attribute" onclick='heroPick(\"HeroHair\",\"5\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/hair/hair5.png" alt=""/>
                     <?php } ?>
                     <div class="clear"></div>
                 </div>
@@ -212,15 +283,15 @@ $getface = $herodetail['face'];if ($gender==0) $getface%=5;
                     <div class="clear"></div>
                 </div>
                 <div class="details">
-                    <img id="attribute_button_0" class="attribute" onclick='$("HeroEditorForm").HeroEar.value="0";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/ear/ear0.png" alt=""/>
-                    <img id="attribute_button_1" class="attribute" onclick='$("HeroEditorForm").HeroEar.value="1";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/ear/ear1.png" alt=""/>
-                    <img id="attribute_button_2" class="attribute" onclick='$("HeroEditorForm").HeroEar.value="2";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/ear/ear2.png" alt=""/>
-                    <img id="attribute_button_3" class="attribute" onclick='$("HeroEditorForm").HeroEar.value="3";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/ear/ear3.png" alt=""/>
-                    <img id="attribute_button_4" class="attribute" onclick='$("HeroEditorForm").HeroEar.value="4";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/ear/ear4.png" alt=""/>
+                    <img id="attribute_button_0" class="attribute" onclick='heroPick(\"HeroEar\",\"0\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/ear/ear0.png" alt=""/>
+                    <img id="attribute_button_1" class="attribute" onclick='heroPick(\"HeroEar\",\"1\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/ear/ear1.png" alt=""/>
+                    <img id="attribute_button_2" class="attribute" onclick='heroPick(\"HeroEar\",\"2\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/ear/ear2.png" alt=""/>
+                    <img id="attribute_button_3" class="attribute" onclick='heroPick(\"HeroEar\",\"3\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/ear/ear3.png" alt=""/>
+                    <img id="attribute_button_4" class="attribute" onclick='heroPick(\"HeroEar\",\"4\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/ear/ear4.png" alt=""/>
                     <?php  if ($herodetail['gender']==1) {?>
-                        <img id="attribute_button_5" class="attribute" onclick='$("HeroEditorForm").HeroEar.value="5";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/ear/ear5.png" alt=""/>
-                        <img id="attribute_button_6" class="attribute" onclick='$("HeroEditorForm").HeroEar.value="6";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/ear/ear6.png" alt=""/>
-                        <img id="attribute_button_7" class="attribute" onclick='$("HeroEditorForm").HeroEar.value="7";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/ear/ear7.png" alt=""/>
+                        <img id="attribute_button_5" class="attribute" onclick='heroPick(\"HeroEar\",\"5\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/ear/ear5.png" alt=""/>
+                        <img id="attribute_button_6" class="attribute" onclick='heroPick(\"HeroEar\",\"6\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/ear/ear6.png" alt=""/>
+                        <img id="attribute_button_7" class="attribute" onclick='heroPick(\"HeroEar\",\"7\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/ear/ear7.png" alt=""/>
                     <?php } ?>
                     <div class="clear"></div>
                 </div>
@@ -232,18 +303,18 @@ $getface = $herodetail['face'];if ($gender==0) $getface%=5;
                     <div class="clear"></div>
                 </div>
                 <div class="details">
-                    <img id="attribute_button_0" class="attribute" onclick='$("HeroEditorForm").HeroEyebrow.value="0";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eyebrow/eyebrow0.png" alt=""/>
-                    <img id="attribute_button_1" class="attribute" onclick='$("HeroEditorForm").HeroEyebrow.value="1";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eyebrow/eyebrow1.png" alt=""/>
-                    <img id="attribute_button_2" class="attribute" onclick='$("HeroEditorForm").HeroEyebrow.value="2";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eyebrow/eyebrow2.png" alt=""/>
-                    <img id="attribute_button_3" class="attribute" onclick='$("HeroEditorForm").HeroEyebrow.value="3";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eyebrow/eyebrow3.png" alt=""/>
-                    <img id="attribute_button_4" class="attribute" onclick='$("HeroEditorForm").HeroEyebrow.value="4";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eyebrow/eyebrow4.png" alt=""/>
+                    <img id="attribute_button_0" class="attribute" onclick='heroPick(\"HeroEyebrow\",\"0\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eyebrow/eyebrow0.png" alt=""/>
+                    <img id="attribute_button_1" class="attribute" onclick='heroPick(\"HeroEyebrow\",\"1\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eyebrow/eyebrow1.png" alt=""/>
+                    <img id="attribute_button_2" class="attribute" onclick='heroPick(\"HeroEyebrow\",\"2\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eyebrow/eyebrow2.png" alt=""/>
+                    <img id="attribute_button_3" class="attribute" onclick='heroPick(\"HeroEyebrow\",\"3\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eyebrow/eyebrow3.png" alt=""/>
+                    <img id="attribute_button_4" class="attribute" onclick='heroPick(\"HeroEyebrow\",\"4\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eyebrow/eyebrow4.png" alt=""/>
                     <?php
                     if ($herodetail['gender']==1) {?>
-                        <img id="attribute_button_5" class="attribute" onclick='$("HeroEditorForm").HeroEyebrow.value="5";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eyebrow/eyebrow5.png" alt=""/>
-                        <img id="attribute_button_6" class="attribute" onclick='$("HeroEditorForm").HeroEyebrow.value="6";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eyebrow/eyebrow6.png" alt=""/>
-                        <img id="attribute_button_7" class="attribute" onclick='$("HeroEditorForm").HeroEyebrow.value="7";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eyebrow/eyebrow7.png" alt=""/>
-                        <img id="attribute_button_8" class="attribute" onclick='$("HeroEditorForm").HeroEyebrow.value="8";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eyebrow/eyebrow8.png" alt=""/>
-                        <img id="attribute_button_9" class="attribute" onclick='$("HeroEditorForm").HeroEyebrow.value="9";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eyebrow/eyebrow9.png" alt=""/>
+                        <img id="attribute_button_5" class="attribute" onclick='heroPick(\"HeroEyebrow\",\"5\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eyebrow/eyebrow5.png" alt=""/>
+                        <img id="attribute_button_6" class="attribute" onclick='heroPick(\"HeroEyebrow\",\"6\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eyebrow/eyebrow6.png" alt=""/>
+                        <img id="attribute_button_7" class="attribute" onclick='heroPick(\"HeroEyebrow\",\"7\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eyebrow/eyebrow7.png" alt=""/>
+                        <img id="attribute_button_8" class="attribute" onclick='heroPick(\"HeroEyebrow\",\"8\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eyebrow/eyebrow8.png" alt=""/>
+                        <img id="attribute_button_9" class="attribute" onclick='heroPick(\"HeroEyebrow\",\"9\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eyebrow/eyebrow9.png" alt=""/>
                     <?php } ?>
                     <div class="clear"></div>
                 </div>
@@ -255,17 +326,17 @@ $getface = $herodetail['face'];if ($gender==0) $getface%=5;
                     <div class="clear"></div>
                 </div>
                 <div class="details">
-                    <img id="attribute_button_0" class="attribute" onclick='$("HeroEditorForm").HeroEye.value="0";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eye/eye0.png" alt=""/>
-                    <img id="attribute_button_1" class="attribute" onclick='$("HeroEditorForm").HeroEye.value="1";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eye/eye1.png" alt=""/>
-                    <img id="attribute_button_2" class="attribute" onclick='$("HeroEditorForm").HeroEye.value="2";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eye/eye2.png" alt=""/>
-                    <img id="attribute_button_3" class="attribute" onclick='$("HeroEditorForm").HeroEye.value="3";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eye/eye3.png" alt=""/>
-                    <img id="attribute_button_4" class="attribute" onclick='$("HeroEditorForm").HeroEye.value="4";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eye/eye4.png" alt=""/>
+                    <img id="attribute_button_0" class="attribute" onclick='heroPick(\"HeroEye\",\"0\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eye/eye0.png" alt=""/>
+                    <img id="attribute_button_1" class="attribute" onclick='heroPick(\"HeroEye\",\"1\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eye/eye1.png" alt=""/>
+                    <img id="attribute_button_2" class="attribute" onclick='heroPick(\"HeroEye\",\"2\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eye/eye2.png" alt=""/>
+                    <img id="attribute_button_3" class="attribute" onclick='heroPick(\"HeroEye\",\"3\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eye/eye3.png" alt=""/>
+                    <img id="attribute_button_4" class="attribute" onclick='heroPick(\"HeroEye\",\"4\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eye/eye4.png" alt=""/>
                     <?php if ($herodetail['gender']==1) {?>
-                        <img id="attribute_button_5" class="attribute" onclick='$("HeroEditorForm").HeroEye.value="5";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eye/eye5.png" alt=""/>
-                        <img id="attribute_button_6" class="attribute" onclick='$("HeroEditorForm").HeroEye.value="6";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eye/eye6.png" alt=""/>
-                        <img id="attribute_button_7" class="attribute" onclick='$("HeroEditorForm").HeroEye.value="7";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eye/eye7.png" alt=""/>
-                        <img id="attribute_button_8" class="attribute" onclick='$("HeroEditorForm").HeroEye.value="8";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eye/eye8.png" alt=""/>
-                        <img id="attribute_button_9" class="attribute" onclick='$("HeroEditorForm").HeroEye.value="9";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eye/eye9.png" alt=""/>
+                        <img id="attribute_button_5" class="attribute" onclick='heroPick(\"HeroEye\",\"5\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eye/eye5.png" alt=""/>
+                        <img id="attribute_button_6" class="attribute" onclick='heroPick(\"HeroEye\",\"6\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eye/eye6.png" alt=""/>
+                        <img id="attribute_button_7" class="attribute" onclick='heroPick(\"HeroEye\",\"7\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eye/eye7.png" alt=""/>
+                        <img id="attribute_button_8" class="attribute" onclick='heroPick(\"HeroEye\",\"8\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eye/eye8.png" alt=""/>
+                        <img id="attribute_button_9" class="attribute" onclick='heroPick(\"HeroEye\",\"9\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/eye/eye9.png" alt=""/>
                     <?php } ?>
                     <div class="clear"></div>
                 </div>
@@ -277,15 +348,15 @@ $getface = $herodetail['face'];if ($gender==0) $getface%=5;
                     <div class="clear"></div>
                 </div>
                 <div class="details">
-                    <img id="attribute_button_0" class="attribute" onclick='$("HeroEditorForm").HeroNose.value="0";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/nose/nose0.png" alt=""/>
-                    <img id="attribute_button_1" class="attribute" onclick='$("HeroEditorForm").HeroNose.value="1";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/nose/nose1.png" alt=""/>
-                    <img id="attribute_button_2" class="attribute" onclick='$("HeroEditorForm").HeroNose.value="2";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/nose/nose2.png" alt=""/>
-                    <img id="attribute_button_3" class="attribute" onclick='$("HeroEditorForm").HeroNose.value="3";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/nose/nose3.png" alt=""/>
-                    <img id="attribute_button_4" class="attribute" onclick='$("HeroEditorForm").HeroNose.value="4";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/nose/nose4.png" alt=""/>
+                    <img id="attribute_button_0" class="attribute" onclick='heroPick(\"HeroNose\",\"0\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/nose/nose0.png" alt=""/>
+                    <img id="attribute_button_1" class="attribute" onclick='heroPick(\"HeroNose\",\"1\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/nose/nose1.png" alt=""/>
+                    <img id="attribute_button_2" class="attribute" onclick='heroPick(\"HeroNose\",\"2\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/nose/nose2.png" alt=""/>
+                    <img id="attribute_button_3" class="attribute" onclick='heroPick(\"HeroNose\",\"3\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/nose/nose3.png" alt=""/>
+                    <img id="attribute_button_4" class="attribute" onclick='heroPick(\"HeroNose\",\"4\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/nose/nose4.png" alt=""/>
                     <?php if ($herodetail['gender']==1) {?>
-                        <img id="attribute_button_5" class="attribute" onclick='$("HeroEditorForm").HeroNose.value="5";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/nose/nose5.png" alt=""/>
-                        <img id="attribute_button_6" class="attribute" onclick='$("HeroEditorForm").HeroNose.value="6";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/nose/nose6.png" alt=""/>
-                        <img id="attribute_button_7" class="attribute" onclick='$("HeroEditorForm").HeroNose.value="7";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/nose/nose7.png" alt=""/>
+                        <img id="attribute_button_5" class="attribute" onclick='heroPick(\"HeroNose\",\"5\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/nose/nose5.png" alt=""/>
+                        <img id="attribute_button_6" class="attribute" onclick='heroPick(\"HeroNose\",\"6\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/nose/nose6.png" alt=""/>
+                        <img id="attribute_button_7" class="attribute" onclick='heroPick(\"HeroNose\",\"7\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/nose/nose7.png" alt=""/>
                     <?php } ?>
                     <div class="clear"></div>
                 </div>
@@ -297,16 +368,16 @@ $getface = $herodetail['face'];if ($gender==0) $getface%=5;
                     <div class="clear"></div>
                 </div>
                 <div class="details">
-                    <img id="attribute_button_0" class="attribute" onclick='$("HeroEditorForm").HeroMouth.value="0";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/mouth/mouth0.png" alt=""/>
-                    <img id="attribute_button_1" class="attribute" onclick='$("HeroEditorForm").HeroMouth.value="1";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/mouth/mouth1.png" alt=""/>
-                    <img id="attribute_button_2" class="attribute" onclick='$("HeroEditorForm").HeroMouth.value="2";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/mouth/mouth2.png" alt=""/>
-                    <img id="attribute_button_3" class="attribute" onclick='$("HeroEditorForm").HeroMouth.value="3";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/mouth/mouth3.png" alt=""/>
+                    <img id="attribute_button_0" class="attribute" onclick='heroPick(\"HeroMouth\",\"0\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/mouth/mouth0.png" alt=""/>
+                    <img id="attribute_button_1" class="attribute" onclick='heroPick(\"HeroMouth\",\"1\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/mouth/mouth1.png" alt=""/>
+                    <img id="attribute_button_2" class="attribute" onclick='heroPick(\"HeroMouth\",\"2\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/mouth/mouth2.png" alt=""/>
+                    <img id="attribute_button_3" class="attribute" onclick='heroPick(\"HeroMouth\",\"3\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/mouth/mouth3.png" alt=""/>
                     <?php if ($herodetail['gender']==1) {?>
-                        <img id="attribute_button_4" class="attribute" onclick='$("HeroEditorForm").HeroMouth.value="4";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/mouth/mouth4.png" alt=""/>
-                        <img id="attribute_button_5" class="attribute" onclick='$("HeroEditorForm").HeroMouth.value="5";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/mouth/mouth5.png" alt=""/>
-                        <img id="attribute_button_6" class="attribute" onclick='$("HeroEditorForm").HeroMouth.value="6";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/mouth/mouth6.png" alt=""/>
-                        <img id="attribute_button_7" class="attribute" onclick='$("HeroEditorForm").HeroMouth.value="7";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/mouth/mouth7.png" alt=""/>
-                        <img id="attribute_button_8" class="attribute" onclick='$("HeroEditorForm").HeroMouth.value="8";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/mouth/mouth8.png" alt=""/>
+                        <img id="attribute_button_4" class="attribute" onclick='heroPick(\"HeroMouth\",\"4\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/mouth/mouth4.png" alt=""/>
+                        <img id="attribute_button_5" class="attribute" onclick='heroPick(\"HeroMouth\",\"5\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/mouth/mouth5.png" alt=""/>
+                        <img id="attribute_button_6" class="attribute" onclick='heroPick(\"HeroMouth\",\"6\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/mouth/mouth6.png" alt=""/>
+                        <img id="attribute_button_7" class="attribute" onclick='heroPick(\"HeroMouth\",\"7\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/mouth/mouth7.png" alt=""/>
+                        <img id="attribute_button_8" class="attribute" onclick='heroPick(\"HeroMouth\",\"8\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/mouth/mouth8.png" alt=""/>
                     <?php } ?>
                     <div class="clear"></div>
                 </div>
@@ -319,12 +390,12 @@ $getface = $herodetail['face'];if ($gender==0) $getface%=5;
                         <div class="clear"></div>
                     </div>
                     <div class="details">
-                        <img id="attribute_button_5000" class="attribute" onclick='$("HeroEditorForm").HeroBeard.value="0";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/beard/beard0.png" alt=""/>
-                        <img id="attribute_button_5001" class="attribute" onclick='$("HeroEditorForm").HeroBeard.value="1";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/beard/beard1.png" alt=""/>
-                        <img id="attribute_button_5002" class="attribute" onclick='$("HeroEditorForm").HeroBeard.value="2";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/beard/beard2.png" alt=""/>
-                        <img id="attribute_button_5003" class="attribute" onclick='$("HeroEditorForm").HeroBeard.value="3";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/beard/beard3.png" alt=""/>
-                        <img id="attribute_button_5004" class="attribute" onclick='$("HeroEditorForm").HeroBeard.value="4";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/beard/beard4.png" alt=""/>
-                        <img id="attribute_button_5999" class="attribute" onclick='$("HeroEditorForm").HeroBeard.value="5";' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/beard/beardNone.png" alt=""/>
+                        <img id="attribute_button_5000" class="attribute" onclick='heroPick(\"HeroBeard\",\"0\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/beard/beard0.png" alt=""/>
+                        <img id="attribute_button_5001" class="attribute" onclick='heroPick(\"HeroBeard\",\"1\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/beard/beard1.png" alt=""/>
+                        <img id="attribute_button_5002" class="attribute" onclick='heroPick(\"HeroBeard\",\"2\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/beard/beard2.png" alt=""/>
+                        <img id="attribute_button_5003" class="attribute" onclick='heroPick(\"HeroBeard\",\"3\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/beard/beard3.png" alt=""/>
+                        <img id="attribute_button_5004" class="attribute" onclick='heroPick(\"HeroBeard\",\"4\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/beard/beard4.png" alt=""/>
+                        <img id="attribute_button_5999" class="attribute" onclick='heroPick(\"HeroBeard\",\"5\",this)' src="<?=GP_LOCATION2 ?>hero/<?php echo $gstr; ?>/thumb/head/beard/beardNone.png" alt=""/>
                         <div class="clear"></div>
                     </div>
                 </div>

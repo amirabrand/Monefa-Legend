@@ -11025,3 +11025,7 @@ background-color: rgba(255, 255, 255, 0.5);
 
 
 
+
+/* T65: hero editor icon selection feedback */
+#heroEditor .attributes img.attribute{cursor:pointer}
+#heroEditor .attributes img.attributeSelected{outline:2px solid #d9a945;outline-offset:-2px;opacity:1;border-radius:2px}
