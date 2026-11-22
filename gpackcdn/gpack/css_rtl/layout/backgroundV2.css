@@ -47,61 +47,61 @@ body.buildingsV2.perspectiveResources {
   background-color: #7b9534;
 }
 body.buildingsV2.perspectiveResources:before {
-  background-image: url('../../img_rtl/layout/bgResourcesBefore-rtl.jpg');
+  background-image: url('../../img_rtl/layout/bgResourcesBefore-rtl.jpg?v=66');
 }
 body.buildingsV2.perspectiveResources:after {
-  background-image: url('../../img_rtl/layout/bgResourcesAfter-rtl.jpg');
+  background-image: url('../../img_rtl/layout/bgResourcesAfter-rtl.jpg?v=66');
 }
 body.buildingsV2.perspectiveResources div#background {
-  background-image: url('../../img_rtl/layout/bgResources-rtl.jpg');
+  background-image: url('../../img_rtl/layout/bgResources-rtl.jpg?v=67');
 }
 body.buildingsV2.perspectiveResources div.village1 #village_map {
   background-position: center bottom;
 }
 body.buildingsV2.perspectiveResources div.village1 #village_map.f1 {
-  background-image: url('../../img_rtl/g/f1-rtl.png');
+  background-image: url('../../img_rtl/g/f1-rtl.png?v=66');
 }
 body.buildingsV2.perspectiveResources div.village1 #village_map.f2 {
-  background-image: url('../../img_rtl/g/f2-rtl.png');
+  background-image: url('../../img_rtl/g/f2-rtl.png?v=66');
 }
 body.buildingsV2.perspectiveResources div.village1 #village_map.f3 {
-  background-image: url('../../img_rtl/g/f3-rtl.png');
+  background-image: url('../../img_rtl/g/f3-rtl.png?v=66');
 }
 body.buildingsV2.perspectiveResources div.village1 #village_map.f4 {
-  background-image: url('../../img_rtl/g/f4-rtl.png');
+  background-image: url('../../img_rtl/g/f4-rtl.png?v=66');
 }
 body.buildingsV2.perspectiveResources div.village1 #village_map.f5 {
-  background-image: url('../../img_rtl/g/f5-rtl.png');
+  background-image: url('../../img_rtl/g/f5-rtl.png?v=66');
 }
 body.buildingsV2.perspectiveResources div.village1 #village_map.f6 {
-  background-image: url('../../img_rtl/g/f6-rtl.png');
+  background-image: url('../../img_rtl/g/f6-rtl.png?v=66');
 }
 body.buildingsV2.perspectiveResources div.village1 #village_map.f7 {
-  background-image: url('../../img_rtl/g/f7-rtl.png');
+  background-image: url('../../img_rtl/g/f7-rtl.png?v=66');
 }
 body.buildingsV2.perspectiveResources div.village1 #village_map.f8 {
-  background-image: url('../../img_rtl/g/f8-rtl.png');
+  background-image: url('../../img_rtl/g/f8-rtl.png?v=66');
 }
 body.buildingsV2.perspectiveResources div.village1 #village_map.f9 {
-  background-image: url('../../img_rtl/g/f9-rtl.png');
+  background-image: url('../../img_rtl/g/f9-rtl.png?v=66');
 }
 body.buildingsV2.perspectiveResources div.village1 #village_map.f10 {
-  background-image: url('../../img_rtl/g/f10-rtl.png');
+  background-image: url('../../img_rtl/g/f10-rtl.png?v=66');
 }
 body.buildingsV2.perspectiveResources div.village1 #village_map.f11 {
-  background-image: url('../../img_rtl/g/f11-rtl.png');
+  background-image: url('../../img_rtl/g/f11-rtl.png?v=66');
 }
 body.buildingsV2.perspectiveResources div.village1 #village_map.f12 {
-  background-image: url('../../img_rtl/g/f12-rtl.png');
+  background-image: url('../../img_rtl/g/f12-rtl.png?v=66');
 }
 body.buildingsV2.perspectiveBuildings:before {
-  background-image: url('../../img_rtl/layout/bgBuildingsBefore-rtl.jpg');
+  background-image: url('../../img_rtl/layout/bgBuildingsBefore-rtl.jpg?v=66');
 }
 body.buildingsV2.perspectiveBuildings:after {
-  background-image: url('../../img_rtl/layout/bgBuildingsAfter-rtl.jpg');
+  background-image: url('../../img_rtl/layout/bgBuildingsAfter-rtl.jpg?v=66');
 }
 body.buildingsV2.perspectiveBuildings div#background {
-  background-image: url('../../img_rtl/layout/bgBuildings-rtl.jpg');
+  background-image: url('../../img_rtl/layout/bgBuildings-rtl.jpg?v=66');
   background-position: calc(50% - 84px) top;
   min-height: 1090px;
 }
@@ -112,7 +112,7 @@ body.buildingsV2.perspectiveBuildings div#background:before {
   bottom: 0;
   width: 100%;
   min-height: calc(100vh - 1090px);
-  background-image: url('../../img_rtl/layout/bgBuildingsPattern-rtl.jpg');
+  background-image: url('../../img_rtl/layout/bgBuildingsPattern-rtl.jpg?v=66');
   background-position: calc(50% - 84px) top;
   background-repeat: no-repeat repeat;
 }
