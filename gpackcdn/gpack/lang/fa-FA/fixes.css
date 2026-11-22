@@ -175,7 +175,7 @@ div.player .description1, div.player .description2 {
 /* T54: login background from The Settlers Online art (tsowiki.eu)
    T56: cover + no-repeat (auto size broke layout on non-1920 screens) */
 body.login.buildingsV3.perspectiveBuildings div#background {
-    background-image: url('../../img_rtl/layout/background2019/bgBuildings-tso.jpg');
+    background-image: url('../../img_rtl/layout/background2019/bgBuildings-tso.jpg?v=67');
     background-position: center bottom;
     background-size: cover;
     background-repeat: no-repeat;

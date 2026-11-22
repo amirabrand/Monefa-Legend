@@ -37035,11 +37035,11 @@ body.perspectiveResources[data-theme="winter"].rtl {
     background-image: linear-gradient(-4.9deg, #778796 1875px, #bbd7ed 1911px, #bcd6ef), linear-gradient(5deg, #778796 1856px, #bbd7ed 1891px, #bcd6ef);
 }
 body.perspectiveResources[data-theme="default"] div#background {
-    background-image: url("../../img/themes/default/background/bgResources.jpg");
+    background-image: url("../../img/themes/default/background/bgResources.jpg?v=67");
 }
 @media screen and (max-width: 1440px) {
     body.perspectiveResources[data-theme="default"] div#background {
-        background-image: url("../../img/themes/default/background/bgResources_narrow.jpg");
+        background-image: url("../../img/themes/default/background/bgResources_narrow.jpg?v=67");
     }
 }
 body.perspectiveResources[data-theme="default"] div#background.isShore {
@@ -37065,11 +37065,11 @@ body.perspectiveResources[data-theme="default"].mobileForced div#background.isSh
     background-image: url("../../img/themes/default/background/bgResources_shore_mobile.jpg");
 }
 body.perspectiveResources[data-theme="winter"] div#background {
-    background-image: url("../../img/themes/winter/background/bgResources.jpg");
+    background-image: url("../../img/themes/winter/background/bgResources.jpg?v=67");
 }
 @media screen and (max-width: 1440px) {
     body.perspectiveResources[data-theme="winter"] div#background {
-        background-image: url("../../img/themes/winter/background/bgResources_narrow.jpg");
+        background-image: url("../../img/themes/winter/background/bgResources_narrow.jpg?v=67");
     }
 }
 body.perspectiveResources[data-theme="winter"] div#background.isShore {
@@ -37126,11 +37126,11 @@ body.perspectiveBuildings div#background {
     background-position: center top;
 }
 body.perspectiveBuildings[data-theme="default"] div#background {
-    background-image: url("../../img/themes/default/background/bgBuildings.jpg");
+    background-image: url("../../img/themes/default/background/bgBuildings.jpg?v=67");
 }
 @media screen and (max-width: 1440px) {
     body.perspectiveBuildings[data-theme="default"] div#background {
-        background-image: url("../../img/themes/default/background/bgBuildings_narrow.jpg");
+        background-image: url("../../img/themes/default/background/bgBuildings_narrow.jpg?v=67");
     }
 }
 body.perspectiveBuildings[data-theme="default"] div#background.isCity {
@@ -37184,11 +37184,11 @@ body.perspectiveBuildings[data-theme="default"].mobileForced div#background.isCi
     background-image: url("../../img/themes/default/background/bgBuildings_shore_city_mobile.jpg");
 }
 body.perspectiveBuildings[data-theme="winter"] div#background {
-    background-image: url("../../img/themes/winter/background/bgBuildings.jpg");
+    background-image: url("../../img/themes/winter/background/bgBuildings.jpg?v=67");
 }
 @media screen and (max-width: 1440px) {
     body.perspectiveBuildings[data-theme="winter"] div#background {
-        background-image: url("../../img/themes/winter/background/bgBuildings_narrow.jpg");
+        background-image: url("../../img/themes/winter/background/bgBuildings_narrow.jpg?v=67");
     }
 }
 body.perspectiveBuildings[data-theme="winter"] div#background.isCity {

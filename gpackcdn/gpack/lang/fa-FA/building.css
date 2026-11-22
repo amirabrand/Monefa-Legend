@@ -5683,7 +5683,7 @@ body.buildingsV3.perspectiveResources.rtl {
   background-image: linear-gradient(-4.9deg, #67772e 1875px, #abc7df 1911px, #aac8e2), linear-gradient(4.9deg, #67772e 1856px, #abc7df 1892px, #aac8e2);
 }
 body.buildingsV3.perspectiveResources div#background {
-  background-image: url('../../img_ltr/layout/background2019/bgResources.jpg');
+  background-image: url('../../img_ltr/layout/background2019/bgResources.jpg?v=67');
 }
 body.buildingsV3.perspectiveResources div.village1 #village_map {
   background-position: center bottom;
@@ -5758,7 +5758,7 @@ body.buildingsV3.perspectiveBuildings.rtl {
   background-image: linear-gradient(-8.9deg, #54643a 2084px, #b6c9d8 2102px, #aac8e2), linear-gradient(8.9deg, #54643a 2112px, #b6c9d8 2168px, #aac8e2);
 }
 body.buildingsV3.perspectiveBuildings div#background {
-  background-image: url('../../img_ltr/layout/background2019/bgBuildings.jpg');
+  background-image: url('../../img_ltr/layout/background2019/bgBuildings.jpg?v=67');
   background-position: calc(50% - 84px) top;
 }
 body.buildingsV3.rtl.perspectiveBuildings div#background {
