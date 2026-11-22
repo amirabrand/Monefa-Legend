@@ -439,7 +439,7 @@ body.buildingsV3.perspectiveBuildings.rtl.rearrangeBuildings {
 }
 
 body.buildingsV3.perspectiveBuildings div#background {
-    background-image: url('../../img_rtl/layout/background2019/bgBuildings.jpg?v=67');
+    background-image: url('../../img_rtl/layout/background2019/bgBuildings.jpg?v=69');
     background-position: calc(50% - 84px) top
 }
 

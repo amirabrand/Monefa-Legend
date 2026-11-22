@@ -175,7 +175,7 @@ div.player .description1, div.player .description2 {
 /* T54: login background from The Settlers Online art (tsowiki.eu)
    T56: cover + no-repeat (auto size broke layout on non-1920 screens) */
 body.login.buildingsV3.perspectiveBuildings div#background {
-    background-image: url('../../img_rtl/layout/background2019/bgBuildings-tso.jpg?v=67');
+    background-image: url('../../img_rtl/layout/background2019/bgBuildings-tso.jpg?v=69');
     background-position: center bottom;
     background-size: cover;
     background-repeat: no-repeat;
@@ -184,4 +184,12 @@ body.login.buildingsV3.perspectiveBuildings div#background {
 /* T57: dialog header banner from The Settlers Online art (tsowiki.eu) */
 #content.referAFriend .referAFriendInfo .header {
     background-image: url('../../../img/views/ReferAFriend/headerImage-tso.png');
+}
+
+/* T69: V3 page backdrop = one clean cover image (no tiling seams, no clutter) */
+body.buildingsV3 div#background {
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center top !important;
+  background-color: #8a813f !important;
 }
